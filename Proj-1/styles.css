@@ -1,0 +1,157 @@
+/* ---------- Document ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'Montserrat', 'Raleway', sans-serif;
+    color: white;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    padding-right: 50px;
+    padding-left: 50px;
+    background: radial-gradient(at top left, rgb(46, 46, 46), #000 100%);
+}
+@media (max-width: 768px) {
+    body {
+        background: rgb(26, 26, 26);
+    }
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 16px 16px 16px 0;
+    line-height: 1.5em;
+}
+
+label {
+    margin: 0px 0px 8px 16px;
+}
+
+/* ---------- Document end ---------- */
+
+/* ---------- Wrappers and Layouts ---------- */
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.layout {
+    min-height: calc(100vh - 40px);
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: minmax(300px, calc(100% - 280px)) 200px;
+    gap: 80px;
+    justify-items: center;
+    align-items: center;
+    margin: 0 0 20px 0;
+}
+@media (max-width: 768px) {
+    .gridContainer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* ---------- Wrappers and Layouts end ---------- */
+
+/* ---------- Header ---------- */
+.header {
+    display: flex;
+    align-items: center;
+}
+
+/* - Logo - */
+
+.header svg g path {
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.header svg:hover g path {
+    transition: 0.5s;
+    fill: white;
+}
+
+.header svg:hover g path {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+}
+
+#logoDesc {
+    font: italic 13px sans-serif;
+}
+
+/* - Logo end - */
+
+/* ---------- Header end ---------- */
+
+/* ---------- Specific elements ---------- */
+#documentation {
+    padding-top: 10px;
+}
+
+#documentation > ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 80px;
+    margin: 0px 0px 80px 0;
+}
+
+#documentation > ul > li {
+    padding-top: 5px;
+    border-top: 1px solid #dfdfdf;
+    overflow: auto;
+}
+
+#documentation > ul > li > ul > li:not(:first-child) {
+    border-top: 1px solid #4b4b4b;
+}
+
+#documentation > ul > li > ul > li {
+    margin-left: 2em;
+}
+
+#documentation p:not(#documentation > ul > li > ul > li > p) {
+    margin-left: 2em;
+    word-wrap: break-word;
+}
+
+#degree {
+    margin: 0px 16px 16px 16px;
+    color: black;
+    width: 50px;
+}
+
+#toggleDocumentation {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    bottom: 30px;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    margin: 25px 0 0px 0;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: white;
+    border: solid 1px rgb(0, 0, 0);
+    border-radius: 2px;
+}
+
+/* ---------- Specific elements end ---------- */
