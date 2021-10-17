@@ -4,12 +4,12 @@ import React from 'react';
 interface IButtonProps {
     text: string
     styling?: string,
-    functionCall?: () => void
+    onClick?: () => void
 }
 
 function Button(props: IButtonProps) {
     return (
-        <button className={props.styling}>{ props.text }</button>
+        <button onClick={props.onClick} className={props.styling}>{ props.text }</button>
     );
 }
 
