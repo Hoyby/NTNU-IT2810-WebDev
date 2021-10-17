@@ -2,7 +2,7 @@
 /* eslint-disable */
 import React, {useReducer, createContext} from 'react'
 import Dashboard from './components/Dashboard'
-import Login from './components/Login'
+import Landing from "./components/Landing";
 
 export const AuthContext: any = createContext('auth')
 
@@ -42,7 +42,7 @@ export default function App() {
   return (
     <AuthContext.Provider value={{state, dispatch}}>
       <div className="App">
-        {!state.isAuthenticated ? <Login /> : <Dashboard />}
+        {!state.isAuthenticated ? <Landing /> : <Dashboard />}
       </div>
     </AuthContext.Provider>
   )
