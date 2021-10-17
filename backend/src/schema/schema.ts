@@ -1,23 +1,6 @@
 import { makeExecutableSchema } from '@graphql-tools/schema';
-import { gql } from 'apollo-server-core';
-
-const typeDefs = gql`
-  schema {
-    query: Query
-  }
-
-  type Query {
-    id: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    id: (query) => {
-      return query.id;
-    },
-  },
-};
+import { resolvers } from './resolvers';
+import { typeDefs } from './typeDefs';
 
 export const executableSchema = makeExecutableSchema({
   resolverValidationOptions: {
