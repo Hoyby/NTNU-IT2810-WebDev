@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DgraphClient, DgraphClientStub } from 'dgraph-js-http';
-import { queryData } from './dGraphConnector';
+//import { queryData } from './dGraphConnector';
 
 const dgraphClient = new DgraphClient(
   new DgraphClientStub('http://localhost:8090"'),
@@ -27,6 +27,6 @@ const query = `
 @Injectable()
 export class AppService {
   queryData() {
-    void queryData(dgraphClient, query);
+    //void queryData(dgraphClient, query);
   }
 }

@@ -1,4 +1,4 @@
-import { DGraphConnector } from './dGraphConnector';
+import { DGraphConnector } from './data-loaders/dGraph/dGraphConnector';
 
 export interface IContext {
   req: Request;
