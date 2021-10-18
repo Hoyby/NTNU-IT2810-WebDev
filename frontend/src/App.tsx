@@ -3,6 +3,8 @@
 import React, {useReducer, createContext} from 'react'
 import Dashboard from './components/Dashboard'
 import Landing from "./components/Landing";
+import { Route } from "react-router-dom";
+import Login from "./components/Login";
 
 export const AuthContext: any = createContext('auth')
 
@@ -41,9 +43,16 @@ export default function App() {
 
   return (
     <AuthContext.Provider value={{state, dispatch}}>
-      <div className="App">
-        {!state.isAuthenticated ? <Landing /> : <Dashboard />}
-      </div>
+
+        <div className="App">
+          <Route path='/' exact={true}>
+            {!state.isAuthenticated ? <Landing /> : <Dashboard />}
+          </Route>
+          <Route path='/login'>
+            {!state.isAuthenticated ? <Login/> : <Dashboard />}
+          </Route>
+        </div>
+
     </AuthContext.Provider>
   )
 }
