@@ -1,18 +1,15 @@
 import React from 'react'
-// import image from '../img/logo.svg'
+import image from '../img/logo.svg'
 
 export function Navbar() {
   return (
     <nav
-      className="flex justify-around items-center shadow-lg md:flex-shrink"
+      className="flex justify-start items-start shadow-lg md:flex-shrink py-3"
       data-testid="nav"
     >
-      {/* <img className="h-10" src={image} /> */}
-      <div className="whitespace-nowrap flex">
-        <a className="mx-12 p-3 block " href="/">
-          Home
-        </a>
-      </div>
+      <a className="block px-40" href="/">
+        <img className="h-10" src={image} alt='movie hall'/>
+      </a>
     </nav>
   )
 }
