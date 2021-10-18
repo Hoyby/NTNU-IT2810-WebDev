@@ -1,11 +1,13 @@
-
 /* eslint-disable */
 import React from 'react'
-import { Routes } from './Routes';
-import "@material-tailwind/react/tailwind.css";
-
+import { Layout } from './app/components/Layout'
+import '@material-tailwind/react/tailwind.css'
+import LandingPage from './app/containers/LandingPage'
 
 export default function App() {
-
-  return <Routes />;
+  return (
+    <Layout>
+      <LandingPage />
+    </Layout>
+  )
 }
