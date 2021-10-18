@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard'
 import Landing from "./components/Landing";
 import { Route } from "react-router-dom";
 import Login from "./components/Login";
+import "@material-tailwind/react/tailwind.css";
 
 export const AuthContext: any = createContext('auth')
 

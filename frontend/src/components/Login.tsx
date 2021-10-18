@@ -3,6 +3,10 @@
 import React, { useState } from 'react'
 import { AuthContext } from '../App'
 
+// @ts-ignore
+import Button from "@material-tailwind/react/Button";
+// @ts-ignore
+import Input from "@material-tailwind/react/Input";
 
 export default function Login() {
   const { dispatch } = React.useContext(AuthContext)
@@ -108,14 +112,14 @@ export default function Login() {
   //   }
 
   return (
-    <div className="border-4 w-96 flex flex-col m-auto items-center mt-40">
-      <h1 className="mb-4 font-medium">Login</h1>
-      <form className="border-4">
+    <div className="bg-black bg-opacity-20 w-96 flex flex-col m-auto items-center mt-40">
+      <h1 className="mb-4 text-amber-500 text-4xl font-bold">Login</h1>
+      <form>
         <div className="flex flex-col items-center">
-          <label htmlFor="email">
+          {/*<label htmlFor="email">
             <b>Email</b>
-          </label>
-          <input
+          </label>*/}
+          {/* <input
             className="border-2 w-60 m-2"
             required
             type="text"
@@ -123,12 +127,25 @@ export default function Login() {
             placeholder="Username"
             value={userInfo.email}
             onChange={changeHandler}
-          />
+          /> */}
+          <div className='my-6'>
+          <Input
+              className="border-2 w-60"
+              type="text"
+              name="email"
+              color="amber"
+              size="lg"
+              outline={false}
+              placeholder="Username"
+              onChange={changeHandler}
 
-          <label htmlFor="psw">
+          />
+          </div>
+
+          {/*<label htmlFor="psw">
             <b>Password</b>
-          </label>
-          <input
+          </label>*/}
+          {/*<input
             className="border-2 w-60 m-2"
             type="password"
             name="password"
@@ -136,20 +153,54 @@ export default function Login() {
             placeholder="Password"
             value={userInfo.password}
             onChange={changeHandler}
-          />
+          />*/}
+          <div className='my-6'>
+          <Input
+              className="border-2 w-60 m-2"
+              type="password"
+              name="password"
+              color="amber"
+              size="lg"
+              outline={false}
+              placeholder="Password"
+              onChange={changeHandler}
 
-          <button onClick={handleLogIn} className="w-20 border-2 m-4">
+          />
+          </div>
+
+          <Button color="amber"
+                  buttonType="filled"
+                  size="regular"
+                  rounded={false}
+                  block={false}
+                  iconOnly={false}
+                  ripple="light"
+                  className='my-5 text-black' onClick={handleLogIn}>
             Log in
-          </button>
+          </Button>
         </div>
       </form>
       <div className="items-center">
-        <button className="m-2 border-2 p-1" onClick={handleLogOut}>
+        <Button color="amber"
+                buttonType="filled"
+                size="regular"
+                rounded={false}
+                block={false}
+                iconOnly={false}
+                ripple="light"
+                className='my-5 text-black' onClick={handleLogOut}>
           Log out
-        </button>
-        <button className="m-2 border-2 p-1" onClick={handleRefresh}>
+        </Button>
+        <Button color="amber"
+                buttonType="filled"
+                size="regular"
+                rounded={false}
+                block={false}
+                iconOnly={false}
+                ripple="light"
+                className='my-5 text-black' onClick={handleRefresh}>
           Refresh
-        </button>
+        </Button>
       </div>
 
       <p className="text-red-500">{userInfo.errorMessage}</p>
