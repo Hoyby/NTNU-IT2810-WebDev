@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server-core';
+import { IResolvers } from '../types/resolvers';
 
 export const typeDefs = gql`
   enum Gender {
@@ -14,7 +15,7 @@ export const typeDefs = gql`
   }
 `;
 
-export const resolvers = {
+export const resolvers: IResolvers = {
   Person: {
     id: (user): string => {
       return user.getId();

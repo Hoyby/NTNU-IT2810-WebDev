@@ -1,4 +1,4 @@
-import { mergeResolvers } from '@graphql-tools/merge';
+import { mergeResolvers } from './types';
 import { resolvers as Movie } from './Movie';
 import { resolvers as Person } from './Person';
 import { resolvers as Query } from './Query';

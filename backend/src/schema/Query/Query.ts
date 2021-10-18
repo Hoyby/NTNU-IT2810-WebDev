@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server-core';
+import { IResolvers } from '../types/resolvers';
 
 export const typeDefs = gql`
   type Query {
@@ -8,7 +9,7 @@ export const typeDefs = gql`
   }
 `;
 
-export const resolvers = {
+export const resolvers: IResolvers<any> = {
   Query: {
     actors: (query) => {
       query.getActors();

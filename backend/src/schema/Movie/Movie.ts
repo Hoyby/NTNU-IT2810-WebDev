@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server-core';
+import { IResolvers } from '../types/resolvers';
 
 export const typeDefs = gql`
   type Movie {
@@ -9,7 +10,7 @@ export const typeDefs = gql`
   }
 `;
 
-export const resolvers = {
+export const resolvers: IResolvers = {
   Movie: {
     id: (movie): string => {
       return movie.getId();

@@ -3,22 +3,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { executableSchema } from './schema/schema';
-// import { DgraphModule } from '@valsamonte/nestjs-dgraph';
-
+import { getContext } from './context';
 @Module({
   imports: [
     GraphQLModule.forRoot({
       debug: false,
       schema: executableSchema,
+      context: ({ res, req }) => getContext(req, res),
     }),
-    // DgraphModule.forRoot({
-    //   stubs: [
-    //     {
-    //       address: 'localhost:8090',
-    //     },
-    //   ],
-    //   debug: true,
-    // }),
   ],
   controllers: [AppController],
   providers: [AppService],

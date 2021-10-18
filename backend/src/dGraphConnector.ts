@@ -1,7 +1,22 @@
-import { DgraphClient, Response as dGResponse } from 'dgraph-js-http';
+import {
+  DgraphClient,
+  DgraphClientStub,
+  Response as dGResponse,
+} from 'dgraph-js-http';
 import { DocumentNode } from 'graphql';
 import { updateQueryType } from './utils/updateQueryType';
 
+export class DGraphConnector {
+  readonly dGraphClientStub: DgraphClientStub;
+  readonly dGraphClient: DgraphClient;
+
+  constructor() {
+    this.dGraphClientStub = new DgraphClientStub('http:localhost:8090');
+    this.dGraphClient = new DgraphClient(this.dGraphClientStub);
+  }
+}
+
+// TODO move functions into connector.
 export async function newTransaction(
   dgraphClient: DgraphClient,
   queryType: string | DocumentNode,
