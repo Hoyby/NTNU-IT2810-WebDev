@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { GetMoviePage_Page } from "../../services/movieService/__generated__/GetMoviePage";
 import { IHomePageState } from "./types";
 
 const initialState: IHomePageState = {
@@ -9,8 +10,9 @@ const HomePageSlice = createSlice({
   name: "homePage",
   initialState,
   reducers: {
-    setMoviePage(state, action) {
-      state.moviePage = action.payload;
+    setMoviePage(state, action: PayloadAction<GetMoviePage_Page | null>) {
+      if (action)
+        state.moviePage = action.payload;
     },
   },
 });

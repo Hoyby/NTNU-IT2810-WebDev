@@ -8,7 +8,7 @@ export function Navbar() {
       data-testid="nav"
     >
       <a className="block px-40" href="/">
-        <img className="h-10" src={image} alt='movie hall'/>
+        <img className="h-10" src={image} alt="movie hall" />
       </a>
     </nav>
   )

@@ -6,31 +6,30 @@ import { GetMoviePage } from '../../services/movieService/__generated__/GetMovie
 import { setMoviePage } from './homePageSlice'
 import { Movies } from './movies'
 
-interface IHomePageProps {}
-
 const actionDispatch = (dispatch: Dispatch) => ({
   setMoviePage: (page: GetMoviePage['Page']) => dispatch(setMoviePage(page)),
 })
 
-export function HomePage(props: IHomePageProps) {
+export function HomePage() {
   const { setMoviePage: setMoviePage } = actionDispatch(useAppDispatch())
 
   const fetchMoviePage = async () => {
     const moviePage = await movieService.getMoviePage(0, 200).catch((err) => {
-      console.log('Error: ', err)
+      console.error('Error: ', err)
     })
 
-    console.log('Movie page: ', moviePage)
     if (moviePage) setMoviePage(moviePage)
   }
 
   useEffect(() => {
-    fetchMoviePage()
+    fetchMoviePage().catch((err) => {
+      console.error(err)
+    })
   }, [])
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <h1>Hot Movies</h1>
+      <h1>Movies</h1>
       <Movies />
     </div>
   )

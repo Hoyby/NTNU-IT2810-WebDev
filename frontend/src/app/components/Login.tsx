@@ -1,13 +1,8 @@
 import React from 'react'
 
 export default function Login() {
-  return (
-    <div>
-      
-    </div>
-  )
+  return <div></div>
 }
-
 
 // import React, { VFC } from 'react';
 // import { login } from '../../slices/auth';
@@ -15,7 +10,6 @@ export default function Login() {
 // import { Redirect } from 'react-router-dom';
 // import { isUserAuthenticatedSelector } from '../../selectors/auth';
 // import { useSelector } from '../store';
-
 
 // export const Login: VFC = () => {
 //   const authenticated = useSelector(isUserAuthenticatedSelector);
