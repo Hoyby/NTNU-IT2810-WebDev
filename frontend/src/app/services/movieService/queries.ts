@@ -1,17 +1,19 @@
-import gpl from "graphql-tag"
-export const GET_MOVIE_PAGE = gpl`
-    query GetMoviePage($page: Int!, $perPage: Int!) {
-        Page(page: $page, perPage: $perPage) {
-            media {
-                id
-                description
-                title {
-                    english
-                }
-                coverImage {
-                    medium
-                }
-            }
+import gql from "graphql-tag";
+
+export const GET_MOVIE_PAGE = gql`
+  query GetMoviePage($page: Int!, $perPage: Int!) {
+    Page(page: $page, perPage: $perPage) {
+      media {
+        id
+        description
+        averageScore
+        title {
+          english
         }
+        coverImage {
+          extraLarge
+        }
+      }
     }
-`
+  }
+`;

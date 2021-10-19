@@ -1,5 +1,5 @@
-import { ILandingPageState } from "./containers/LandingPage/types";
+import { IHomePageState } from "./containers/HomePage/types";
 
 export interface IRootState {
-    landingPage: ILandingPageState
+  homePage: IHomePageState;
 }
