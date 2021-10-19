@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server-core';
+import { DGraphLoader } from 'src/data-loaders/dGraph/dGraphLoader';
 import { IResolvers } from '../types/resolvers';
 
 export const typeDefs = gql`
@@ -12,13 +13,13 @@ export const typeDefs = gql`
 export const resolvers: IResolvers<any> = {
   Query: {
     actors: (query) => {
-      query.getActors();
+      return new DGraphLoader().getActors();
     },
     movie: (query) => {
-      query.getMovies();
+      return query.getMovies();
     },
     people: (query) => {
-      query.getPeople();
+      return query.getPeople();
     },
   },
 };
