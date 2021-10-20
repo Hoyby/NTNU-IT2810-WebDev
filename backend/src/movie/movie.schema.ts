@@ -1,22 +1,18 @@
-import { Field, ObjectType } from '@nestjs/graphql';
-import { Prop, Schema } from '@nestjs/mongoose';
-import * as mongoose from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export const MovieSchema = new mongoose.Schema({
-    title: String,
-    published: Number,
-    description: String,
-});
+export type MovieDocument = Movie & Document;
 
 @Schema()
-export class Movie extends Document {
+export class Movie {
   @Prop()
-  title: String;
+  title: string;
 
   @Prop()
-  published: Number;
+  published: number;
 
   @Prop()
-  description: String;
+  description: string;
 }
+
+export const MovieSchema = SchemaFactory.createForClass(Movie);

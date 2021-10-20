@@ -1,24 +1,19 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { FilterQuery, Model } from 'mongoose';
-import { CreateMovieInput } from './movie.input';
-import { Movie } from './movie.schema';
+import { Movie, MovieDocument } from './movie.schema';
+import { CreateMovieDto } from './dto/create-movie.dto';
 
 @Injectable()
 export class MovieService {
-  constructor(@InjectModel(Movie.name) private movieModel: Model<Movie>) {}
+  constructor(@InjectModel(Movie.name) private movieModel: Model<MovieDocument>) {}
 
-
-  async create(payload: CreateMovieInput) {
-    const createdPerson = new this.movieModel(payload);
-    return createdPerson.save();
-  }
-
-  async findOne(query: FilterQuery<Movie>): Promise<Movie> {
-    return this.movieModel.findOne(query).lean();
+  async create(createMovieDto: CreateMovieDto): Promise<Movie> {
+    const createdMovie = new this.movieModel(createMovieDto);
+    return createdMovie.save();
   }
 
   async findAll(): Promise<Movie[]> {
-    return this.movieModel.find().lean();
+    return this.movieModel.find().exec();
   }
 }

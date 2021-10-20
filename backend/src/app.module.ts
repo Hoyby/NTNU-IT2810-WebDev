@@ -2,8 +2,9 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MovieModule } from './movie/movie.module';
-import { DatabaseModule } from './database/database.module';
 import { join } from 'path';
+import { MongooseModule } from '@nestjs/mongoose';
+
 @Module({
   imports: [
     GraphQLModule.forRoot({
@@ -13,8 +14,8 @@ import { join } from 'path';
       debug: false,
     }),
     ConfigModule,
-    DatabaseModule,
-    // MovieModule,
+    MongooseModule.forRoot('mongodb://mongodb:27017/movieDB'),
+    MovieModule,
   ],
 })
 export class AppModule { }
