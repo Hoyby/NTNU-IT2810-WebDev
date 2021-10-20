@@ -1,26 +1,20 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
-import { executableSchema } from './schema/schema';
-import { getContext } from './context';
-import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
-import { createServer } from 'http';
+import { MovieModule } from './movie/movie.module';
+import { DatabaseModule } from './database/database.module';
+import { join } from 'path';
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      debug: false,
-      schema: executableSchema,
-      context: ({ res, req }) => getContext(req, res),
-      plugins: [
-        ApolloServerPluginDrainHttpServer({
-          httpServer: createServer(this),
-        }),
-      ],
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      sortSchema: true,
       playground: true,
+      debug: false,
     }),
+    ConfigModule,
+    DatabaseModule,
+    // MovieModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

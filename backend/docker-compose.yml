@@ -4,8 +4,7 @@ services:
   dev:
     container_name: nestjs_api_dev
     depends_on:
-      - zero
-      - alpha
+      - mongodb
     image: nestjs-api-dev:1.0.0
     build:
       context: .
@@ -21,25 +20,36 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     restart: unless-stopped
-  zero:
-    image: dgraph/dgraph:latest
+# prod:
+#   container_name: nestjs_api_prod
+#   depends_on:
+#     - mongodb
+#   image: nestjs-api-prod:1.0.0
+#   build:
+#     context: .
+#     dockerfile: ./Dockerfile
+#   command: npm run start:prod
+#   ports:
+#     - 3000:3000
+#     - 9229:9229
+#   networks:
+#     - nesjs-network
+#   volumes:
+#     - .:/usr/src/app
+#     - /usr/src/app/node_modules
+#   restart: unless-stopped
+  mongodb:
+    image : mongo:latest
+    container_name: mongodb
+    environment:
+      - MONGODB_DATABASE="movieDB"
     volumes:
-      - dgraph:/dgraph
+      - ./database:/data/db
     ports:
-      - 5080:5080
-      - 6080:6080
-    restart: on-failure
-    command: dgraph zero --my=zero:5080
-  alpha:
-    image: dgraph/dgraph:latest
-    volumes:
-      - dgraph:/dgraph
-    ports:
-      - 8080:8080
-      - 9080:9080
-    restart: on-failure
-    command: dgraph alpha --my=alpha:7080 --zero=zero:5080 --security whitelist=0.0.0.0/0
-volumes:
-  dgraph:
+      - 27017:27017
+    networks:
+      - nesjs-network
+    restart: always
 networks:
-  nesjs-network:
+    nesjs-network:
+      driver: bridge
