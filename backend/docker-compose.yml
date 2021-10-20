@@ -3,6 +3,9 @@ version: '3.8'
 services:
   dev:
     container_name: nestjs_api_dev
+    depends_on:
+      - zero
+      - alpha
     image: nestjs-api-dev:1.0.0
     build:
       context: .
@@ -21,7 +24,7 @@ services:
   zero:
     image: dgraph/dgraph:latest
     volumes:
-      - /tmp/data:/dgraph
+      - dgraph:/dgraph
     ports:
       - 5080:5080
       - 6080:6080
@@ -30,11 +33,13 @@ services:
   alpha:
     image: dgraph/dgraph:latest
     volumes:
-      - /tmp/data:/dgraph
+      - dgraph:/dgraph
     ports:
-      - 8090:8080
+      - 8080:8080
       - 9080:9080
     restart: on-failure
     command: dgraph alpha --my=alpha:7080 --zero=zero:5080 --security whitelist=0.0.0.0/0
+volumes:
+  dgraph:
 networks:
   nesjs-network:

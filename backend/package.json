@@ -22,19 +22,18 @@
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.4.1",
-    "@nestjs/common": "^8.0.0",
+    "@nestjs/common": "^8.1.1",
     "@nestjs/core": "^8.0.0",
     "@nestjs/graphql": "^9.0.6",
     "@nestjs/platform-express": "^8.0.0",
-    "@nestjs/swagger": "^5.1.0",
     "apollo-server-express": "^3.4.0",
     "dgraph-js": "^21.3.1",
     "dgraph-js-http": "^21.3.1",
     "graphql": "^15.6.1",
+    "grpc": "^1.24.11",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
-    "swagger-ui-express": "^4.1.6",
     "type-graphql": "^1.1.1"
   },
   "devDependencies": {

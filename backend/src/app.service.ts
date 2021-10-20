@@ -3,7 +3,7 @@ import { DgraphClient, DgraphClientStub } from 'dgraph-js';
 import { DGraphLoader } from './data-loaders/dGraph';
 
 const dgraphClient = new DgraphClient(
-  new DgraphClientStub('http://localhost:8090"'),
+  new DgraphClientStub('http://localhost:8080"'),
 );
 console.log(dgraphClient);
 
