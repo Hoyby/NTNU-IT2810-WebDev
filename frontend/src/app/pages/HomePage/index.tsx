@@ -15,7 +15,8 @@ export function HomePage() {
 
   const fetchMoviePage = async () => {
     const moviePage = await movieService.getMoviePage(0, 200).catch((err) => {
-      console.error('Error: ', err)
+      console.error(err)
+      throw err
     })
 
     if (moviePage) setMoviePage(moviePage)
@@ -24,6 +25,7 @@ export function HomePage() {
   useEffect(() => {
     fetchMoviePage().catch((err) => {
       console.error(err)
+      throw err
     })
   }, [])
 

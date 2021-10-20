@@ -3,7 +3,7 @@ import {
   ThunkAction,
   Action,
 } from "@reduxjs/toolkit";
-import homePageReducer from "./containers/HomePage/homePageSlice";
+import homePageReducer from "./pages/HomePage/homePageSlice";
 // import ReduxLogger from "redux-logger";
 
 // const middleware = (getDefaultMiddleware: any) =>
