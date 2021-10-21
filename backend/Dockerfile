@@ -3,13 +3,14 @@ FROM node:12.19.0-alpine3.9 AS development
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-COPY .eslintrc.js ./
 
-RUN yarn install --only=development
+RUN npm install glob rimraf
+
+RUN npm install --only=development
 
 COPY . .
 
-RUN yarn run build
+RUN npm run build
 
 FROM node:12.19.0-alpine3.9 as production
 
@@ -20,7 +21,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN yarn install --only=production
+RUN npm install --only=production
 
 COPY . .
 
