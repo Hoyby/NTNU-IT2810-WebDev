@@ -3,7 +3,10 @@ module.exports = {
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
-      
+      backgroundImage: {
+        "cinema": "url('../img/cinema.jpg')",
+        "camera": "url('../img/camera1.jpg')"
+      }
     },
   },
   variants: {

@@ -1,11 +1,11 @@
 import React from 'react'
+import { HomePage } from './app/pages/HomePage'
+import { Layout } from './app/components/Layout'
 
-function App() {
+export default function App() {
   return (
-    <div className="text-center">
-      <p>Hello</p>
-    </div>
+    <Layout>
+      <HomePage />
+    </Layout>
   )
 }
-
-export default App
