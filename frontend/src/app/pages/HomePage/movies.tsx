@@ -28,7 +28,7 @@ export function Movies() {
               />
             </div>
             <div className="mt-4 text-center">{movie?.title?.english}</div>
-            <h5>Avergae Score: {movie?.averageScore}</h5>
+            <h5>Average Score: {movie?.averageScore}</h5>
           </div>
         ))}
     </div>
