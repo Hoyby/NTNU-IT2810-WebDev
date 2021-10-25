@@ -1,13 +1,13 @@
-import { Module } from '@nestjs/common';
-import { MovieResolver } from './movie.resolver';
-import { MongooseModule } from '@nestjs/mongoose';
-import { Movie, MovieSchema } from './movie.schema';
-import { MovieService } from './movie.service';
+import { Module } from '@nestjs/common'
+import { MovieResolver } from './movie.resolver'
+import { MongooseModule } from '@nestjs/mongoose'
+import { Movie, MovieSchema } from './movie.schema'
+import { MovieService } from './movie.service'
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: Movie.name, schema: MovieSchema }]),
-  ],
-  providers: [MovieResolver, MovieService]
+    imports: [
+        MongooseModule.forFeature([{ name: Movie.name, schema: MovieSchema }]),
+    ],
+    providers: [MovieResolver, MovieService],
 })
-export class MovieModule { }
+export class MovieModule {}
