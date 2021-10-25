@@ -14,10 +14,10 @@ export class Movie {
   @Prop()
   description: string;
 
-  @Prop({required: false, default: () => new Date()})
+  @Prop({ required: false, default: () => new Date() })
   createdAt: Date;
 
-  @Prop({required: false, default: null})
+  @Prop({ required: false, default: () => new Date() })
   updatedAt: Date;
 
 }

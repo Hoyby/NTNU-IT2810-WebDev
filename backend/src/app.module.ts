@@ -8,7 +8,7 @@ import { MovieModule } from './movie/movie.module';
   imports: [
     MovieModule,
     MongooseModule.forRoot(
-    `mongodb://129.241.104.148:27017/DB`
+      `mongodb://129.241.104.148:27017/DB`
     ,),
     GraphQLModule.forRoot({
       installSubscriptionHandlers: true,
@@ -19,4 +19,4 @@ import { MovieModule } from './movie/movie.module';
     }),
   ],
 })
-export class AppModule {}
+export class AppModule { }

@@ -10,4 +10,4 @@ import { MovieService } from './movie.service';
   ],
   providers: [MovieResolver, MovieService]
 })
-export class MovieModule {}
+export class MovieModule { }

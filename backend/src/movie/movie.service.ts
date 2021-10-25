@@ -6,7 +6,7 @@ import { FindMovieInput, MovieInput, UpdateMovieInput } from './input/movie.inpu
 
 @Injectable()
 export class MovieService {
-  constructor(@InjectModel(Movie.name) private movieModel: Model<Movie>) {}
+  constructor(@InjectModel(Movie.name) private movieModel: Model<Movie>) { }
 
   async findAll(): Promise<Movie[]> {
     return this.movieModel.find().exec();
@@ -23,15 +23,16 @@ export class MovieService {
 
   async update(updateMovie: UpdateMovieInput): Promise<Movie> {
     const movie = await this.movieModel.findOne(new Types.ObjectId(updateMovie._id))
-    movie.title = updateMovie.title
+    movie.title = updateMovie.title || movie.title
+    movie.description = updateMovie.description || movie.description
+    movie.published = updateMovie.published || movie.published
     movie.updatedAt = new Date()
     return movie.save()
 
   }
 
   async delete(_id: string): Promise<any> {
-    return await this.movieModel.deleteOne({_id: new Types.ObjectId(_id)});
+    return await this.movieModel.deleteOne({ _id: new Types.ObjectId(_id) });
   }
 
-  
 }

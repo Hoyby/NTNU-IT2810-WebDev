@@ -1,27 +1,35 @@
-import { Field, InputType } from "@nestjs/graphql";
-import { IsOptional, Length, MaxLength } from "class-validator";
+import { Field, InputType, Int } from "@nestjs/graphql";
 
 @InputType()
-export class MovieInput{
+export class MovieInput {
     @Field()
-    @MaxLength(30)
     readonly title: string;
 
-    @Field({ nullable: true })
-    @IsOptional()
-    description?: string;
+    @Field()
+    readonly description: string;
+
+    @Field(type => Int)
+    readonly published: number;
 }
 
 @InputType()
-export class UpdateMovieInput{
+export class UpdateMovieInput {
+
     @Field()
     readonly _id: string;
-    @Field()
-    readonly title: string;
+
+    @Field({ nullable: true })
+    readonly title?: string;
+
+    @Field({ nullable: true })
+    readonly description?: string;
+
+    @Field({ nullable: true })
+    readonly published?: number;
 }
- 
+
 @InputType()
-export class FindMovieInput{
+export class FindMovieInput {
     @Field()
     readonly _id: string;
 

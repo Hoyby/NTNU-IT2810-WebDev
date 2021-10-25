@@ -10,34 +10,29 @@ export class MovieResolver {
     private movieService: MovieService,
   ) { }
 
-  
   @Query(() => [MovieDto])
   async getmovies() {
     return this.movieService.findAll();
   }
-
 
   @Mutation(() => MovieDto)
   async createMovie(@Args('input') input: MovieInput) {
     return this.movieService.create(input);
   }
 
-  
   @Query(() => MovieDto)
   async findMovie(@Args('input') input: FindMovieInput) {
     return this.movieService.findOne(input);
   }
-
 
   @Mutation(() => MovieDto)
   async updateMovie(@Args('input') input: UpdateMovieInput) {
     return this.movieService.update(input);
   }
 
-
-  @Mutation(() => MovieDto)
+  @Mutation(() => Boolean)
   async deleteMovie(@Args('input') input: FindMovieInput): Promise<any> {
     await this.movieService.delete(input._id)
-    return "Movie Removed";
+    return true;
   }
 }
