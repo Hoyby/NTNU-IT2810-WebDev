@@ -21,8 +21,7 @@ type MovieDto {
 }
 
 input MovieInput {
-  description: String!
-  published: Float!
+  description: String
   title: String!
 }
 
@@ -34,7 +33,7 @@ type Mutation {
 
 type Query {
   findMovie(input: FindMovieInput!): MovieDto!
-  movies: [MovieDto!]!
+  getmovies: [MovieDto!]!
 }
 
 input UpdateMovieInput {
