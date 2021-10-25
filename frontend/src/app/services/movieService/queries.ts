@@ -1,17 +1,17 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag'
 
 export const GET_MOVIES = gql`
-	query GetMovies{
-		getmovies{
-			_id
-			title
-			description
-			published
-			createdAt
-			updatedAt
-		}
-	}
-`;
+    query GetMovies {
+        getmovies {
+            _id
+            title
+            description
+            published
+            createdAt
+            updatedAt
+        }
+    }
+`
 
 // export const GET_MOVIE_BY_ID = gql`
 // 	query findMovie($_id: String!){
@@ -24,10 +24,9 @@ export const GET_MOVIES = gql`
 // 	}
 // `;
 
-
 // export const CREATE_MOVIE = gql`
 // 	mutation createMovie($title: String!, $description: String!, $published: Integer!){
-// 		createMovie(input:{title: $title, 
+// 		createMovie(input:{title: $title,
 // 					description: $description,
 // 					published: $published}){
 
@@ -36,16 +35,14 @@ export const GET_MOVIES = gql`
 // 				description
 // 				createdAt
 // 				updatedAt
-				
+
 // 			}
 // 	}
 // `;
 
-
-
 // export const UPDATE_MOVIE = gql`
 // 	mutation updateMovie($title: String?, $description: String?, $published: Integer?){
-// 		createMovie(input:{title?: $title, 
+// 		createMovie(input:{title?: $title,
 // 					description?: $description,
 // 					published?: $published}){
 
@@ -54,7 +51,7 @@ export const GET_MOVIES = gql`
 // 				description
 // 				createdAt
 // 				updatedAt
-				
+
 // 			}
 // 	}
 // 	`;
