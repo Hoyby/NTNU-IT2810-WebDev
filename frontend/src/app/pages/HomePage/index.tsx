@@ -5,6 +5,10 @@ import movieService from '../../services/movieService'
 import { GetMoviePage } from '../../services/movieService/__generated__/GetMoviePage'
 import { setMoviePage } from './homePageSlice'
 import { Movies } from './movies'
+import Searchbar from "../../components/Searchbar";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import H1 from "@material-tailwind/react/Heading1";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setMoviePage: (page: GetMoviePage['Page']) => dispatch(setMoviePage(page)),
@@ -31,7 +35,8 @@ export function HomePage() {
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <h1>Movies</h1>
+      <H1 color='amber'>Movies</H1>
+      <Searchbar className='py-10' placeholder='search for movies'/>
       <Movies />
     </div>
   )
