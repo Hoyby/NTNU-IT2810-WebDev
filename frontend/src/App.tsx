@@ -1,11 +1,11 @@
 import React from 'react'
-import { MoviePage } from './app/pages/MoviePage'
 import { Layout } from './app/components/Layout'
+import Dashboard from './app/components/Dashboard'
 
 export default function App() {
     return (
         <Layout>
-            <MoviePage />
+            <Dashboard />
         </Layout>
     )
 }

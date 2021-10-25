@@ -1,5 +1,5 @@
-import { IHomePageState } from './pages/MoviePage/types'
+import { IMoviePageState } from './pages/MoviePage/types'
 
 export interface IRootState {
-    homePage: IHomePageState
+    homePage: IMoviePageState
 }

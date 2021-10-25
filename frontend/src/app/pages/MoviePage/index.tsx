@@ -3,7 +3,7 @@ import { Dispatch } from 'redux'
 import { useAppDispatch } from '../../hooks'
 import movieService from '../../services/movieService'
 import { GetMovies } from '../../services/movieService/__generated__/GetMovies'
-import { setMoviePage } from './homePageSlice'
+import { setMoviePage } from './moviePageSlice'
 import { Movies } from './movies'
 
 const actionDispatch = (dispatch: Dispatch) => ({

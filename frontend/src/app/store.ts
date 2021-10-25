@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
-import homePageReducer from './pages/MoviePage/homePageSlice'
+import homePageReducer from './pages/MoviePage/moviePageSlice'
 export const store = configureStore({
     reducer: {
         homePage: homePageReducer,
