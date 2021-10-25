@@ -1,5 +1,5 @@
-import { GetMoviePage } from "../../services/movieService/__generated__/GetMoviePage";
+import { GetMovies } from "../../services/movieService/__generated__/GetMovies";
 
 export interface IHomePageState {
-  moviePage: GetMoviePage["Page"];
+  moviePage: GetMovies['getmovies'];
 }

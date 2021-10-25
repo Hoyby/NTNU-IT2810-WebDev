@@ -2,19 +2,19 @@ import React, { useEffect } from 'react'
 import { Dispatch } from 'redux'
 import { useAppDispatch } from '../../hooks'
 import movieService from '../../services/movieService'
-import { GetMoviePage } from '../../services/movieService/__generated__/GetMoviePage'
+import { GetMovies } from '../../services/movieService/__generated__/GetMovies'
 import { setMoviePage } from './homePageSlice'
 import { Movies } from './movies'
 
 const actionDispatch = (dispatch: Dispatch) => ({
-  setMoviePage: (page: GetMoviePage['Page']) => dispatch(setMoviePage(page)),
+  setMoviePage: (page: GetMovies['getmovies']) => dispatch(setMoviePage(page)),
 })
 
 export function HomePage() {
   const { setMoviePage: setMoviePage } = actionDispatch(useAppDispatch())
 
   const fetchMoviePage = async () => {
-    const moviePage = await movieService.getMoviePage(0, 200).catch((err) => {
+    const moviePage = await movieService.getMoviePage().catch((err) => {
       console.error(err)
       throw err
     })

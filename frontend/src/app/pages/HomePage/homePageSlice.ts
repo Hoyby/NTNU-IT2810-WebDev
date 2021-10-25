@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { GetMoviePage_Page } from "../../services/movieService/__generated__/GetMoviePage";
+import { GetMovies, GetMovies_getmovies } from "../../services/movieService/__generated__/GetMovies";
 import { IHomePageState } from "./types";
 
 const initialState: IHomePageState = {
-  moviePage: null,
+  moviePage: [],
 };
 
 const HomePageSlice = createSlice({
   name: "homePage",
   initialState,
   reducers: {
-    setMoviePage(state, action: PayloadAction<GetMoviePage_Page | null>) {
+    setMoviePage(state, action: PayloadAction<GetMovies['getmovies']>) {
       if (action)
         state.moviePage = action.payload;
     },

@@ -1,21 +1,21 @@
 import { ApolloQueryResult } from "@apollo/client/core/types";
 import { apolloClient } from "../../graphql";
-import { GET_MOVIE_PAGE } from "./queries";
-import { GetMoviePage } from "./__generated__/GetMoviePage";
+import { GET_MOVIES } from "./queries";
+import { GetMovies } from "./__generated__/GetMovies";
 
 class MovieService {
-  async getMoviePage(page: number, perPage = 5): Promise<GetMoviePage["Page"]> {
+  async getMoviePage(): Promise<GetMovies['getmovies']> {
     try {
-      const response: ApolloQueryResult<GetMoviePage> = await apolloClient.query({
-        query: GET_MOVIE_PAGE,
-        variables: { page, perPage },
+      const response: ApolloQueryResult<GetMovies> = await apolloClient.query({
+        query: GET_MOVIES,
+        // variables: { page, perPage },
       });
 
       if (!response || !response.data)
         throw new Error("Cannot get movie list!");
 
       // console.log("DATA: ", response.data);
-      return response.data.Page;
+      return response.data.getmovies;
     } catch (err) {
       console.error(err)
       throw err;
