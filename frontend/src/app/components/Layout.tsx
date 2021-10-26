@@ -3,7 +3,6 @@ import { Navbar } from './Navbar'
 import { Footer } from './Footer'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { backgrounds, BgContext } from './BackgroundContext'
-import '@material-tailwind/react/tailwind.css'
 
 export function Layout({ children }: { children: ReactNode }) {
     // const [bg, setBg] = useState('bg-cinema');
