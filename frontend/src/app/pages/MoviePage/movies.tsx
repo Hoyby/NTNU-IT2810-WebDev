@@ -2,6 +2,8 @@ import React from 'react'
 import { createSelector } from 'reselect'
 import { useAppSelector } from '../../hooks'
 import { makeSelectMoviePage } from './selectors'
+import { Link, Route, Switch } from 'react-router-dom'
+import MovieDetail from "../../components/MovieDetail";
 
 const stateSelector = createSelector(makeSelectMoviePage, (moviePage) => ({
     moviePage: moviePage,
@@ -16,13 +18,22 @@ export function Movies() {
 
     return (
         <div className="max-w-screen-xl w-full h-full flex justify-evenly flex-wrap">
+
             {movies &&
                 movies.map((movie) => (
-                    <div className="w-64 mb-10 flex flex-col items-center">
-                        <div className="mt-4 text-center">{movie?.title}</div>
-                        <h5>Description: {movie?.description}</h5>
-                    </div>
+                    <Link to={
+                        '/movies/' + movie._id
+                    } key={movie._id}>
+                        <div className="w-64 mb-10 flex flex-col items-center">
+                            <div className="mt-4 text-center">{movie?.title}</div>
+                            <h5>Description: {movie?.description}</h5>
+                        </div>
+                    </Link>
+
                 ))}
+            <Switch>
+                <Route path="/movies/:id" children={<MovieDetail/>} />
+            </Switch>
         </div>
     )
 }
