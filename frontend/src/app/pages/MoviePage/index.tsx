@@ -15,7 +15,7 @@ export function MoviePage() {
     const { setMoviePage: setMovies } = actionDispatch(useAppDispatch())
 
     const fetchMoviePage = async () => {
-        const moviePage = await movieService.getMovies().catch((err) => {
+        const moviePage = await movieService.getMovies().catch((err: Error) => {
             console.error(err)
             throw err
         })
