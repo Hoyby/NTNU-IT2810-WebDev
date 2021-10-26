@@ -39,4 +39,8 @@ export class MovieService {
     async delete(_id: string): Promise<any> {
         return await this.movieModel.deleteOne({ _id: new Types.ObjectId(_id) })
     }
+
+    async search(title: string): Promise<any> {
+        return await this.movieModel.find({title: { $regex: title}})
+    }
 }

@@ -61,3 +61,14 @@ export const GET_MOVIES = gql`
 // 		deleteMovie(input:{_id: $_id})
 // 	}
 // `;
+
+
+export const SEARCH = gql`
+    query{
+        searchMovie(input: "l"){
+            title
+            published
+        }
+            
+    }
+`

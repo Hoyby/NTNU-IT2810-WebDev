@@ -37,4 +37,9 @@ export class MovieResolver {
         await this.movieService.delete(input._id)
         return true
     }
+
+    @Query(() => [MovieDto])
+    async searchMovie(@Args('input') input: string){
+        return this.movieService.search(input)
+    }
 }
