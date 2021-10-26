@@ -15,14 +15,17 @@ export const GET_MOVIES = gql`
 
 export const GET_MOVIE_BY_ID = gql`
     query FindMovie($_id: String!) {
-        findMovie(_id: $_id) {
-            title
-            description
-            published
-            updatedAt
-            createdAt
-        }
+        findMovie(input:{
+        _id: $_id
+    }) {
+        title
+        description
+        published
+        updatedAt
+        createdAt
     }
+}
+
 `
 
 export const CREATE_MOVIE = gql`
@@ -31,18 +34,19 @@ export const CREATE_MOVIE = gql`
         $description: String!
         $published: Int!
     ) {
-        createMovie(
-            title: $title
-            description: $description
-            published: $published
-        ) {
-            title
-            description
-            published
-            updatedAt
-            createdAt
-        }
-    }
+      createMovie(input:{
+          title: $title,
+          description: $description,
+          published: $published 
+      }
+      ) {
+          title
+          description
+          published
+          updatedAt
+          createdAt
+      }
+  }
 `
 
 export const UPDATE_MOVIE = gql`
