@@ -7,57 +7,67 @@ export const GET_MOVIES = gql`
             title
             description
             published
+            updatedAt
             createdAt
+        }
+    }
+`
+
+export const GET_MOVIE_BY_ID = gql`
+    query FindMovie($_id: String!) {
+        findMovie(_id: $_id) {
+            title
+            description
+            published
+            updatedAt
+            createdAt
+        }
+    }
+`
+
+export const CREATE_MOVIE = gql`
+    mutation CreateMovie(
+        $title: String!
+        $description: String!
+        $published: Int!
+    ) {
+        createMovie(
+            title: $title
+            description: $description
+            published: $published
+        ) {
+            title
+            description
+            published
+            updatedAt
+            createdAt
+        }
+    }
+`
+
+export const UPDATE_MOVIE = gql`
+    mutation UpdateMovie(
+        $_id: String!
+        $title: String
+        $description: String
+        $published: Int
+    ) {
+        createMovie(
+            _id: $_id
+            title: $title
+            description: $description
+            published: $published
+        ) {
+            title
+            description
+            published
             updatedAt
         }
     }
 `
 
-// export const GET_MOVIE_BY_ID = gql`
-// 	query findMovie($_id: String!){
-// 		_id
-// 		title
-// 		description
-// 		published
-// 		createdAt
-// 		updatedAt
-// 	}
-// `;
-
-// export const CREATE_MOVIE = gql`
-// 	mutation createMovie($title: String!, $description: String!, $published: Integer!){
-// 		createMovie(input:{title: $title,
-// 					description: $description,
-// 					published: $published}){
-
-// 				title
-// 				published
-// 				description
-// 				createdAt
-// 				updatedAt
-
-// 			}
-// 	}
-// `;
-
-// export const UPDATE_MOVIE = gql`
-// 	mutation updateMovie($title: String?, $description: String?, $published: Integer?){
-// 		createMovie(input:{title?: $title,
-// 					description?: $description,
-// 					published?: $published}){
-
-// 				title
-// 				published
-// 				description
-// 				createdAt
-// 				updatedAt
-
-// 			}
-// 	}
-// 	`;
-
-// export const DELETE_MOVIE = gql`
-// 	mutation deleteMovie($_id: String!}){
-// 		deleteMovie(input:{_id: $_id})
-// 	}
-// `;
+export const DELETE_MOVIE = gql`
+    mutation DeleteMovie($_id: String!) {
+        deleteMovie(_id: $_id)
+    }
+`
