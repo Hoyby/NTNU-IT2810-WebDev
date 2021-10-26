@@ -3,7 +3,7 @@ import React from 'react'
 export default function MovieForm() {
     const [showCreateMovieForm, setshowCreateMovieForm] = React.useState(false)
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         alert('it works!')
     }
