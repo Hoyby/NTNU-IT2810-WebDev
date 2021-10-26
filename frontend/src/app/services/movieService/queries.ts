@@ -51,15 +51,17 @@ export const CREATE_MOVIE = gql`
 
 export const UPDATE_MOVIE = gql`
     mutation UpdateMovie(
+        $_id: String!
         $title: String!
         $description: String!
         $published: Int!
     ) {
-    createMovie(input:{
+    updateMovie(input:{
+        _id: $_id
         title: $title
         description: $description
         published: $published
-        }
+    }
     ) {
         title
         description
