@@ -36,6 +36,7 @@ type Query {
   findMovie(input: FindMovieInput!): MovieDto!
   getmovies: [MovieDto!]!
   searchMovie(input: String!): [MovieDto!]!
+  sortMovie(input: Float!): [MovieDto!]!
 }
 
 input UpdateMovieInput {

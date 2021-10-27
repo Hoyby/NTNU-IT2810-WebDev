@@ -41,6 +41,10 @@ export class MovieService {
     }
 
     async search(title: string): Promise<any> {
-        return await this.movieModel.find({title: { $regex: title}})
+        return await this.movieModel.find({ title: { $regex: title } })
+    }
+
+    async order(sortfactor: number): Promise<any> { //send in either -1 for desc and 1 for asc
+        return await this.movieModel.find().sort({ createdAt: sortfactor })
     }
 }

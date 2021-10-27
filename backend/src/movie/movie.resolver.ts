@@ -42,4 +42,9 @@ export class MovieResolver {
     async searchMovie(@Args('input') input: string){
         return this.movieService.search(input)
     }
+
+    @Query(() => [MovieDto])
+    async sortMovie(@Args('input') input: number){
+        return this.movieService.order(input)
+    }
 }

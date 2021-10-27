@@ -64,11 +64,21 @@ export const GET_MOVIES = gql`
 
 
 export const SEARCH = gql`
-    query{
-        searchMovie(input: "l"){
+    query search($input: String!){
+        searchMovie(input: $input){
+            _id
             title
             published
         }
-            
+  }
+`
+
+export const SORT = gql`
+    query sort($input: Float!){
+        sortMovie(input: $input){
+        _id
+        title
+        description
+        }
     }
 `
