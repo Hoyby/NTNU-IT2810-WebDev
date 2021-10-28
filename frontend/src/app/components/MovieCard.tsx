@@ -11,15 +11,17 @@ import CardHeader from "@material-tailwind/react/CardHeader";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import CardRow from "@material-tailwind/react/CardRow";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import CardStatus from "@material-tailwind/react/CardStatus";
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import CardStatusFooter from "@material-tailwind/react/CardStatusFooter";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Icon from "@material-tailwind/react/Icon";
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import H5 from '@material-tailwind/react/Heading5'
 import {Link, Route, Switch} from "react-router-dom";
 import MovieDetail from "./MovieDetail";
 
@@ -31,7 +33,7 @@ interface IMovie {
 export function MovieCard({ title, _id }: IMovie) {
 
     return (
-        <div>
+        <div className='w-80'>
             <Link to={
                 '/movies/' + _id
             } key={_id}>
@@ -41,7 +43,14 @@ export function MovieCard({ title, _id }: IMovie) {
                         <Icon name="movie" size="5xl" color="white" />
                     </CardHeader>
 
-                    <CardStatus title="Users" amount={title} />
+                    <H5>
+                        <div className='p-5 break-words'>
+                        {title}
+                        </div>
+                    </H5>
+                    {/*<div className='text-red-500'>
+                        <CardStatus title="Thriller" amount={title} />
+                    </div>*/}
                 </CardRow>
 
                 <CardStatusFooter color="green" amount="97%" date="Match"/>
