@@ -3,6 +3,8 @@ import MovieService from '../services/movieService'
 import { SearchMovies } from '../services/movieService/__generated__/SearchMovies'
 
 export function Searchbar() {
+    let timer: NodeJS.Timeout
+
     const [searcResult, setSearcResult] =
         useState<SearchMovies['searchMovies']>()
 
@@ -18,11 +20,13 @@ export function Searchbar() {
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault()
-
-        fetchSearchResults(event.target.value).catch((err) => {
-            console.error(err)
-            throw err
-        })
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            fetchSearchResults(event.target.value).catch((err) => {
+                console.error(err)
+                throw err
+            })
+        }, 500)
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
