@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useParams} from "react-router-dom";
+import {Link, Redirect, useParams} from "react-router-dom";
 import { MovieService } from "../services/movieService";
 import {FindMovie_findMovie} from "../services/movieService/__generated__/FindMovie";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -43,13 +43,23 @@ export default function MovieDetail() {
         setShowModal(true)
     }, [movie, setMovie]);
 
+    const closeModal = () => {
+        setShowModal(false)
+    }
+
+    if (!showModal) {
+        return <Redirect to='/'/>
+    }
+
     return (
         <>
-            <h1>{id}</h1>
+            {/*
+             <h1>{id}</h1>
             <p> {movie ? movie.title : 'Something went wrong'}</p>
+             */}
 
-            <Modal size="regular" active={showModal} toggler={() => setShowModal(false)}>
-                <ModalHeader toggler={() => setShowModal(false)}>
+            <Modal size="regular" active={showModal} toggler={closeModal}>
+                <ModalHeader toggler={closeModal}>
                     {movie ? movie.title : 'Something went wrong'}
                 </ModalHeader>
                 <ModalBody>
@@ -58,14 +68,16 @@ export default function MovieDetail() {
                     </p>
                 </ModalBody>
                 <ModalFooter>
-                    <Button
-                        color="red"
-                        buttonType="link"
-                        onClick={() => setShowModal(false)}
-                        ripple="dark"
-                    >
-                        Close
-                    </Button>
+                    <Link to={'/'}>
+                        <Button
+                            color="red"
+                            buttonType="link"
+                            onClick={closeModal}
+                            ripple="dark"
+                        >
+                            Close
+                        </Button>
+                    </Link>
 
                     {/*
                     <Button

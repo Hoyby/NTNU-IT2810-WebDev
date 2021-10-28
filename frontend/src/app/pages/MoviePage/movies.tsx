@@ -26,7 +26,9 @@ export function Movies() {
                     } key={movie._id}>
                         <div className="w-64 mb-10 flex flex-col items-center">
                             <div className="mt-4 text-center">{movie?.title}</div>
+                            {/*
                             <h5>Description: {movie?.description}</h5>
+                            */}
                         </div>
                     </Link>
 
