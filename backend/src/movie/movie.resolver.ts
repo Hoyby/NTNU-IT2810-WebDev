@@ -39,12 +39,12 @@ export class MovieResolver {
     }
 
     @Query(() => [MovieDto])
-    async searchMovie(@Args('input') input: string){
+    async searchMovies(@Args('input') input: string) {
         return this.movieService.search(input)
     }
 
     @Query(() => [MovieDto])
-    async sortMovie(@Args('input') input: number){
+    async sortMovies(@Args('input') input: number) {
         return this.movieService.order(input)
     }
 }

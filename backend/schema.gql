@@ -35,8 +35,8 @@ type Mutation {
 type Query {
   findMovie(input: FindMovieInput!): MovieDto!
   getmovies: [MovieDto!]!
-  searchMovie(input: String!): [MovieDto!]!
-  sortMovie(input: Float!): [MovieDto!]!
+  searchMovies(input: String!): [MovieDto!]!
+  sortMovies(input: Float!): [MovieDto!]!
 }
 
 input UpdateMovieInput {

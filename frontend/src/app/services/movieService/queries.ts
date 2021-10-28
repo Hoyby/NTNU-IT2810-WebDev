@@ -25,12 +25,12 @@ export const GET_MOVIE_BY_ID = gql`
     }
 `
 
-export const SEARCH = gql`
-    query search($input: String!) {
-        searchMovie(input: $input) {
+export const SEARCH_MOVIES = gql`
+    query SearchMovies($searchQuery: String!) {
+        searchMovies(input: $searchQuery) {
             _id
             title
-            published
+            description
         }
     }
 `
@@ -80,15 +80,9 @@ export const UPDATE_MOVIE = gql`
     }
 `
 
-// export const DELETE_MOVIE = gql`
-// 	mutation deleteMovie($_id: String!}){
-// 		deleteMovie(input:{_id: $_id})
-// 	}
-// `;
-
-export const SORT = gql`
-    query sort($input: Float!) {
-        sortMovie(input: $input) {
+export const SORT_MOVIES = gql`
+    query SortMovies($input: Float!) {
+        sortMovies(input: $input) {
             _id
             title
             description

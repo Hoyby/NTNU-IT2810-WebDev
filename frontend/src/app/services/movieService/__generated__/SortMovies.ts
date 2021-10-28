@@ -4,20 +4,20 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: search
+// GraphQL query operation: SortMovies
 // ====================================================
 
-export interface search_searchMovie {
+export interface SortMovies_sortMovies {
   __typename: "MovieDto";
   _id: string;
   title: string;
-  published: number;
+  description: string;
 }
 
-export interface search {
-  searchMovie: search_searchMovie[];
+export interface SortMovies {
+  sortMovies: SortMovies_sortMovies[];
 }
 
-export interface searchVariables {
-  input: string;
+export interface SortMoviesVariables {
+  input: number;
 }

@@ -220,7 +220,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -424,7 +424,7 @@
             "deprecationReason": null
           },
           {
-            "name": "searchMovie",
+            "name": "searchMovies",
             "description": null,
             "args": [
               {
@@ -465,7 +465,7 @@
             "deprecationReason": null
           },
           {
-            "name": "sortMovie",
+            "name": "sortMovies",
             "description": null,
             "args": [
               {
@@ -562,7 +562,7 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Float",
+              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
