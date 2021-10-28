@@ -6,7 +6,7 @@ import { store } from './app/store'
 import { Provider } from 'react-redux'
 import { ApolloProvider } from '@apollo/client'
 import { apolloClient } from './app/graphql'
-import "@material-tailwind/react/tailwind.css";
+//import "@material-tailwind/react/tailwind.css";
 
 ReactDOM.render(
     <React.StrictMode>
