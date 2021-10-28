@@ -6,6 +6,7 @@ import { GetMovies } from '../../services/movieService/__generated__/GetMovies'
 import { setMoviePage } from './moviePageSlice'
 import { Movies } from './movies'
 
+// Redux dispatch
 const actionDispatch = (dispatch: Dispatch) => ({
     setMoviePage: (page: GetMovies['getmovies']) =>
         dispatch(setMoviePage(page)),
@@ -15,7 +16,7 @@ export function MoviePage() {
     const { setMoviePage: setMovies } = actionDispatch(useAppDispatch())
 
     const fetchMoviePage = async () => {
-        const moviePage = await movieService.getMovies().catch((err) => {
+        const moviePage = await movieService.getMovies().catch((err: Error) => {
             console.error(err)
             throw err
         })

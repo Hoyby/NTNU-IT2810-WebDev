@@ -1,4 +1,5 @@
 import { Field, InputType, Int } from '@nestjs/graphql'
+import { type } from 'os'
 
 @InputType()
 export class MovieInput {
@@ -23,7 +24,7 @@ export class UpdateMovieInput {
     @Field({ nullable: true })
     readonly description?: string
 
-    @Field({ nullable: true })
+    @Field((type) => Int, { nullable: true })
     readonly published?: number
 }
 

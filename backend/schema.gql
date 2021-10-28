@@ -40,6 +40,6 @@ type Query {
 input UpdateMovieInput {
   _id: String!
   description: String
-  published: Float
+  published: Int
   title: String
 }
