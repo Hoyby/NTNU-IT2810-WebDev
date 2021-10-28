@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-named-as-default
 import gql from 'graphql-tag'
 
 export const GET_MOVIES = gql`
@@ -13,16 +14,16 @@ export const GET_MOVIES = gql`
     }
 `
 
-// export const GET_MOVIE_BY_ID = gql`
-// 	query findMovie($_id: String!){
-// 		_id
-// 		title
-// 		description
-// 		published
-// 		createdAt
-// 		updatedAt
-// 	}
-// `;
+export const GET_MOVIE_BY_ID = gql`
+	query findMovie($_id: String!){
+		_id
+		title
+		description
+		published
+		createdAt
+		updatedAt
+	}
+`;
 
 // export const CREATE_MOVIE = gql`
 // 	mutation createMovie($title: String!, $description: String!, $published: Integer!){
