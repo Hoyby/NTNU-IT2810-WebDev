@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import movieService from '../services/movieService'
 import {
-    // CreateMovie,
     CreateMovieVariables,
 } from '../services/movieService/__generated__/CreateMovie'
 
@@ -38,7 +37,6 @@ export default function MovieForm() {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        // string ???????????
         console.warn(newMovie.published, typeof newMovie.published)
 
         movieService
