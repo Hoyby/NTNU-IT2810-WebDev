@@ -7,7 +7,7 @@
 // GraphQL mutation operation: UpdateMovie
 // ====================================================
 
-export interface UpdateMovie_createMovie {
+export interface UpdateMovie_updateMovie {
   __typename: "MovieDto";
   title: string;
   description: string;
@@ -16,12 +16,12 @@ export interface UpdateMovie_createMovie {
 }
 
 export interface UpdateMovie {
-  createMovie: UpdateMovie_createMovie;
+  updateMovie: UpdateMovie_updateMovie;
 }
 
 export interface UpdateMovieVariables {
   _id: string;
-  title?: string | null;
-  description?: string | null;
-  published?: number | null;
+  title: string;
+  description: string;
+  published: number;
 }

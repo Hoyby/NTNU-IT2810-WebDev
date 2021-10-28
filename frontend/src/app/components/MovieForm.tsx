@@ -1,11 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
+import movieService from '../services/movieService'
+import {
+    CreateMovieVariables,
+} from '../services/movieService/__generated__/CreateMovie'
 
 export default function MovieForm() {
-    const [showCreateMovieForm, setshowCreateMovieForm] = React.useState(false)
+    const [showCreateMovieForm, setshowCreateMovieForm] = useState(false)
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        alert('it works!')
+    const [newMovie, setNewMovie] = useState<CreateMovieVariables>({
+        title: '',
+        description: '',
+        published: NaN,
+    })
+
+    const handleInputChange = (
+        event:
+            | React.ChangeEvent<HTMLInputElement>
+            | React.ChangeEvent<HTMLTextAreaElement>,
+    ) => {
+        const data = event.target
+
+        if (data.name === 'published') {
+            const publishedInt = parseInt(data.value)
+            setNewMovie((prevState) => ({
+                ...prevState,
+                [event.target.name]: publishedInt,
+            }))
+        } else {
+            setNewMovie((prevState) => ({
+                ...prevState,
+                [event.target.name]: event.target.value,
+            }))
+        }
+    }
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        console.warn(newMovie.published, typeof newMovie.published)
+
+        movieService
+            .createMovie(
+                newMovie.title,
+                newMovie.description,
+                newMovie.published,
+            )
+            .catch((err: Error) => {
+                console.error(err)
+            })
     }
 
     return (
@@ -52,16 +94,18 @@ export default function MovieForm() {
                                             id="title"
                                             required
                                             placeholder="Pirates of the Caribbean: The Curse of the Black Pearl"
+                                            onChange={handleInputChange}
                                         />
                                         <label htmlFor="desc">
                                             Description
                                         </label>
                                         <textarea
                                             className="block border border-grey-light w-full max-h-40 p-3 rounded mb-4"
-                                            name="desc"
-                                            id="desc"
+                                            name="description"
+                                            id="description"
                                             required
                                             placeholder="Summary"
+                                            onChange={handleInputChange}
                                         />
 
                                         <label htmlFor="published">
@@ -77,6 +121,7 @@ export default function MovieForm() {
                                             name="published"
                                             required
                                             placeholder="2003"
+                                            onChange={handleInputChange}
                                         />
                                     </div>
 
@@ -95,7 +140,7 @@ export default function MovieForm() {
                                             className="bg-emerald-500 text-black active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                             type="submit"
                                             onClick={() =>
-                                                setshowCreateMovieForm(false)
+                                                setshowCreateMovieForm(true)
                                             }
                                         >
                                             Create Movie

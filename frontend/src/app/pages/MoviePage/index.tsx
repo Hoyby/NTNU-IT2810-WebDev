@@ -13,27 +13,6 @@ const actionDispatch = (dispatch: Dispatch) => ({
 })
 
 export function MoviePage() {
-    // eslint-disable-next-line
-    const findMovieByID = async (id: string) => {
-        const movie = await movieService.findMovie(id).catch((err: Error) => {
-            console.error(err)
-            throw err
-        })
-
-        console.warn(movie)
-    }
-
-    // -------------TEST------------------
-    // Returns error 400
-    //
-    // console.warn(
-    //     findMovieByID('6176af41aa18f347ce6d4f8f').catch((err) => {
-    //         console.error(err)
-    //         throw err
-    //     }),
-    // )
-    // -------------TEST------------------
-
     const { setMoviePage: setMovies } = actionDispatch(useAppDispatch())
 
     const fetchMoviePage = async () => {

@@ -1,3 +1,4 @@
+import { FetchResult } from '@apollo/client'
 import { ApolloQueryResult } from '@apollo/client/core/types'
 import { apolloClient } from '../../graphql'
 import {
@@ -56,9 +57,9 @@ class MovieService {
         published: number,
     ): Promise<CreateMovie['createMovie']> {
         try {
-            const response: ApolloQueryResult<CreateMovie> =
-                await apolloClient.query({
-                    query: CREATE_MOVIE,
+            const response: FetchResult<CreateMovie> =
+                await apolloClient.mutate({
+                    mutation: CREATE_MOVIE,
                     variables: { title, description, published },
                 })
 
@@ -77,18 +78,18 @@ class MovieService {
         title: string,
         description: string,
         published: number,
-    ): Promise<UpdateMovie['createMovie']> {
+    ): Promise<UpdateMovie['updateMovie']> {
         try {
-            const response: ApolloQueryResult<UpdateMovie> =
-                await apolloClient.query({
-                    query: UPDATE_MOVIE,
+            const response: FetchResult<UpdateMovie> =
+                await apolloClient.mutate({
+                    mutation: UPDATE_MOVIE,
                     variables: { _id, title, description, published },
                 })
 
             if (!response || !response.data)
                 throw new Error('Cannot get movie list!')
 
-            return response.data.createMovie
+            return response.data.updateMovie
         } catch (err) {
             console.error(err)
             throw err
@@ -97,9 +98,9 @@ class MovieService {
 
     async deleteMovie(_id: string): Promise<DeleteMovie['deleteMovie']> {
         try {
-            const response: ApolloQueryResult<DeleteMovie> =
-                await apolloClient.query({
-                    query: GET_MOVIES,
+            const response: FetchResult<DeleteMovie> =
+                await apolloClient.mutate({
+                    mutation: GET_MOVIES,
                     variables: { _id },
                 })
 
