@@ -12,7 +12,7 @@ import { MovieModule } from './movie/movie.module'
             autoSchemaFile: 'schema.gql',
             sortSchema: true,
             playground: true,
-            debug: true,
+            debug: false,
         }),
     ],
 })

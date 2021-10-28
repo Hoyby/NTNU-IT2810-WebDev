@@ -1,21 +1,13 @@
 import React, { useState } from 'react'
 import movieService from '../services/movieService'
-import { CreateMovieVariables } from '../services/movieService/__generated__/CreateMovie'
+import {
+    // CreateMovie,
+    CreateMovieVariables,
+} from '../services/movieService/__generated__/CreateMovie'
 
 export default function MovieForm() {
-    // Form setup
     const [showCreateMovieForm, setshowCreateMovieForm] = useState(false)
 
-    const createMovie = (
-        title: string,
-        description: string,
-        published: number,
-    ) => {
-        const newMovie = movieService.createMovie(title, description, published)
-        console.warn(newMovie)
-    }
-
-    // Form data
     const [newMovie, setNewMovie] = useState<CreateMovieVariables>({
         title: '',
         description: '',
@@ -28,6 +20,7 @@ export default function MovieForm() {
             | React.ChangeEvent<HTMLTextAreaElement>,
     ) => {
         const { name, value } = event.target
+
         setNewMovie((prevState) => ({
             ...prevState,
             [name]: value,
@@ -37,7 +30,18 @@ export default function MovieForm() {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        createMovie(newMovie.title, newMovie.description, newMovie.published)
+        // string ???????????
+        console.warn(newMovie.published, typeof newMovie.published)
+
+        movieService
+            .createMovie(
+                newMovie.title,
+                newMovie.description,
+                newMovie.published,
+            )
+            .catch((err: Error) => {
+                console.error(err)
+            })
     }
 
     return (

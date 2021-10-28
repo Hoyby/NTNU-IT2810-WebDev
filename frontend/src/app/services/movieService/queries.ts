@@ -15,17 +15,14 @@ export const GET_MOVIES = gql`
 
 export const GET_MOVIE_BY_ID = gql`
     query FindMovie($_id: String!) {
-        findMovie(input:{
-        _id: $_id
-    }) {
-        title
-        description
-        published
-        updatedAt
-        createdAt
+        findMovie(input: { _id: $_id }) {
+            title
+            description
+            published
+            updatedAt
+            createdAt
+        }
     }
-}
-
 `
 
 export const CREATE_MOVIE = gql`
@@ -34,19 +31,20 @@ export const CREATE_MOVIE = gql`
         $description: String!
         $published: Int!
     ) {
-      createMovie(input:{
-          title: $title,
-          description: $description,
-          published: $published 
-      }
-      ) {
-          title
-          description
-          published
-          updatedAt
-          createdAt
-      }
-  }
+        createMovie(
+            input: {
+                title: $title
+                description: $description
+                published: $published
+            }
+        ) {
+            title
+            description
+            published
+            updatedAt
+            createdAt
+        }
+    }
 `
 
 export const UPDATE_MOVIE = gql`
@@ -56,23 +54,24 @@ export const UPDATE_MOVIE = gql`
         $description: String!
         $published: Int!
     ) {
-    updateMovie(input:{
-        _id: $_id
-        title: $title
-        description: $description
-        published: $published
+        updateMovie(
+            input: {
+                _id: $_id
+                title: $title
+                description: $description
+                published: $published
+            }
+        ) {
+            title
+            description
+            published
+            updatedAt
+        }
     }
-    ) {
-        title
-        description
-        published
-        updatedAt
-    }
-}
 `
 
 export const DELETE_MOVIE = gql`
     mutation DeleteMovie($_id: String!) {
-        deleteMovie(input:{_id: $_id})
+        deleteMovie(input: { _id: $_id })
     }
 `
