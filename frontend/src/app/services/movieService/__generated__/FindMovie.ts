@@ -4,12 +4,11 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetMovies
+// GraphQL query operation: FindMovie
 // ====================================================
 
-export interface GetMovies_getmovies {
+export interface FindMovie_findMovie {
   __typename: "MovieDto";
-  _id: string;
   title: string;
   description: string;
   published: number;
@@ -17,6 +16,10 @@ export interface GetMovies_getmovies {
   createdAt: any;
 }
 
-export interface GetMovies {
-  getmovies: GetMovies_getmovies[];
+export interface FindMovie {
+  findMovie: FindMovie_findMovie;
+}
+
+export interface FindMovieVariables {
+  _id: string;
 }
