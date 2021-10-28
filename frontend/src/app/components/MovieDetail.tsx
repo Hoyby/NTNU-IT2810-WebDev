@@ -37,7 +37,7 @@ export default function MovieDetail() {
             console.error(err.message)
             throw err
         })
-    }, );
+    }, []);
 
     useEffect(() => {
         setShowModal(true)
