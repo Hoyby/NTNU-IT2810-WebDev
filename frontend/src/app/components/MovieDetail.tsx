@@ -59,12 +59,13 @@ export default function MovieDetail() {
              */}
             <Modal size="regular" active={showModal} toggler={closeModal}>
                 <ModalHeader toggler={closeModal}>
-                    {movie ? movie.title : 'Loading...'}
+                    {movie?.title}
                 </ModalHeader>
 
                 <ModalBody>
+                    <p className="text-base leading-relaxed text-gray-600 font-light mb-10">first published: {movie?.published}</p>
                     <p className="text-base leading-relaxed text-gray-600 font-normal">
-                        {movie ? movie.description : ''}
+                        {movie?.description}
                     </p>
                 </ModalBody>
 
