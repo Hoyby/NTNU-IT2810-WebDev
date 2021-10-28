@@ -57,16 +57,17 @@ export default function MovieDetail() {
              <h1>{id}</h1>
             <p> {movie ? movie.title : 'Something went wrong'}</p>
              */}
-
             <Modal size="regular" active={showModal} toggler={closeModal}>
                 <ModalHeader toggler={closeModal}>
-                    {movie ? movie.title : 'Something went wrong'}
+                    {movie ? movie.title : 'Loading...'}
                 </ModalHeader>
+
                 <ModalBody>
                     <p className="text-base leading-relaxed text-gray-600 font-normal">
                         {movie ? movie.description : ''}
                     </p>
                 </ModalBody>
+
                 <ModalFooter>
                     <Link to={'/'}>
                         <Button
