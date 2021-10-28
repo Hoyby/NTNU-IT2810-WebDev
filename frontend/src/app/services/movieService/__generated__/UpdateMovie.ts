@@ -4,19 +4,24 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetMovies
+// GraphQL mutation operation: UpdateMovie
 // ====================================================
 
-export interface GetMovies_getmovies {
+export interface UpdateMovie_updateMovie {
   __typename: "MovieDto";
-  _id: string;
   title: string;
   description: string;
   published: number;
   updatedAt: any;
-  createdAt: any;
 }
 
-export interface GetMovies {
-  getmovies: GetMovies_getmovies[];
+export interface UpdateMovie {
+  updateMovie: UpdateMovie_updateMovie;
+}
+
+export interface UpdateMovieVariables {
+  _id: string;
+  title: string;
+  description: string;
+  published: number;
 }

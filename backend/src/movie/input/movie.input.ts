@@ -23,7 +23,7 @@ export class UpdateMovieInput {
     @Field({ nullable: true })
     readonly description?: string
 
-    @Field({ nullable: true })
+    @Field((type) => Int, { nullable: true })
     readonly published?: number
 }
 
