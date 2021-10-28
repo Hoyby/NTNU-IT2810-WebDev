@@ -2,6 +2,8 @@ import React from 'react'
 import { createSelector } from 'reselect'
 import { useAppSelector } from '../../hooks'
 import { makeSelectMoviePage } from './selectors'
+import {MovieCard} from "../../components/MovieCard";
+
 
 const stateSelector = createSelector(makeSelectMoviePage, (moviePage) => ({
     moviePage: moviePage,
@@ -18,9 +20,8 @@ export function Movies() {
         <div className="max-w-screen-xl w-full h-full flex justify-evenly flex-wrap">
             {movies &&
                 movies.map((movie) => (
-                    <div className="w-64 mb-10 flex flex-col items-center">
-                        <div className="mt-4 text-center">{movie?.title}</div>
-                        <h5>Description: {movie?.description}</h5>
+                    <div className='p-10'>
+                        <MovieCard title={movie.title}/>
                     </div>
                 ))}
         </div>
