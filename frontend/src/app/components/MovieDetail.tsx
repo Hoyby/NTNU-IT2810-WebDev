@@ -11,24 +11,20 @@ export default function MovieDetail() {
     const [movie, setMovie] = useState<FindMovie_findMovie>();
     let queryResult: React.SetStateAction<FindMovie_findMovie | undefined> | null = null
 
-    async function fetchMovie() {
-            queryResult = await movieService.findMovie(id).catch((err: Error) => {
-            console.error(err.message)
-            throw err
-        })
-        console.warn(queryResult)
-        if (queryResult) setMovie(queryResult)
-    }
+
 
 
 
     useEffect(() => {
-        return () => {
-            fetchMovie().catch((err: Error) => {
-                console.error(err.message)
-                throw err
-            })
-        };
+        async function fetchMovie() {
+            queryResult = await movieService.findMovie(id)
+            setMovie(queryResult)
+        }
+
+        fetchMovie().catch((err: Error) => {
+            console.error(err.message)
+            throw err
+        })
     }, );
 
     return (
