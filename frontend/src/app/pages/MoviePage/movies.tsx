@@ -4,7 +4,6 @@ import { useAppSelector } from '../../hooks'
 import { makeSelectMoviePage } from './selectors'
 import {MovieCard} from "../../components/MovieCard";
 
-
 const stateSelector = createSelector(makeSelectMoviePage, (moviePage) => ({
     moviePage: moviePage,
 }))
@@ -18,12 +17,14 @@ export function Movies() {
 
     return (
         <div className="max-w-screen-xl w-full h-full flex justify-evenly flex-wrap">
+
             {movies &&
                 movies.map((movie) => (
                     <div className='p-10'>
-                        <MovieCard title={movie.title}/>
+                        <MovieCard title={movie.title} _id={movie._id}/>
                     </div>
                 ))}
+
         </div>
     )
 }

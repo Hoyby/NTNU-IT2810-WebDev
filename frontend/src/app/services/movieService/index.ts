@@ -13,7 +13,7 @@ import { FindMovie } from './__generated__/FindMovie'
 import { GetMovies } from './__generated__/GetMovies'
 import { UpdateMovie } from './__generated__/UpdateMovie'
 
-class MovieService {
+export class MovieService {
     async getMovies(): Promise<GetMovies['getmovies']> {
         try {
             const response: ApolloQueryResult<GetMovies> =

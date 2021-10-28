@@ -20,15 +20,21 @@ import CardStatusFooter from "@material-tailwind/react/CardStatusFooter";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Icon from "@material-tailwind/react/Icon";
+import {Link, Route, Switch} from "react-router-dom";
+import MovieDetail from "./MovieDetail";
 
 interface IMovie {
+    _id: string,
     title: string
 }
 
-export function MovieCard({ title }: IMovie) {
+export function MovieCard({ title, _id }: IMovie) {
 
     return (
         <div>
+            <Link to={
+                '/movies/' + _id
+            } key={_id}>
             <Card>
                 <CardRow>
                     <CardHeader color="red" size="lg" iconOnly>
@@ -40,6 +46,12 @@ export function MovieCard({ title }: IMovie) {
 
                 <CardStatusFooter color="green" amount="97%" date="Match"/>
             </Card>
+            </Link>
+            <Switch>
+                <Route path="/movies/:id" children={<MovieDetail/>} />
+            </Switch>
         </div>
+
+
     )
 }
