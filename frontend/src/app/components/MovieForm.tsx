@@ -1,11 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
+import movieService from '../services/movieService'
+import { CreateMovieVariables } from '../services/movieService/__generated__/CreateMovie'
 
 export default function MovieForm() {
-    const [showCreateMovieForm, setshowCreateMovieForm] = React.useState(false)
+    // Form setup
+    const [showCreateMovieForm, setshowCreateMovieForm] = useState(false)
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        alert('it works!')
+    const createMovie = (
+        title: string,
+        description: string,
+        published: number,
+    ) => {
+        const newMovie = movieService.createMovie(title, description, published)
+        console.warn(newMovie)
+    }
+
+    // Form data
+    const [newMovie, setNewMovie] = useState<CreateMovieVariables>({
+        title: '',
+        description: '',
+        published: 0,
+    })
+
+    const handleInputChange = (
+        event:
+            | React.ChangeEvent<HTMLInputElement>
+            | React.ChangeEvent<HTMLTextAreaElement>,
+    ) => {
+        const { name, value } = event.target
+        setNewMovie((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }))
+    }
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        createMovie(newMovie.title, newMovie.description, newMovie.published)
     }
 
     return (
@@ -52,16 +84,18 @@ export default function MovieForm() {
                                             id="title"
                                             required
                                             placeholder="Pirates of the Caribbean: The Curse of the Black Pearl"
+                                            onChange={handleInputChange}
                                         />
                                         <label htmlFor="desc">
                                             Description
                                         </label>
                                         <textarea
                                             className="block border border-grey-light w-full max-h-40 p-3 rounded mb-4"
-                                            name="desc"
-                                            id="desc"
+                                            name="description"
+                                            id="description"
                                             required
                                             placeholder="Summary"
+                                            onChange={handleInputChange}
                                         />
 
                                         <label htmlFor="published">
@@ -77,6 +111,7 @@ export default function MovieForm() {
                                             name="published"
                                             required
                                             placeholder="2003"
+                                            onChange={handleInputChange}
                                         />
                                     </div>
 
