@@ -11,7 +11,7 @@ export default function MovieForm() {
     const [newMovie, setNewMovie] = useState<CreateMovieVariables>({
         title: '',
         description: '',
-        published: 0,
+        published: NaN,
     })
 
     const handleInputChange = (
@@ -19,12 +19,20 @@ export default function MovieForm() {
             | React.ChangeEvent<HTMLInputElement>
             | React.ChangeEvent<HTMLTextAreaElement>,
     ) => {
-        const { name, value } = event.target
+        const data = event.target
 
-        setNewMovie((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }))
+        if (data.name === 'published') {
+            const publishedInt = parseInt(data.value)
+            setNewMovie((prevState) => ({
+                ...prevState,
+                [event.target.name]: publishedInt,
+            }))
+        } else {
+            setNewMovie((prevState) => ({
+                ...prevState,
+                [event.target.name]: event.target.value,
+            }))
+        }
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
