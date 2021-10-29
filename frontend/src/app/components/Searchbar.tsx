@@ -1,8 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import { Link, Route, Switch } from 'react-router-dom'
 import MovieService from '../services/movieService'
 import { SearchMovies } from '../services/movieService/__generated__/SearchMovies'
-import MovieDetail from './MovieDetail'
+import { MovieCard } from './MovieCard'
+// material-tailwind is not officially supported by TS - hence the ignores
+/* eslint-disable */
+// @ts-ignore
+import InputIcon from '@material-tailwind/react/InputIcon'
+/* eslint-enable */
 
 export function Searchbar() {
     let timer: NodeJS.Timeout
@@ -11,8 +15,8 @@ export function Searchbar() {
 
     const [searchResult, setSearchResult] =
         useState<SearchMovies['searchMovies']>()
-    
-    const [searchinput, setSearchInput] = useState<string>()
+
+    const [searchInput, setSearchInput] = useState<string>()
 
     const fetchSearchResults = async (query: string) => {
         setSearchInput(query)
@@ -32,7 +36,6 @@ export function Searchbar() {
                 console.error(err)
                 throw err
             })
-            //console.warn(sortvalue)
         }, 500)
     }
 
@@ -41,50 +44,68 @@ export function Searchbar() {
     }
 
 
-    
-    const change = () => { 
+
+    const change = () => {
         setSortVaue(-sortValue)
     }
 
     useEffect(() => {
-        if(searchinput != null){
-            fetchSearchResults(searchinput).catch((err) => {
+        if(searchInput != null){
+            fetchSearchResults(searchInput).catch((err) => {
                 console.error(err)
                 throw err
             })
         }
     }, [sortValue]);
 
+    useEffect(() => {
+        if(searchInput != null){
+            fetchSearchResults(searchInput).catch((err) => {
+                console.error(err)
+                throw err
+            })
+        }
+    }, [sortValue]);
+
+    useEffect(() => {
+        async function search() {
+            await fetchSearchResults('')
+        }
+        search().catch((err: Error) => {
+            console.error(err.message)
+            throw err
+        })
+    }, []);
+
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="searchbar">Search</label>
-                <input
+            <form className="my-10" onSubmit={handleSubmit}>
+                <InputIcon
                     type="text"
-                    className="block text-black border border-grey-light w-full p-3 rounded mb-4"
                     name="searchbar"
                     id="searchbar"
+                    className="p-3 mb-16"
+                    color="blueGray"
+                    size="lg"
+                    iconFamily="material-icons"
+                    iconName="search"
+                    outline={true}
                     placeholder="Search Movies"
                     onChange={handleInputChange}
                 />
             </form>
             <button type="button" className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onClick={change}>Sort</button>
 
-            <div className="max-w-screen-xl w-full h-full flex justify-evenly flex-wrap">
+            <div className="max-w-screen-xl w-full h-full flex justify-evenly flex-wrap mb-10">
                 {searchResult &&
                     searchResult.map((movie) => (
-                        <Link to={'/movies/' + movie._id} key={movie._id}>
-                            <div className="w-64 mb-10 flex flex-col items-center">
-                                <div className="mt-4 text-center">
-                                    {movie?.title}
-                                </div>
-                            </div>
-                        </Link>
+                        <MovieCard
+                            title={movie?.title}
+                            description={movie?.description}
+                            _id={movie?._id}
+                        />
                     ))}
-                <Switch>
-                    <Route path="/movies/:id" children={<MovieDetail />} />
-                </Switch>
             </div>
         </>
     )
