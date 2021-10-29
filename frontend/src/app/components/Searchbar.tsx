@@ -6,12 +6,16 @@ import MovieDetail from './MovieDetail'
 
 export function Searchbar() {
     let timer: NodeJS.Timeout
+    let sortvalue = 1
 
     const [searchResult, setSearchResult] =
         useState<SearchMovies['searchMovies']>()
+    
+    const [searchinput, setSearchInput] = useState<string>()
 
     const fetchSearchResults = async (query: string) => {
-        const queryResult = await MovieService.searchMovie(query).catch(
+        setSearchInput(query)
+        const queryResult = await MovieService.searchandSortMovie(query, sortvalue).catch(
             (err: Error) => {
                 console.error(err)
             },
@@ -19,7 +23,7 @@ export function Searchbar() {
         if (queryResult) setSearchResult(queryResult)
     }
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement> ) => {
         event.preventDefault()
         clearTimeout(timer)
         timer = setTimeout(() => {
@@ -27,6 +31,7 @@ export function Searchbar() {
                 console.error(err)
                 throw err
             })
+            //console.warn(sortvalue)
         }, 500)
     }
 
@@ -34,6 +39,22 @@ export function Searchbar() {
         event.preventDefault()
     }
 
+
+    
+    const change = () => { 
+        if(sortvalue == 1){
+            sortvalue = -1
+        }else{
+            sortvalue = 1
+        }
+        if(searchinput != null){
+            fetchSearchResults(searchinput).catch((err) => {
+                console.error(err)
+                throw err
+            })
+        }
+        
+    }
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -47,6 +68,7 @@ export function Searchbar() {
                     onChange={handleInputChange}
                 />
             </form>
+            <button type="button" className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onClick={change}>Sort</button>
 
             <div className="max-w-screen-xl w-full h-full flex justify-evenly flex-wrap">
                 {searchResult &&
