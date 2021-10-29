@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { Link, Route, Switch } from 'react-router-dom'
 import MovieService from '../services/movieService'
 import { SearchMovies } from '../services/movieService/__generated__/SearchMovies'
+import MovieDetail from './MovieDetail'
 
 export function Searchbar() {
     let timer: NodeJS.Timeout
@@ -14,7 +16,6 @@ export function Searchbar() {
                 console.error(err)
             },
         )
-        console.warn(queryResult)
         if (queryResult) setSearcResult(queryResult)
     }
 
@@ -45,18 +46,22 @@ export function Searchbar() {
                     placeholder="Search Movies"
                     onChange={handleInputChange}
                 />
-                <button type="submit">Search</button>
             </form>
-            <div>
+
+            <div className="max-w-screen-xl w-full h-full flex justify-evenly flex-wrap">
                 {searcResult &&
                     searcResult.map((movie) => (
-                        <div className="w-64 mb-10 flex flex-col items-center">
-                            <div className="mt-4 text-center">
-                                {movie?.title}
+                        <Link to={'/movies/' + movie._id} key={movie._id}>
+                            <div className="w-64 mb-10 flex flex-col items-center">
+                                <div className="mt-4 text-center">
+                                    {movie?.title}
+                                </div>
                             </div>
-                            <h5>Description: {movie?.description}</h5>
-                        </div>
+                        </Link>
                     ))}
+                <Switch>
+                    <Route path="/movies/:id" children={<MovieDetail />} />
+                </Switch>
             </div>
         </>
     )
