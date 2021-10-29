@@ -23,7 +23,8 @@ export interface SearchMoviesPage {
 
 export interface SearchMoviesPageVariables {
   searchQuery: string;
-  take?: number | null;
-  skip?: number | null;
-  orderBy?: string | null;
+  take: number;
+  skip: number;
+  orderField: string;
+  orderValue: string;
 }

@@ -7,7 +7,7 @@ import {
     GET_MOVIE_BY_ID,
     SEARCH_MOVIES,
     SORT_MOVIES,
-    UPDATE_MOVIE,
+    UPDATE_MOVIE, SEARCH_MOVIES_PAGE,
 } from './queries'
 import { CreateMovie } from './__generated__/CreateMovie'
 import { DeleteMovie } from './__generated__/DeleteMovie'
@@ -16,6 +16,7 @@ import { GetMovies } from './__generated__/GetMovies'
 import { SearchMovies } from './__generated__/SearchMovies'
 import { SortMovies } from './__generated__/SortMovies'
 import { UpdateMovie } from './__generated__/UpdateMovie'
+import {SearchMoviesPage, SearchMoviesPageVariables} from "./__generated__/SearchMoviesPage";
 
 export class MovieService {
     async getMovies(): Promise<GetMovies['getmovies']> {
@@ -162,26 +163,27 @@ export class MovieService {
         }
     }
 
-    // async searchMoviesPage (
-    //     variables: GetMoviesPageVariables
-    // ): Promise<GetMoviesPage['getmoviespage']> {
-    //     try {
-    //
-    //         const response: ApolloQueryResult<GetMoviesPage> =
-    //             await apolloClient.query({
-    //                 query: FEED_QUERY,
-    //                 variables: variables,
-    //             })
-    //
-    //         if (!response || !response.data)
-    //             throw new Error('Cannot get movie page!')
-    //
-    //         return response.data.getmoviespage
-    //     } catch (err) {
-    //         console.error(err)
-    //         throw err
-    //     }
-    // }
+    async searchMoviesPage (
+        variables: SearchMoviesPageVariables
+    ): Promise<SearchMoviesPage['searchMoviesPage']> {
+
+        try {
+
+            const response: ApolloQueryResult<SearchMoviesPage> =
+                await apolloClient.query({
+                    query: SEARCH_MOVIES_PAGE,
+                    variables: variables,
+                })
+
+            if (!response || !response.data)
+                throw new Error('Cannot get movie page!')
+
+            return response.data.searchMoviesPage
+        } catch (err) {
+            console.error(err)
+            throw err
+        }
+    }
 
     async sortMovie(input: number): Promise<SortMovies['sortMovies']> {
         try {

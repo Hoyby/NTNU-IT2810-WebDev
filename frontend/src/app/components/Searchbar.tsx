@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react'
 import MovieService from '../services/movieService'
 import { SearchMovies } from '../services/movieService/__generated__/SearchMovies'
 import {MovieCard} from "./MovieCard";
-import {Redirect, Route } from "react-router-dom";
+import {Redirect, Route, useHistory} from "react-router-dom";
+// import {SearchMoviesPageVariables} from "../services/movieService/__generated__/SearchMoviesPage";
 
 export function Searchbar() {
     let timer: NodeJS.Timeout
@@ -11,31 +12,36 @@ export function Searchbar() {
         useState<SearchMovies['searchMovies']>()
 
 
-    // const LINKS_PER_PAGE = 5;
-    // const history = useHistory();
-    // const isNewPage = history.location.pathname.includes(
-    //     'new'
-    // );
-    // const pageIndexParams = history.location.pathname.split(
-    //     '/'
-    // );
-    // const page = parseInt(
-    //     pageIndexParams[pageIndexParams.length - 1]
-    // );
+    const LINKS_PER_PAGE = 6;
+    const history = useHistory();
 
-   //  const pageIndex = page ? (page - 1) * LINKS_PER_PAGE : 0;
-   //
-   //  const getQueryVariables = (isNewPage: boolean, page: number) => {
-   //      const skip = isNewPage ? (page - 1) * LINKS_PER_PAGE : 0;
-   //      const take = isNewPage ? LINKS_PER_PAGE : 100;
-   //      const orderBy = { createdAt: 'desc' };
-   //      return { take, skip, orderBy };
-   //  };
-   //
-   // const data = MovieService.getMoviesPage(getQueryVariables(isNewPage, page))
+    const pageIndexParams = history.location.pathname.split(
+        '/'
+    );
+    const page = parseInt(
+        pageIndexParams[pageIndexParams.length - 1]
+    );
+
+    // const pageIndex = page ? (page - 1) * LINKS_PER_PAGE : 0;
+
+    const getQueryVariables = (page: number) => {
+        const skip = (page - 1) * LINKS_PER_PAGE;
+        const take = LINKS_PER_PAGE;
+        const orderField = 'published';
+        const orderValue = 'asc';
+        return { take, skip, orderField, orderValue };
+    };
 
     const fetchSearchResults = async (query: string) => {
-        const queryResult = await MovieService.searchMovie(query).catch(
+        const query_variables = getQueryVariables(page)
+        const final_query = {
+            searchQuery: query,
+            take: query_variables.take,
+            skip: query_variables.skip,
+            orderField: query_variables.orderField,
+            orderValue: query_variables.orderValue
+        }
+        const queryResult = await MovieService.searchMoviesPage(final_query).catch(
             (err: Error) => {
                 console.error(err)
             },

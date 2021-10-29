@@ -39,11 +39,12 @@ export const SEARCH_MOVIES = gql`
 export const SEARCH_MOVIES_PAGE = gql`
   query SearchMoviesPage(
     $searchQuery: String!
-    $take: Int
-    $skip: Int
-    $orderBy: String
+    $take: Float!
+    $skip: Float!
+    $orderField: String!
+    $orderValue: String!
   ) {
-    searchMoviesPage(take: $take, skip: $skip, orderBy: $orderBy, searchQuery: $searchQuery) {
+    searchMoviesPage(input: {searchQuery: $searchQuery, take: $take, skip: $skip, orderField: $orderField, orderValue: $orderValue}) {
       _id
       title
       description
