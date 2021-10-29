@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link, Route, Switch } from 'react-router-dom'
 import MovieService from '../services/movieService'
 import { SearchMovies } from '../services/movieService/__generated__/SearchMovies'
@@ -6,7 +6,8 @@ import MovieDetail from './MovieDetail'
 
 export function Searchbar() {
     let timer: NodeJS.Timeout
-    let sortvalue = 1
+
+    const [sortValue, setSortVaue] = useState(-1)
 
     const [searchResult, setSearchResult] =
         useState<SearchMovies['searchMovies']>()
@@ -15,7 +16,7 @@ export function Searchbar() {
 
     const fetchSearchResults = async (query: string) => {
         setSearchInput(query)
-        const queryResult = await MovieService.searchandSortMovie(query, sortvalue).catch(
+        const queryResult = await MovieService.searchandSortMovie(query, sortValue).catch(
             (err: Error) => {
                 console.error(err)
             },
@@ -42,19 +43,19 @@ export function Searchbar() {
 
     
     const change = () => { 
-        if(sortvalue == 1){
-            sortvalue = -1
-        }else{
-            sortvalue = 1
-        }
+        setSortVaue(-sortValue)
+    }
+
+    useEffect(() => {
         if(searchinput != null){
             fetchSearchResults(searchinput).catch((err) => {
                 console.error(err)
                 throw err
             })
         }
-        
-    }
+    }, [sortValue]);
+
+
     return (
         <>
             <form onSubmit={handleSubmit}>
