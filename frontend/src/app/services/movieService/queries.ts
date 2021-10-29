@@ -81,6 +81,20 @@ export const UPDATE_MOVIE = gql`
     }
 `
 
+export const SEARCH_AND_SORT_MOVIE = gql`
+    query movie($searchword: String!, $sortfactor: Int!){
+        searchandSortMovie(input: {
+            searchword: $searchword
+            sortfactor: $sortfactor
+    }){
+        _id
+        title
+        description
+    }
+  }
+`
+
+/*
 export const SORT_MOVIES = gql`
     query SortMovies($input: Float!) {
         sortMovies(input: $input) {
@@ -90,6 +104,8 @@ export const SORT_MOVIES = gql`
         }
     }
 `
+*/
+
 export const DELETE_MOVIE = gql`
     mutation DeleteMovie($_id: String!) {
         deleteMovie(input: { _id: $_id })
