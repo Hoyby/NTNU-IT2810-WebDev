@@ -7,7 +7,7 @@ import MovieDetail from './MovieDetail'
 export function Searchbar() {
     let timer: NodeJS.Timeout
 
-    const [searcResult, setSearcResult] =
+    const [searchResult, setSearchResult] =
         useState<SearchMovies['searchMovies']>()
 
     const fetchSearchResults = async (query: string) => {
@@ -16,7 +16,7 @@ export function Searchbar() {
                 console.error(err)
             },
         )
-        if (queryResult) setSearcResult(queryResult)
+        if (queryResult) setSearchResult(queryResult)
     }
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,8 +49,8 @@ export function Searchbar() {
             </form>
 
             <div className="max-w-screen-xl w-full h-full flex justify-evenly flex-wrap">
-                {searcResult &&
-                    searcResult.map((movie) => (
+                {searchResult &&
+                    searchResult.map((movie) => (
                         <Link to={'/movies/' + movie._id} key={movie._id}>
                             <div className="w-64 mb-10 flex flex-col items-center">
                                 <div className="mt-4 text-center">
