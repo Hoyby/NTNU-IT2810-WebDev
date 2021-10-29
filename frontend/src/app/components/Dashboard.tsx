@@ -5,7 +5,10 @@ import Searchbar from './Searchbar'
 export default function Dashboard() {
     return (
         <div>
-            <MovieForm />
+            <div className="my-10">
+                <MovieForm />
+            </div>
+
             <Searchbar />
         </div>
     )

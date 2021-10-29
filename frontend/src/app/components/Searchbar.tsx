@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
-import { Link, Route, Switch } from 'react-router-dom'
 import MovieService from '../services/movieService'
 import { SearchMovies } from '../services/movieService/__generated__/SearchMovies'
-import MovieDetail from './MovieDetail'
+import { MovieCard } from './MovieCard'
+// material-tailwind is not officially supported by TS - hence the ignores
+/* eslint-disable */
+// @ts-ignore
+import InputIcon from '@material-tailwind/react/InputIcon'
+/* eslint-enable */
 
 export function Searchbar() {
     let timer: NodeJS.Timeout
@@ -36,32 +40,31 @@ export function Searchbar() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="searchbar">Search</label>
-                <input
+            <form className="my-10" onSubmit={handleSubmit}>
+                <InputIcon
                     type="text"
-                    className="block text-black border border-grey-light w-full p-3 rounded mb-4"
                     name="searchbar"
                     id="searchbar"
+                    className="p-3 mb-16"
+                    color="blueGray"
+                    size="lg"
+                    iconFamily="material-icons"
+                    iconName="search"
+                    outline={true}
                     placeholder="Search Movies"
                     onChange={handleInputChange}
                 />
             </form>
 
-            <div className="max-w-screen-xl w-full h-full flex justify-evenly flex-wrap">
+            <div className="max-w-screen-xl w-full h-full flex justify-evenly flex-wrap mb-10">
                 {searchResult &&
                     searchResult.map((movie) => (
-                        <Link to={'/movies/' + movie._id} key={movie._id}>
-                            <div className="w-64 mb-10 flex flex-col items-center">
-                                <div className="mt-4 text-center">
-                                    {movie?.title}
-                                </div>
-                            </div>
-                        </Link>
+                        <MovieCard
+                            title={movie?.title}
+                            description={movie?.description}
+                            _id={movie?._id}
+                        />
                     ))}
-                <Switch>
-                    <Route path="/movies/:id" children={<MovieDetail />} />
-                </Switch>
             </div>
         </>
     )
