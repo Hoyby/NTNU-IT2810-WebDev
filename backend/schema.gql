@@ -27,7 +27,8 @@ input MovieInput {
 }
 
 input MoviesPageInput {
-  orderBy: String!
+  orderField: String!
+  orderValue: String!
   searchQuery: String!
   skip: Float!
   take: Float!

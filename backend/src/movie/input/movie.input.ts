@@ -24,9 +24,11 @@ export class MoviesPageInput {
     readonly skip: number
 
     @Field()
-    readonly orderBy: string
-}
+    readonly orderField: string
 
+    @Field()
+    readonly orderValue: string
+}
 
 @InputType()
 export class UpdateMovieInput {

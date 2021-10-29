@@ -10,6 +10,7 @@ import {
 
 @Injectable()
 export class MovieService {
+
     constructor(@InjectModel(Movie.name) private movieModel: Model<Movie>) {}
 
     async findAll(): Promise<Movie[]> {
@@ -54,7 +55,9 @@ export class MovieService {
     async searchPage(moviesPageInput: MoviesPageInput): Promise<Movie[]> {
         return await this.movieModel
             .find({ title: { $regex: moviesPageInput.searchQuery, $options: 'i' } } )
-            .sort({ published: moviesPageInput.orderBy })
+            .limit(moviesPageInput.take)
+            .skip(moviesPageInput.skip)
+            .sort({ [moviesPageInput.orderField]: moviesPageInput.orderValue })
             .exec()
     }
 }
