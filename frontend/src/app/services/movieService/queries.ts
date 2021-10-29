@@ -26,6 +26,16 @@ export const GET_MOVIE_BY_ID = gql`
     }
 `
 
+export const SEARCH_MOVIES = gql`
+    query SearchMovies($searchQuery: String!) {
+        searchMovies(input: $searchQuery) {
+            _id
+            title
+            description
+        }
+    }
+`
+
 export const CREATE_MOVIE = gql`
     mutation CreateMovie(
         $title: String!
@@ -71,6 +81,15 @@ export const UPDATE_MOVIE = gql`
     }
 `
 
+export const SORT_MOVIES = gql`
+    query SortMovies($input: Float!) {
+        sortMovies(input: $input) {
+            _id
+            title
+            description
+        }
+    }
+`
 export const DELETE_MOVIE = gql`
     mutation DeleteMovie($_id: String!) {
         deleteMovie(input: { _id: $_id })

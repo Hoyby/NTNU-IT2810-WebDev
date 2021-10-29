@@ -37,4 +37,14 @@ export class MovieResolver {
         await this.movieService.delete(input._id)
         return true
     }
+
+    @Query(() => [MovieDto])
+    async searchMovies(@Args('input') input: string) {
+        return this.movieService.search(input)
+    }
+
+    @Query(() => [MovieDto])
+    async sortMovies(@Args('input') input: number) {
+        return this.movieService.order(input)
+    }
 }
