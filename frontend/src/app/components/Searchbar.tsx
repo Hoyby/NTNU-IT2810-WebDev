@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link, Route, Switch } from 'react-router-dom'
 import MovieService from '../services/movieService'
 import { SearchMovies } from '../services/movieService/__generated__/SearchMovies'
@@ -33,6 +33,17 @@ export function Searchbar() {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
     }
+
+    useEffect(() => {
+        async function search() {
+            await fetchSearchResults('')
+        }
+        search().catch((err: Error) => {
+            console.error(err.message)
+            throw err
+        })
+    }, []);
+
 
     return (
         <>
