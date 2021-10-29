@@ -63,7 +63,7 @@ export default function MovieDetail() {
                 </ModalHeader>
 
                 <ModalBody>
-                    <p className="text-base leading-relaxed text-gray-600 font-light mb-10">first published: {movie?.published}</p>
+                    <p className="text-base leading-relaxed text-gray-600 font-light mb-10">Released: {movie?.published}</p>
                     <p className="text-base leading-relaxed text-gray-600 font-normal">
                         {movie?.description}
                     </p>
