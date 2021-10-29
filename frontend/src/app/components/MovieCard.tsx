@@ -1,66 +1,51 @@
-import React from "react";
+import React from 'react'
+import MovieDetail from './MovieDetail'
+import { Link, Route, Switch } from 'react-router-dom'
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// material-tailwind is not officially supported by TS - hence the ignores
+/* eslint-disable */
 // @ts-ignore
-import Card from "@material-tailwind/react/Card";
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+import Card from '@material-tailwind/react/Card'
 // @ts-ignore
-import CardHeader from "@material-tailwind/react/CardHeader";
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+import CardHeader from '@material-tailwind/react/CardHeader'
 // @ts-ignore
-import CardRow from "@material-tailwind/react/CardRow";
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+import CardBody from '@material-tailwind/react/CardBody'
 // @ts-ignore
-import CardStatusFooter from "@material-tailwind/react/CardStatusFooter";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+import Button from '@material-tailwind/react/Button'
 // @ts-ignore
-import Icon from "@material-tailwind/react/Icon";
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+import Paragraph from '@material-tailwind/react/Paragraph'
 // @ts-ignore
-import H5 from '@material-tailwind/react/Heading5'
-import {Link, Route, Switch} from "react-router-dom";
-import MovieDetail from "./MovieDetail";
+import CardFooter from '@material-tailwind/react/CardFooter'
+// @ts-ignore
+import H6 from '@material-tailwind/react/Heading6'
+/* eslint-enable */
 
 interface IMovie {
-    _id: string,
+    _id: string
     title: string
+    description: string
 }
 
-export function MovieCard({ title, _id }: IMovie) {
-
+export function MovieCard({ title, description, _id }: IMovie) {
     return (
-        <div className='w-80'>
-            <Link to={
-                '/movies/' + _id
-            } key={_id}>
-            <Card>
-                <CardRow>
-                    <CardHeader color="red" size="lg" iconOnly>
-                        <Icon name="movie" size="5xl" color="white" />
-                    </CardHeader>
+        <div className="w-80 m-5">
+            <Link to={'/movies/' + _id} key={_id}>
+                <Card>
+                    <CardBody>
+                        <H6>{title}</H6>
+                        <Paragraph color="gray">
+                            {description.split(' ').slice(0, 12).join(' ')}
+                        </Paragraph>
+                    </CardBody>
 
-                    <H5>
-                        <div className='p-5 break-words'>
-                        {title}
-                        </div>
-                    </H5>
-                    {/*<div className='text-red-500'>
-                        <CardStatus title="Thriller" amount={title} />
-                    </div>*/}
-                </CardRow>
-
-                <CardStatusFooter color="green" amount="97%" date="Match"/>
-            </Card>
+                    <CardFooter>
+                        <p className="text-red-500">Read More</p>
+                    </CardFooter>
+                </Card>
             </Link>
             <Switch>
-                <Route path="/movies/:id" children={<MovieDetail/>} />
+                <Route path="/movies/:id" children={<MovieDetail />} />
             </Switch>
         </div>
-
-
     )
 }
