@@ -13,6 +13,22 @@ export class MovieInput {
 }
 
 @InputType()
+export class MoviesPageInput {
+    @Field()
+    readonly searchQuery: string
+
+    @Field()
+    readonly take: number
+
+    @Field()
+    readonly skip: number
+
+    @Field()
+    readonly orderBy: string
+}
+
+
+@InputType()
 export class UpdateMovieInput {
     @Field()
     readonly _id: string
@@ -32,3 +48,4 @@ export class FindMovieInput {
     @Field()
     readonly _id: string
 }
+

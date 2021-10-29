@@ -26,6 +26,13 @@ input MovieInput {
   title: String!
 }
 
+input MoviesPageInput {
+  orderBy: String!
+  searchQuery: String!
+  skip: Float!
+  take: Float!
+}
+
 type Mutation {
   createMovie(input: MovieInput!): MovieDto!
   deleteMovie(input: FindMovieInput!): Boolean!
@@ -36,6 +43,7 @@ type Query {
   findMovie(input: FindMovieInput!): MovieDto!
   getmovies: [MovieDto!]!
   searchMovies(input: String!): [MovieDto!]!
+  searchMoviesPage(input: MoviesPageInput!): [MovieDto!]!
   sortMovies(input: Float!): [MovieDto!]!
 }
 

@@ -34,8 +34,25 @@ export const SEARCH_MOVIES = gql`
             description
         }
     }
-`
+`;
 
+export const SEARCH_MOVIES_PAGE = gql`
+  query SearchMoviesPage(
+    $searchQuery: String!
+    $take: Int
+    $skip: Int
+    $orderBy: String
+  ) {
+    searchMoviesPage(take: $take, skip: $skip, orderBy: $orderBy, searchQuery: $searchQuery) {
+      _id
+      title
+      description
+      published
+      updatedAt
+      createdAt
+    }
+  }
+`
 export const CREATE_MOVIE = gql`
     mutation CreateMovie(
         $title: String!

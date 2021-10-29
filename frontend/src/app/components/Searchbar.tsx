@@ -2,12 +2,37 @@ import React, {useEffect, useState} from 'react'
 import MovieService from '../services/movieService'
 import { SearchMovies } from '../services/movieService/__generated__/SearchMovies'
 import {MovieCard} from "./MovieCard";
+import {Redirect, Route } from "react-router-dom";
 
 export function Searchbar() {
     let timer: NodeJS.Timeout
 
     const [searchResult, setSearchResult] =
         useState<SearchMovies['searchMovies']>()
+
+
+    // const LINKS_PER_PAGE = 5;
+    // const history = useHistory();
+    // const isNewPage = history.location.pathname.includes(
+    //     'new'
+    // );
+    // const pageIndexParams = history.location.pathname.split(
+    //     '/'
+    // );
+    // const page = parseInt(
+    //     pageIndexParams[pageIndexParams.length - 1]
+    // );
+
+   //  const pageIndex = page ? (page - 1) * LINKS_PER_PAGE : 0;
+   //
+   //  const getQueryVariables = (isNewPage: boolean, page: number) => {
+   //      const skip = isNewPage ? (page - 1) * LINKS_PER_PAGE : 0;
+   //      const take = isNewPage ? LINKS_PER_PAGE : 100;
+   //      const orderBy = { createdAt: 'desc' };
+   //      return { take, skip, orderBy };
+   //  };
+   //
+   // const data = MovieService.getMoviesPage(getQueryVariables(isNewPage, page))
 
     const fetchSearchResults = async (query: string) => {
         const queryResult = await MovieService.searchMovie(query).catch(
@@ -66,6 +91,13 @@ export function Searchbar() {
                         </div>
                     ))}
             </div>
+
+            <Route
+                exact
+                path="/"
+                render={() => <Redirect to="/page/1" />}
+            />
+
         </>
     )
 }

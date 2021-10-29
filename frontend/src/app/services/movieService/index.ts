@@ -35,6 +35,28 @@ export class MovieService {
         }
     }
 
+
+    // async getMoviesPage (
+    //     variables: GetMoviesPageVariables
+    // ): Promise<GetMoviesPage['getmoviespage']> {
+    //     try {
+    //
+    //         const response: ApolloQueryResult<GetMoviesPage> =
+    //             await apolloClient.query({
+    //                 query: FEED_QUERY,
+    //                 variables: variables,
+    //             })
+    //
+    //         if (!response || !response.data)
+    //             throw new Error('Cannot get movie page!')
+    //
+    //         return response.data.getmoviespage
+    //     } catch (err) {
+    //         console.error(err)
+    //         throw err
+    //     }
+    // }
+
     async findMovie(_id: string): Promise<FindMovie['findMovie']> {
         try {
             console.warn('ID: ', _id)
@@ -54,6 +76,8 @@ export class MovieService {
             throw err
         }
     }
+
+
 
     async createMovie(
         title: string,
@@ -138,6 +162,27 @@ export class MovieService {
         }
     }
 
+    // async searchMoviesPage (
+    //     variables: GetMoviesPageVariables
+    // ): Promise<GetMoviesPage['getmoviespage']> {
+    //     try {
+    //
+    //         const response: ApolloQueryResult<GetMoviesPage> =
+    //             await apolloClient.query({
+    //                 query: FEED_QUERY,
+    //                 variables: variables,
+    //             })
+    //
+    //         if (!response || !response.data)
+    //             throw new Error('Cannot get movie page!')
+    //
+    //         return response.data.getmoviespage
+    //     } catch (err) {
+    //         console.error(err)
+    //         throw err
+    //     }
+    // }
+
     async sortMovie(input: number): Promise<SortMovies['sortMovies']> {
         try {
             const response: ApolloQueryResult<SortMovies> =
@@ -155,6 +200,8 @@ export class MovieService {
             throw err
         }
     }
+
+
 }
 
 export default new MovieService()

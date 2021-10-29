@@ -35,14 +35,13 @@ export function MovieCard({ title, _id }: IMovie) {
     return (
         <div className='w-80'>
             <Link to={
-                '/movies/' + _id
+                '/page/1/movie/' + _id
             } key={_id}>
             <Card>
                 <CardRow>
                     <CardHeader color="red" size="lg" iconOnly>
                         <Icon name="movie" size="5xl" color="white" />
                     </CardHeader>
-
                     <H5>
                         <div className='p-5 break-words'>
                         {title}
@@ -57,7 +56,7 @@ export function MovieCard({ title, _id }: IMovie) {
             </Card>
             </Link>
             <Switch>
-                <Route path="/movies/:id" children={<MovieDetail/>} />
+                <Route path="/page/:page/movie/:id" children={<MovieDetail/>} />
             </Switch>
         </div>
 

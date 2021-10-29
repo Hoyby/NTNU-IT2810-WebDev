@@ -4,7 +4,7 @@ import { Movie } from './movie.schema'
 import { MovieDto } from './dto/movie.dto'
 import {
     FindMovieInput,
-    MovieInput,
+    MovieInput, MoviesPageInput,
     UpdateMovieInput,
 } from './input/movie.input'
 
@@ -46,5 +46,10 @@ export class MovieResolver {
     @Query(() => [MovieDto])
     async sortMovies(@Args('input') input: number) {
         return this.movieService.order(input)
+    }
+
+    @Query(() => [MovieDto])
+    async searchMoviesPage(@Args('input') input: MoviesPageInput) {
+        return this.movieService.searchPage(input)
     }
 }
