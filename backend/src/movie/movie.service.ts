@@ -39,4 +39,16 @@ export class MovieService {
     async delete(_id: string): Promise<any> {
         return await this.movieModel.deleteOne({ _id: new Types.ObjectId(_id) })
     }
+
+    async search(searchQuery: string): Promise<any> {
+        console.log('test')
+        return await this.movieModel
+            .find({ title: { $regex: searchQuery, $options: 'i' } })
+            .exec()
+    }
+
+    async order(sortfactor: number): Promise<any> {
+        //send in either -1 for desc and 1 for asc
+        return await this.movieModel.find().sort({ createdAt: sortfactor })
+    }
 }
