@@ -4,7 +4,8 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Movie } from './movie.schema'
 import {
     FindMovieInput,
-    MovieInput, MoviesPageInput,
+    MovieInput,
+    SearchSortInput,
     UpdateMovieInput,
 } from './input/movie.input'
 
@@ -52,12 +53,10 @@ export class MovieService {
         return await this.movieModel.find().sort({ createdAt: sortfactor })
     }
 
-    async searchPage(moviesPageInput: MoviesPageInput): Promise<Movie[]> {
+    async searchandorder(input: SearchSortInput): Promise<any> {
         return await this.movieModel
-            .find({ title: { $regex: moviesPageInput.searchQuery, $options: 'i' } } )
-            .limit(moviesPageInput.take)
-            .skip(moviesPageInput.skip)
-            .sort({ [moviesPageInput.orderField]: moviesPageInput.orderValue })
+            .find({ title: { $regex: input.searchword, $options: 'i' } })
+            .sort({ createdAt: input.sortfactor})
             .exec()
     }
 }
