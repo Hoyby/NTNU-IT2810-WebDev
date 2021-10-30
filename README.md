@@ -1,4 +1,4 @@
-# Name
+# JAMDb - Just Another Movie Database
 
 This is a frontend / backend solution that allows you to search and add movies to a database.
 

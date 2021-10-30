@@ -13,6 +13,9 @@ import Button from '@material-tailwind/react/Button'
 /* eslint-enable */
 
 export function Search() {
+    /**
+     * Provides a searchbar and a view for showing the result of the search.
+     */
     let timer: NodeJS.Timeout
 
     const [sortValue, setSortValue] = useState(-1)
