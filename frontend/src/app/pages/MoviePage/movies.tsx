@@ -2,6 +2,7 @@ import React from 'react'
 import { createSelector } from 'reselect'
 import { useAppSelector } from '../../hooks'
 import { makeSelectMoviePage } from './selectors'
+import { MovieCard } from '../../components/MovieCard'
 import { Link, Route, Switch } from 'react-router-dom'
 import MovieDetail from '../../components/MovieDetail'
 
@@ -23,7 +24,11 @@ export function Movies() {
                     <Link to={'/movies/' + movie._id} key={movie._id}>
                         <div className="w-64 mb-10 flex flex-col items-center">
                             <div className="mt-4 text-center">
-                                {movie?.title}
+                                <MovieCard
+                                    title={movie?.title}
+                                    description={movie?.description}
+                                    _id={movie?._id}
+                                />
                             </div>
                         </div>
                     </Link>

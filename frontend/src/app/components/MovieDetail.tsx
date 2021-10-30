@@ -1,31 +1,30 @@
-import React, {useEffect, useState} from 'react'
-import {Link, Redirect, useParams} from "react-router-dom";
-import { MovieService } from "../services/movieService";
-import {FindMovie_findMovie} from "../services/movieService/__generated__/FindMovie";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+import React, { useEffect, useState } from 'react'
+import { Link, Redirect, useParams } from 'react-router-dom'
+import { MovieService } from '../services/movieService'
+import { FindMovie_findMovie } from '../services/movieService/__generated__/FindMovie'
+
+// material-tailwind is not officially supported by TS - hence the ignores
+/* eslint-disable */
 // @ts-ignore
-import Modal from "@material-tailwind/react/Modal";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+import Modal from '@material-tailwind/react/Modal'
 // @ts-ignore
-import ModalHeader from "@material-tailwind/react/ModalHeader";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+import ModalHeader from '@material-tailwind/react/ModalHeader'
 // @ts-ignore
-import ModalBody from "@material-tailwind/react/ModalBody";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+import ModalBody from '@material-tailwind/react/ModalBody'
 // @ts-ignore
-import ModalFooter from "@material-tailwind/react/ModalFooter";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+import ModalFooter from '@material-tailwind/react/ModalFooter'
 // @ts-ignore
-import Button from "@material-tailwind/react/Button";
+import Button from '@material-tailwind/react/Button'
+/* eslint-enable */
 
 export default function MovieDetail() {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const { id } = useParams();
+    const { id } = useParams<{ id: string }>()
     const movieService = new MovieService()
-    const [movie, setMovie] = useState<FindMovie_findMovie>();
-    const [showModal, setShowModal] = React.useState(true);
-    let queryResult: React.SetStateAction<FindMovie_findMovie | undefined> | null = null
+    const [movie, setMovie] = useState<FindMovie_findMovie>()
+    const [showModal, setShowModal] = React.useState(true)
+    let queryResult: React.SetStateAction<
+        FindMovie_findMovie | undefined
+    > | null = null
 
     useEffect(() => {
         async function fetchMovie() {
@@ -37,61 +36,47 @@ export default function MovieDetail() {
             console.error(err.message)
             throw err
         })
-    }, []);
+    }, [])
 
     useEffect(() => {
         setShowModal(true)
-    }, [movie, setMovie]);
-
-    const closeModal = () => {
-        setShowModal(false)
-    }
+    }, [movie, setMovie])
 
     if (!showModal) {
-        return <Redirect to='/'/>
+        return <Redirect to="/" />
     }
 
     return (
-        <>
-            {/*
-             <h1>{id}</h1>
-            <p> {movie ? movie.title : 'Something went wrong'}</p>
-             */}
-            <Modal size="regular" active={showModal} toggler={closeModal}>
-                <ModalHeader toggler={closeModal}>
-                    {movie?.title}
-                </ModalHeader>
+        <Modal
+            size="regular"
+            active={showModal}
+            toggler={() => setShowModal(false)}
+        >
+            <ModalHeader toggler={() => setShowModal(false)}>
+                {movie?.title}
+            </ModalHeader>
 
-                <ModalBody>
-                    <p className="text-base leading-relaxed text-gray-600 font-light mb-10">first published: {movie?.published}</p>
-                    <p className="text-base leading-relaxed text-gray-600 font-normal">
-                        {movie?.description}
-                    </p>
-                </ModalBody>
+            <ModalBody>
+                <p className="text-base leading-relaxed text-gray-600 font-light mb-10">
+                    Released: {movie?.published}
+                </p>
+                <p className="text-base leading-relaxed text-gray-600 font-normal">
+                    {movie?.description}
+                </p>
+            </ModalBody>
 
-                <ModalFooter>
-                    <Link to={'/'}>
-                        <Button
-                            color="red"
-                            buttonType="link"
-                            onClick={closeModal}
-                            ripple="dark"
-                        >
-                            Close
-                        </Button>
-                    </Link>
-
-                    {/*
+            <ModalFooter>
+                <Link to={'/'}>
                     <Button
-                        color="green"
-                        onClick={() => setShowModal(false)}
-                        ripple="light"
+                        color="red"
+                        buttonType="link"
+                        toggler={() => setShowModal(false)}
+                        ripple="dark"
                     >
-                        Save Changes
+                        Close
                     </Button>
-                    */}
-                </ModalFooter>
-            </Modal>
-        </>
+                </Link>
+            </ModalFooter>
+        </Modal>
     )
 }

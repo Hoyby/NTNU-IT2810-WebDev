@@ -5,6 +5,7 @@ import { Movie } from './movie.schema'
 import {
     FindMovieInput,
     MovieInput,
+    SearchSortInput,
     UpdateMovieInput,
 } from './input/movie.input'
 
@@ -50,5 +51,12 @@ export class MovieService {
     async order(sortfactor: number): Promise<any> {
         //send in either -1 for desc and 1 for asc
         return await this.movieModel.find().sort({ createdAt: sortfactor })
+    }
+
+    async searchandorder(input: SearchSortInput): Promise<any> {
+        return await this.movieModel
+            .find({ title: { $regex: input.searchword, $options: 'i' } })
+            .sort({ createdAt: input.sortfactor})
+            .exec()
     }
 }

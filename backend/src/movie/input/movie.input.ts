@@ -32,3 +32,12 @@ export class FindMovieInput {
     @Field()
     readonly _id: string
 }
+
+@InputType()
+export class SearchSortInput{
+    @Field()
+    readonly searchword: string
+    
+    @Field((type) => Int, { nullable: false })
+    readonly sortfactor: number
+}
