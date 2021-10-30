@@ -1,13 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
-import homePageReducer from './pages/MoviePage/moviePageSlice'
+import searchPageReducer from './slices/searchPageSlice'
 export const store = configureStore({
     reducer: {
-        homePage: homePageReducer,
+        searchPage: searchPageReducer,
     },
 })
 
-export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
 export type AppThunk<ReturnType = void> = ThunkAction<
     ReturnType,
     RootState,

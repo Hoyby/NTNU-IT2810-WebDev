@@ -43,26 +43,39 @@ export function NavBar() {
         </PopoverContainer>
     )
 
-    export default function Navbar() {
-        return (
-            <>
-                <nav
-                    className="flex justify-start items-start shadow-lg md:flex-shrink py-3"
-                    data-testid="nav"
-                >
-                    <NavbarContainer>
-                        <NavbarWrapper>
-                            <NavbarBrand>
-                                <h1 className="text-red-600 text-3xl">
-                                    WebDevGutta
-                                </h1>
-                            </NavbarBrand>
-                            <NavbarToggler
-                                color="white"
-                                onClick={() => setOpenMenu(!openMenu)}
+    return (
+        <>
+            <nav
+                className="flex justify-start items-start shadow-lg md:flex-shrink py-1"
+                data-testid="nav"
+            >
+                <NavbarContainer>
+                    <NavbarWrapper>
+                        <div className="text-sm font-bold leading-relaxed inline-block mr-4 whitespace-no-wrap text-white">
+                            <h1 className="text-red-600 text-2xl">JAMDb</h1>
+                            <p className="opacity-25 m-0 p-0 text-white">
+                                Just Another Movie Database
+                            </p>
+                        </div>
+                        <NavbarToggler
+                            color="white"
+                            onClick={() => setOpenMenu(!openMenu)}
+                            ripple="light"
+                        />
+                    </NavbarWrapper>
+                    <NavbarCollapse open={openMenu}>
+                        <Nav>
+                            <NavItem active="light" ripple="light">
+                                <Icon name="language" size="xl" />
+                                Discover
+                            </NavItem>
+                            <Button
+                                ref={profileRef}
+                                color=""
+                                className="px-5 py-4 flex gap-1 text-xs uppercase font-medium leading text-white rounded-lg justify-start"
                                 ripple="light"
                             />
-                        </NavbarWrapper>
+                        </Nav>
                         <NavbarCollapse open={openMenu}>
                             <Nav>
                                 <NavItem active="light" ripple="light">
@@ -95,8 +108,9 @@ export function NavBar() {
                                 </Popover>
                             </Nav>
                         </NavbarCollapse>
-                    </NavbarContainer>
-                </nav>
-            </>
-        )
-    }
+                    </NavbarCollapse>
+                </NavbarContainer>
+            </nav>
+        </>
+    )
+}

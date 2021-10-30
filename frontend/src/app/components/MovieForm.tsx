@@ -87,7 +87,10 @@ export default function MovieForm() {
                 </div>
             ) : null}
 
-            <Button onClick={() => setshowCreateMovieForm(true)}>
+            <Button
+                className="my-10"
+                onClick={() => setshowCreateMovieForm(true)}
+            >
                 Add new movie
             </Button>
             {showCreateMovieForm ? (

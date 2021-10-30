@@ -18,6 +18,9 @@ import Button from '@material-tailwind/react/Button'
 /* eslint-enable */
 
 export default function MovieDetail() {
+    /**
+     * Provides information about a spesific movie
+     */
     const { id } = useParams<{ id: string }>()
     const movieService = new MovieService()
     const [movie, setMovie] = useState<FindMovie_findMovie>()

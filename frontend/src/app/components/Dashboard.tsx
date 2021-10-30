@@ -5,9 +5,7 @@ import Search from './Search'
 export default function Dashboard() {
     return (
         <div>
-            <div className="my-10">
-                <MovieForm />
-            </div>
+            <MovieForm />
 
             <Search />
         </div>
