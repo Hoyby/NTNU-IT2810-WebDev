@@ -23,8 +23,15 @@ interface IMovie {
 }
 
 export function MovieCard({ title, description, _id }: IMovie) {
-    let shortDesc = description.split(' ').slice(0, 12).join(' ')
-    if (description.length > shortDesc.length) shortDesc += '...'
+    const shortDesc = () => {
+        /**
+         * Returns a short version of the description
+         * Appends 3 dots if the description contains data that is not presented
+         */
+        let shortDesc = description.split(' ').slice(0, 12).join(' ')
+        if (description.length > shortDesc.length) shortDesc += '...'
+        return shortDesc
+    }
 
     return (
         <div className="w-80">
@@ -32,7 +39,7 @@ export function MovieCard({ title, description, _id }: IMovie) {
                 <Card>
                     <CardBody>
                         <H6>{title}</H6>
-                        <Paragraph color="gray">{shortDesc}</Paragraph>
+                        <Paragraph color="gray">{shortDesc()}</Paragraph>
                     </CardBody>
 
                     <CardFooter>

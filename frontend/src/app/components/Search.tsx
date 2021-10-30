@@ -15,7 +15,7 @@ import Button from '@material-tailwind/react/Button'
 export function Search() {
     let timer: NodeJS.Timeout
 
-    const [sortValue, setSortVaue] = useState(-1)
+    const [sortValue, setSortValue] = useState(-1)
 
     const [searchResult, setSearchResult] =
         useState<SearchMovies['searchMovies']>()
@@ -78,7 +78,7 @@ export function Search() {
                 ripple="light"
                 color="pink"
                 onClick={() => {
-                    setSortVaue(-sortValue)
+                    setSortValue(-sortValue)
                 }}
             >
                 <Icon name="sort" size="sm" /> Sort by date added
