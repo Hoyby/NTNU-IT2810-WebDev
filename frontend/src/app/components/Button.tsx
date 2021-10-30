@@ -8,11 +8,11 @@ interface IButtonProps {
     onClick?: () => void
 }
 
-function Button(props: IButtonProps) {
+function Button({ to, onClick, styling, text }: IButtonProps) {
     return (
-        <Link to={props.to ? props.to : ''}>
-            <button onClick={props.onClick} className={props.styling}>
-                {props.text}
+        <Link to={to ? to : ''}>
+            <button onClick={onClick} className={styling}>
+                {text}
             </button>
         </Link>
     )

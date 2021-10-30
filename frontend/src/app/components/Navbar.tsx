@@ -1,7 +1,7 @@
 import React from 'react'
 import image from '../../img/logo.svg'
 
-export function Navbar() {
+export default function Navbar() {
     return (
         <nav
             className="flex justify-start items-start shadow-lg md:flex-shrink py-3"

@@ -39,6 +39,11 @@ export default function MovieForm() {
 
         console.warn(newMovie.published, typeof newMovie.published)
 
+        if (!newMovie.title) {
+
+            return
+        }
+
         movieService
             .createMovie(
                 newMovie.title,
