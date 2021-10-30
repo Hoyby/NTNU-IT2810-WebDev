@@ -23,7 +23,6 @@ export function Search() {
     const [searchInput, setSearchInput] = useState<string>('')
 
     const fetchSearchResults = async (query: string) => {
-        console.warn('fetch')
         setSearchInput(query)
         const queryResult = await MovieService.searchandSortMovie(
             query,
