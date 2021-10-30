@@ -7,11 +7,7 @@ import { Link, Route, Switch } from 'react-router-dom'
 // @ts-ignore
 import Card from '@material-tailwind/react/Card'
 // @ts-ignore
-import CardHeader from '@material-tailwind/react/CardHeader'
-// @ts-ignore
 import CardBody from '@material-tailwind/react/CardBody'
-// @ts-ignore
-import Button from '@material-tailwind/react/Button'
 // @ts-ignore
 import Paragraph from '@material-tailwind/react/Paragraph'
 // @ts-ignore
@@ -27,15 +23,23 @@ interface IMovie {
 }
 
 export function MovieCard({ title, description, _id }: IMovie) {
+    const shortDesc = () => {
+        /**
+         * Returns a short version of the description
+         * Appends 3 dots if the description contains data that is not presented
+         */
+        let shortDesc = description.split(' ').slice(0, 12).join(' ')
+        if (description.length > shortDesc.length) shortDesc += '...'
+        return shortDesc
+    }
+
     return (
-        <div className="w-80 m-5">
+        <div className="w-80">
             <Link to={'/movies/' + _id} key={_id}>
                 <Card>
                     <CardBody>
                         <H6>{title}</H6>
-                        <Paragraph color="gray">
-                            {description.split(' ').slice(0, 12).join(' ')}
-                        </Paragraph>
+                        <Paragraph color="gray">{shortDesc()}</Paragraph>
                     </CardBody>
 
                     <CardFooter>

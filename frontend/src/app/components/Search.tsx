@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import MovieService from '../services/movieService'
 import { SearchMovies } from '../services/movieService/__generated__/SearchMovies'
 import { MovieCard } from './MovieCard'
@@ -6,29 +6,34 @@ import { MovieCard } from './MovieCard'
 /* eslint-disable */
 // @ts-ignore
 import InputIcon from '@material-tailwind/react/InputIcon'
+// @ts-ignore
+import Icon from '@material-tailwind/react/Icon'
+// @ts-ignore
+import Button from '@material-tailwind/react/Button'
 /* eslint-enable */
 
-export function Searchbar() {
+export function Search() {
     let timer: NodeJS.Timeout
 
-    const [sortValue, setSortVaue] = useState(-1)
+    const [sortValue, setSortValue] = useState(-1)
 
     const [searchResult, setSearchResult] =
         useState<SearchMovies['searchMovies']>()
 
-    const [searchInput, setSearchInput] = useState<string>()
+    const [searchInput, setSearchInput] = useState<string>('')
 
     const fetchSearchResults = async (query: string) => {
         setSearchInput(query)
-        const queryResult = await MovieService.searchandSortMovie(query, sortValue).catch(
-            (err: Error) => {
-                console.error(err)
-            },
-        )
+        const queryResult = await MovieService.searchandSortMovie(
+            query,
+            sortValue,
+        ).catch((err: Error) => {
+            console.error(err)
+        })
         if (queryResult) setSearchResult(queryResult)
     }
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement> ) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault()
         clearTimeout(timer)
         timer = setTimeout(() => {
@@ -36,47 +41,19 @@ export function Searchbar() {
                 console.error(err)
                 throw err
             })
-        }, 500)
+        }, 700)
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
     }
 
-
-
-    const change = () => {
-        setSortVaue(-sortValue)
-    }
-
     useEffect(() => {
-        if(searchInput != null){
-            fetchSearchResults(searchInput).catch((err) => {
-                console.error(err)
-                throw err
-            })
-        }
-    }, [sortValue]);
-
-    useEffect(() => {
-        if(searchInput != null){
-            fetchSearchResults(searchInput).catch((err) => {
-                console.error(err)
-                throw err
-            })
-        }
-    }, [sortValue]);
-
-    useEffect(() => {
-        async function search() {
-            await fetchSearchResults('')
-        }
-        search().catch((err: Error) => {
-            console.error(err.message)
+        fetchSearchResults(searchInput).catch((err) => {
+            console.error(err)
             throw err
         })
-    }, []);
-
+    }, [sortValue])
 
     return (
         <>
@@ -95,9 +72,19 @@ export function Searchbar() {
                     onChange={handleInputChange}
                 />
             </form>
-            <button type="button" className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onClick={change}>Sort</button>
+            <Button
+                size="sm"
+                className="ml-auto my-5"
+                ripple="light"
+                color="pink"
+                onClick={() => {
+                    setSortValue(-sortValue)
+                }}
+            >
+                <Icon name="sort" size="sm" /> Sort by date added
+            </Button>
 
-            <div className="max-w-screen-xl w-full h-full flex justify-evenly flex-wrap mb-10">
+            <div className="max-w-screen-xl w-full h-full flex justify-between flex-wrap gap-8 mb-10">
                 {searchResult &&
                     searchResult.map((movie) => (
                         <MovieCard
@@ -111,4 +98,4 @@ export function Searchbar() {
     )
 }
 
-export default Searchbar
+export default Search

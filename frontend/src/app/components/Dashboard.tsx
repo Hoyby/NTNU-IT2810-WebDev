@@ -1,6 +1,6 @@
 import React from 'react'
 import MovieForm from './MovieForm'
-import Searchbar from './Searchbar'
+import Search from './Search'
 
 export default function Dashboard() {
     return (
@@ -9,7 +9,7 @@ export default function Dashboard() {
                 <MovieForm />
             </div>
 
-            <Searchbar />
+            <Search />
         </div>
     )
 }
