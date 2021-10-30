@@ -46,16 +46,17 @@ export function NavBar() {
     return (
         <>
             <nav
-                className="flex justify-start items-start shadow-lg md:flex-shrink py-3"
+                className="flex justify-start items-start shadow-lg md:flex-shrink py-1"
                 data-testid="nav"
             >
                 <NavbarContainer>
                     <NavbarWrapper>
-                        <NavbarBrand>
-                            <h1 className="text-red-600 text-3xl">
-                                WebDevGutta
-                            </h1>
-                        </NavbarBrand>
+                        <div className="text-sm font-bold leading-relaxed inline-block mr-4 whitespace-no-wrap text-white">
+                            <h1 className="text-red-600 text-2xl">JAMDb</h1>
+                            <p className="opacity-25 m-0 p-0 text-white">
+                                Just Another Movie Database
+                            </p>
+                        </div>
                         <NavbarToggler
                             color="white"
                             onClick={() => setOpenMenu(!openMenu)}

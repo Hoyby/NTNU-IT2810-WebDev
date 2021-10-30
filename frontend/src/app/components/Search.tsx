@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import MovieService from '../services/movieService'
-import { SearchMovies } from '../services/movieService/__generated__/SearchMovies'
 import { MovieCard } from './MovieCard'
+import { useAppDispatch, useAppSelector } from '../hooks'
+import { Dispatch } from '@reduxjs/toolkit'
+import { SearchAndSortMovies } from '../services/movieService/__generated__/SearchAndSortMovies'
+import { setSearchPage } from '../slices/searchPageSlice'
 // material-tailwind is not officially supported by TS - hence the ignores
 /* eslint-disable */
 // @ts-ignore
@@ -12,13 +15,24 @@ import Icon from '@material-tailwind/react/Icon'
 import Button from '@material-tailwind/react/Button'
 /* eslint-enable */
 
+// Redux dispatch
+const actionDispatch = (dispatch: Dispatch) => ({
+    setSearchResult: (page: SearchAndSortMovies['searchandSortMovie']) =>
+        dispatch(setSearchPage(page)),
+})
+
 export function Search() {
+    // Set new redux seach page state
+    const { setSearchResult: setSearchResult } = actionDispatch(
+        useAppDispatch(),
+    )
+
+    // Current redux seach page state
+    const searchResult = useAppSelector((state) => state.searchPage.searchPage)
+
     let timer: NodeJS.Timeout
 
     const [sortValue, setSortValue] = useState(-1)
-
-    const [searchResult, setSearchResult] =
-        useState<SearchMovies['searchMovies']>()
 
     const [searchInput, setSearchInput] = useState<string>('')
 
