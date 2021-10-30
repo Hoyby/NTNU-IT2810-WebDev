@@ -203,6 +203,27 @@ export class MovieService {
         }
     }
 
+    async searchandSortMovie(
+        searchword: string,
+        sortfactor: number,
+    ): Promise<SearchAndSortMovies['searchandSortMovie']> {
+        try {
+            const response: ApolloQueryResult<SearchAndSortMovies> =
+                await apolloClient.query({
+                    query: SEARCH_AND_SORT_MOVIE,
+                    variables: { searchword, sortfactor },
+                })
+
+            if (!response || !response.data)
+                throw new Error('Error in search or sorting!')
+
+            return response.data.searchandSortMovie
+        } catch (err) {
+            console.error(err)
+            throw err
+        }
+    }
+
 
 }
 
