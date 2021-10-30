@@ -16,6 +16,10 @@ Our API related code resides in our [movieService](frontend/src/app/services/mov
 
 TODO: write
 
+## Redux
+
+Redux-Toolkit
+
 <br/><br/>
 
 # Database
