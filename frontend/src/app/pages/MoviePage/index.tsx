@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Dispatch } from 'redux'
 import { useAppDispatch } from '../../hooks'
-import movieService from '../../services/movieService'
+import MovieService from '../../services/movieService'
 import { GetMovies } from '../../services/movieService/__generated__/GetMovies'
 import { setMoviePage } from './moviePageSlice'
 import { Movies } from './movies'
@@ -16,7 +16,7 @@ export function MoviePage() {
     const { setMoviePage: setMovies } = actionDispatch(useAppDispatch())
 
     const fetchMoviePage = async () => {
-        const moviePage = await movieService.getMovies().catch((err: Error) => {
+        const moviePage = await MovieService.getMovies().catch((err: Error) => {
             console.error(err)
             throw err
         })

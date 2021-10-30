@@ -6,6 +6,7 @@ import {
     FindMovieInput,
     MovieInput,
     UpdateMovieInput,
+    SearchSortInput,
 } from './input/movie.input'
 
 @Resolver(() => Movie)
@@ -36,5 +37,20 @@ export class MovieResolver {
     async deleteMovie(@Args('input') input: FindMovieInput): Promise<any> {
         await this.movieService.delete(input._id)
         return true
+    }
+
+    @Query(() => [MovieDto])
+    async searchMovies(@Args('input') input: string) {
+        return this.movieService.search(input)
+    }
+
+    @Query(() => [MovieDto])
+    async sortMovies(@Args('input') input: number) {
+        return this.movieService.order(input)
+    }
+
+    @Query(() => [MovieDto])
+    async searchandSortMovie(@Args('input') input: SearchSortInput){
+        return this.movieService.searchandorder(input)
     }
 }

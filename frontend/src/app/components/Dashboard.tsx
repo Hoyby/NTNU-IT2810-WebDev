@@ -1,12 +1,15 @@
 import React from 'react'
-import { MoviePage } from '../pages/MoviePage'
 import MovieForm from './MovieForm'
+import Search from './Search'
 
 export default function Dashboard() {
     return (
         <div>
-            <MoviePage />
-            <MovieForm />
+            <div className="my-10">
+                <MovieForm />
+            </div>
+
+            <Search />
         </div>
     )
 }

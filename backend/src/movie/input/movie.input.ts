@@ -1,5 +1,4 @@
 import { Field, InputType, Int } from '@nestjs/graphql'
-import { type } from 'os'
 
 @InputType()
 export class MovieInput {
@@ -32,4 +31,13 @@ export class UpdateMovieInput {
 export class FindMovieInput {
     @Field()
     readonly _id: string
+}
+
+@InputType()
+export class SearchSortInput{
+    @Field()
+    readonly searchword: string
+    
+    @Field((type) => Int, { nullable: false })
+    readonly sortfactor: number
 }

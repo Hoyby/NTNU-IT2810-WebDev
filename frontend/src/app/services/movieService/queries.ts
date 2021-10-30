@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-named-as-default
 import gql from 'graphql-tag'
 
 export const GET_MOVIES = gql`
@@ -21,6 +22,16 @@ export const GET_MOVIE_BY_ID = gql`
             published
             updatedAt
             createdAt
+        }
+    }
+`
+
+export const SEARCH_MOVIES = gql`
+    query SearchMovies($searchQuery: String!) {
+        searchMovies(input: $searchQuery) {
+            _id
+            title
+            description
         }
     }
 `
@@ -69,6 +80,31 @@ export const UPDATE_MOVIE = gql`
         }
     }
 `
+
+export const SEARCH_AND_SORT_MOVIE = gql`
+    query movie($searchword: String!, $sortfactor: Int!){
+        searchandSortMovie(input: {
+            searchword: $searchword
+            sortfactor: $sortfactor
+    }){
+        _id
+        title
+        description
+    }
+  }
+`
+
+/*
+export const SORT_MOVIES = gql`
+    query SortMovies($input: Float!) {
+        sortMovies(input: $input) {
+            _id
+            title
+            description
+        }
+    }
+`
+*/
 
 export const DELETE_MOVIE = gql`
     mutation DeleteMovie($_id: String!) {

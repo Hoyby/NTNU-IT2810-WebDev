@@ -5,15 +5,20 @@ import {
     CREATE_MOVIE,
     GET_MOVIES,
     GET_MOVIE_BY_ID,
+    SEARCH_MOVIES,
     UPDATE_MOVIE,
+    SEARCH_AND_SORT_MOVIE,
 } from './queries'
 import { CreateMovie } from './__generated__/CreateMovie'
 import { DeleteMovie } from './__generated__/DeleteMovie'
 import { FindMovie } from './__generated__/FindMovie'
 import { GetMovies } from './__generated__/GetMovies'
+import { SearchMovies } from './__generated__/SearchMovies'
+//import { SortMovies } from './__generated__/SortMovies'
 import { UpdateMovie } from './__generated__/UpdateMovie'
+import { SearchAndSortMovies } from './__generated__/SearchAndSortMovies'
 
-class MovieService {
+export class MovieService {
     async getMovies(): Promise<GetMovies['getmovies']> {
         try {
             const response: ApolloQueryResult<GetMovies> =
@@ -113,6 +118,66 @@ class MovieService {
             throw err
         }
     }
+
+    async searchMovie(
+        searchQuery: string,
+    ): Promise<SearchMovies['searchMovies']> {
+        try {
+            const response: ApolloQueryResult<SearchMovies> =
+                await apolloClient.query({
+                    query: SEARCH_MOVIES,
+                    variables: { searchQuery },
+                })
+
+            if (!response || !response.data)
+                throw new Error('Cannot get movie list!')
+
+            return response.data.searchMovies
+        } catch (err) {
+            console.error(err)
+            throw err
+        }
+    }
+
+    async searchandSortMovie(
+        searchword: string,
+        sortfactor: number,
+    ): Promise<SearchAndSortMovies['searchandSortMovie']> {
+        try {
+            const response: ApolloQueryResult<SearchAndSortMovies> =
+                await apolloClient.query({
+                    query: SEARCH_AND_SORT_MOVIE,
+                    variables: { searchword, sortfactor },
+                })
+
+            if (!response || !response.data)
+                throw new Error('Error in search or sorting!')
+
+            return response.data.searchandSortMovie
+        } catch (err) {
+            console.error(err)
+            throw err
+        }
+    }
+    /*
+    async sortMovie(input: number): Promise<SortMovies['sortMovies']> {
+        try {
+            const response: ApolloQueryResult<SortMovies> =
+                await apolloClient.query({
+                    query: SORT_MOVIES,
+                    variables: { input },
+                })
+
+            if (!response || !response.data)
+                throw new Error('Cannot sort movie!')
+
+            return response.data.sortMovies
+        } catch (err) {
+            console.error(err)
+            throw err
+        }
+    }
+    */
 }
 
 export default new MovieService()
