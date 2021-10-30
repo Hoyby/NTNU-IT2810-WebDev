@@ -7,7 +7,7 @@ import {
     GET_MOVIE_BY_ID,
     SEARCH_MOVIES,
     SORT_MOVIES,
-    UPDATE_MOVIE, SEARCH_MOVIES_PAGE,
+    UPDATE_MOVIE, SEARCH_MOVIES_PAGE, SEARCH_AND_SORT_MOVIE,
 } from './queries'
 import { CreateMovie } from './__generated__/CreateMovie'
 import { DeleteMovie } from './__generated__/DeleteMovie'
@@ -17,6 +17,7 @@ import { SearchMovies } from './__generated__/SearchMovies'
 import { SortMovies } from './__generated__/SortMovies'
 import { UpdateMovie } from './__generated__/UpdateMovie'
 import {SearchMoviesPage, SearchMoviesPageVariables} from "./__generated__/SearchMoviesPage";
+import { SearchAndSortMovies } from './__generated__/SearchandSortMovies'
 
 export class MovieService {
     async getMovies(): Promise<GetMovies['getmovies']> {

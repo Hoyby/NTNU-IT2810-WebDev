@@ -45,7 +45,13 @@ type Query {
   getmovies: [MovieDto!]!
   searchMovies(input: String!): [MovieDto!]!
   searchMoviesPage(input: MoviesPageInput!): [MovieDto!]!
+  searchandSortMovie(input: SearchSortInput!): [MovieDto!]!
   sortMovies(input: Float!): [MovieDto!]!
+}
+
+input SearchSortInput {
+  searchword: String!
+  sortfactor: Int!
 }
 
 input UpdateMovieInput {
