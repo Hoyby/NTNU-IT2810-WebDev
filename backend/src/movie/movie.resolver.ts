@@ -6,7 +6,6 @@ import {
     FindMovieInput,
     MovieInput, MoviesPageInput,
     UpdateMovieInput,
-    SearchSortInput,
 } from './input/movie.input'
 
 @Resolver(() => Movie)
@@ -50,7 +49,7 @@ export class MovieResolver {
     }
 
     @Query(() => [MovieDto])
-    async searchandSortMovie(@Args('input') input: SearchSortInput){
-        return this.movieService.searchandorder(input)
+    async searchMoviesPage(@Args('input') input: MoviesPageInput) {
+        return this.movieService.searchPage(input)
     }
 }

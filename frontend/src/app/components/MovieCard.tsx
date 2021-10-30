@@ -1,55 +1,65 @@
-import React from 'react'
-import MovieDetail from './MovieDetail'
-import { Link, Route, Switch } from 'react-router-dom'
+import React from "react";
 
-// material-tailwind is not officially supported by TS - hence the ignores
-/* eslint-disable */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import Card from '@material-tailwind/react/Card'
+import Card from "@material-tailwind/react/Card";
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import CardBody from '@material-tailwind/react/CardBody'
+import CardHeader from "@material-tailwind/react/CardHeader";
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import Paragraph from '@material-tailwind/react/Paragraph'
+import CardRow from "@material-tailwind/react/CardRow";
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import CardFooter from '@material-tailwind/react/CardFooter'
+import CardStatusFooter from "@material-tailwind/react/CardStatusFooter";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import H6 from '@material-tailwind/react/Heading6'
-/* eslint-enable */
+import Icon from "@material-tailwind/react/Icon";
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import H5 from '@material-tailwind/react/Heading5'
+import {Link, Route, Switch} from "react-router-dom";
+import MovieDetail from "./MovieDetail";
 
 interface IMovie {
-    _id: string
+    _id: string,
     title: string
-    description: string
 }
 
-export function MovieCard({ title, description, _id }: IMovie) {
-    const shortDesc = () => {
-        /**
-         * Returns a short version of the description
-         * Appends 3 dots if the description contains data that is not presented
-         */
-        let shortDesc = description.split(' ').slice(0, 12).join(' ')
-        if (description.length > shortDesc.length) shortDesc += '...'
-        return shortDesc
-    }
+export function MovieCard({ title, _id }: IMovie) {
 
     return (
-        <div className="w-80">
-            <Link to={'/movies/' + _id} key={_id}>
-                <Card>
-                    <CardBody>
-                        <H6>{title}</H6>
-                        <Paragraph color="gray">{shortDesc()}</Paragraph>
-                    </CardBody>
+        <div className='w-80'>
+            <Link to={
+                '/page/1/movie/' + _id
+            } key={_id}>
+            <Card>
+                <CardRow>
+                    <CardHeader color="red" size="lg" iconOnly>
+                        <Icon name="movie" size="5xl" color="white" />
+                    </CardHeader>
+                    <H5>
+                        <div className='p-5 break-words'>
+                        {title}
+                        </div>
+                    </H5>
+                    {/*<div className='text-red-500'>
+                        <CardStatus title="Thriller" amount={title} />
+                    </div>*/}
+                </CardRow>
 
-                    <CardFooter>
-                        <p className="text-red-500">Read More</p>
-                    </CardFooter>
-                </Card>
+                <CardStatusFooter color="green" amount="97%" date="Match"/>
+            </Card>
             </Link>
             <Switch>
-                <Route path="/movies/:id" children={<MovieDetail />} />
+                <Route path="/page/:page/movie/:id" children={<MovieDetail/>} />
             </Switch>
         </div>
+
+
     )
 }

@@ -1,27 +1,11 @@
 import React, { useState } from 'react'
 import movieService from '../services/movieService'
-import { CreateMovieVariables } from '../services/movieService/__generated__/CreateMovie'
-// material-tailwind is not officially supported by TS - hence the ignores
-/* eslint-disable */
-// @ts-ignore
-import Card from '@material-tailwind/react/Card'
-// @ts-ignore
-import Textarea from '@material-tailwind/react/Textarea'
-// @ts-ignore
-import CardBody from '@material-tailwind/react/CardBody'
-// @ts-ignore
-import CardFooter from '@material-tailwind/react/CardFooter'
-// @ts-ignore
-import Input from '@material-tailwind/react/Input'
-// @ts-ignore
-import Button from '@material-tailwind/react/Button'
-// @ts-ignore
-import Alert from '@material-tailwind/react/Alert'
-/* eslint-enable */
+import {
+    CreateMovieVariables,
+} from '../services/movieService/__generated__/CreateMovie'
 
 export default function MovieForm() {
     const [showCreateMovieForm, setshowCreateMovieForm] = useState(false)
-    const [showAlert, setshowAlert] = useState(false)
 
     const [newMovie, setNewMovie] = useState<CreateMovieVariables>({
         title: '',
@@ -52,7 +36,8 @@ export default function MovieForm() {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        console.warn(newMovie)
+
+        console.warn(newMovie.published, typeof newMovie.published)
 
         movieService
             .createMovie(
@@ -60,11 +45,6 @@ export default function MovieForm() {
                 newMovie.description,
                 newMovie.published,
             )
-            .then(() => {
-                setshowCreateMovieForm(false)
-                setshowAlert(true)
-                setTimeout(() => setshowAlert(false), 2000)
-            })
             .catch((err: Error) => {
                 console.error(err)
             })
@@ -72,24 +52,18 @@ export default function MovieForm() {
 
     return (
         <>
-            {showAlert ? (
-                <div className="fixed inset-0 z-50 w-1/2 m-auto">
-                    <Alert color="green">
-                        <p className="w-full text-center">
-                            Movie successfully created
-                        </p>
-                    </Alert>
-                </div>
-            ) : null}
-
-            <Button onClick={() => setshowCreateMovieForm(true)}>
+            <button
+                className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+                onClick={() => setshowCreateMovieForm(true)}
+            >
                 Add new movie
-            </Button>
+            </button>
             {showCreateMovieForm ? (
                 <>
                     <div className=" justify-center items-center flex fixed inset-0 z-50">
                         {/*content*/}
-                        <Card className="mx-24 w-full max-w-screen-sm">
+                        <div className="mx-24 w-full max-w-screen-sm border-0 rounded-lg shadow-lg block bg-white">
                             {/*header*/}
                             <div className="flex items-start justify-between p-5 border-b border-solid border-gray-200 rounded-t">
                                 <h3 className="text-black text-3xl">
@@ -104,64 +78,77 @@ export default function MovieForm() {
                                     &#10006;
                                 </button>
                             </div>
+                            {/*body*/}
 
-                            <CardBody>
-                                <form onSubmit={handleSubmit}>
-                                    <div className="mt-4 mb-8 px-4">
-                                        <Input
+                            <div className="flex items-center justify-center px-2">
+                                <form
+                                    onSubmit={handleSubmit}
+                                    className="w-full"
+                                >
+                                    <div className="px-6 py-8 rounded shadow-md text-black ">
+                                        <label htmlFor="title">Title</label>
+                                        <input
                                             type="text"
-                                            id="title"
+                                            className="block border border-grey-light w-full p-3 rounded mb-4"
                                             name="title"
-                                            outline={true}
+                                            id="title"
                                             required
-                                            placeholder="Movie title"
+                                            placeholder="Pirates of the Caribbean: The Curse of the Black Pearl"
                                             onChange={handleInputChange}
                                         />
-                                    </div>
-                                    <div className="mb-8 px-4">
-                                        <Textarea
-                                            id="description"
+                                        <label htmlFor="desc">
+                                            Description
+                                        </label>
+                                        <textarea
+                                            className="block border border-grey-light w-full max-h-40 p-3 rounded mb-4"
                                             name="description"
-                                            outline={true}
+                                            id="description"
                                             required
                                             placeholder="Summary"
                                             onChange={handleInputChange}
                                         />
-                                    </div>
-                                    <div className="mb-8 px-4">
-                                        <Input
+
+                                        <label htmlFor="published">
+                                            Published
+                                        </label>
+                                        <input
                                             type="number"
-                                            min="1800"
+                                            min="1900"
                                             max="2099"
                                             step="1"
+                                            className="block border border-grey-light w-full p-3 rounded mb-4"
                                             id="published"
                                             name="published"
-                                            outline={true}
                                             required
-                                            placeholder="Release Year"
+                                            placeholder="2003"
                                             onChange={handleInputChange}
                                         />
                                     </div>
 
-                                    <CardFooter className="flex justify-end">
-                                        <Button
-                                            className="mx-4"
-                                            color="red"
-                                            buttonType="outline"
-                                            ripple="light"
+                                    {/*footer*/}
+                                    <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                                        <button
+                                            className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                                            type="button"
                                             onClick={() =>
                                                 setshowCreateMovieForm(false)
                                             }
                                         >
                                             Cancel
-                                        </Button>
-                                        <Button type="submit">
+                                        </button>
+                                        <button
+                                            className="bg-emerald-500 text-black active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                            type="submit"
+                                            onClick={() =>
+                                                setshowCreateMovieForm(true)
+                                            }
+                                        >
                                             Create Movie
-                                        </Button>
-                                    </CardFooter>
+                                        </button>
+                                    </div>
                                 </form>
-                            </CardBody>
-                        </Card>
+                            </div>
+                        </div>
                     </div>
                     <div className="opacity-50 fixed inset-0 z-40 bg-black"></div>
                 </>
