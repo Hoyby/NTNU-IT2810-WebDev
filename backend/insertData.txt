@@ -8,120 +8,120 @@ db.movies.insertMany([
             'Raj is a rich, carefree, happy-go-lucky second generation NRI. Simran is the daughter of Chaudhary Baldev Singh, who in spite of being an NRI is very strict about adherence to Indian values. Simran has left for India to be married to her childhood fiancé. Raj leaves for India with a mission at his hands, to claim his lady love under the noses of her whole family. Thus begins a saga.',
         published: 1995,
         title: 'Dilwale Dulhania Le Jayenge',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 0, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 0, 0),
     },
     {
         description:
             'Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.',
         published: 1994,
         title: 'The Shawshank Redemption',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 1, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 1, 0),
     },
     {
         description:
             'Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.',
         published: 1972,
         title: 'The Godfather',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 2, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 2, 0),
     },
     {
         description:
             "The final part of the film adaption of the erotic romance novel Gabriel's Inferno written by an anonymous Canadian author under the pen name Sylvain Reynard.",
         published: 2020,
         title: "Gabriel's Inferno Part III",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 3, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 3, 0),
     },
     {
         description:
             'In the aftermath of the Fourth Impact, stranded without their Evangelions, Shinji, Asuka, and Rei find refuge in one of the rare pockets of humanity that still exist on the ruined planet Earth. There, each of them live a life far different from their days as an Evangelion pilot. However, the danger to the world is far from over. A new impact is looming on the horizon—one that will prove to be the true end of Evangelion.',
         published: 2021,
         title: 'Evangelion: 3.0+1.0 Thrice Upon a Time',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 4, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 4, 0),
     },
     {
         description:
             'The true story of how businessman Oskar Schindler saved over a thousand Jewish lives from the Nazis while they worked as slaves in his factory during World War II.',
         published: 1993,
         title: "Schindler's List",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 5, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 5, 0),
     },
     {
         description:
             'In the continuing saga of the Corleone crime family, a young Vito Corleone grows up in Sicily and in 1910s New York. In the 1950s, Michael Corleone attempts to expand the family business into Las Vegas, Hollywood and Cuba.',
         published: 1974,
         title: 'The Godfather: Part II',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 6, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 6, 0),
     },
     {
         description:
             'After 8-year-old So-won narrowly survives a brutal sexual assault, her family labors to help her heal while coping with their own rage and grief.',
         published: 2013,
         title: 'Hope',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 7, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 7, 0),
     },
     {
         description:
             'High schoolers Mitsuha and Taki are complete strangers living separate lives. But one night, they suddenly switch places. Mitsuha wakes up in Taki’s body, and he in hers. This bizarre occurrence continues to happen randomly, and the two must adjust their lives around each other.',
         published: 2016,
         title: 'Your Name.',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 8, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 8, 0),
     },
     {
         description:
             'A young girl, Chihiro, becomes trapped in a strange new world of spirits. When her parents undergo a mysterious transformation, she must call upon the courage she never knew she had to free her family.',
         published: 2001,
         title: 'Spirited Away',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 9, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 9, 0),
     },
     {
         description:
             "The film centers on the love relationship among the band's bassist Haruki Nakayama, drummer Akihiko Kaji, and Akihiko's roommate and ex-boyfriend Ugetsu Murata.",
         published: 2020,
         title: 'Given',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 10, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 10, 0),
     },
     {
         description:
             "A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey possesses the mysterious power to heal people's ailments. When the cell block's head guard, Paul Edgecomb, recognizes Coffey's miraculous gift, he tries desperately to help stave off the condemned man's execution.",
         published: 1999,
         title: 'The Green Mile',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 11, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 11, 0),
     },
     {
         description:
             'In a time of superstition and magic, when wolves are seen as demonic and nature an evil to be tamed, a young apprentice hunter comes to Ireland with her father to wipe out the last pack. But when she saves a wild native girl, their friendship leads her to discover the world of the Wolfwalkers and transform her into the very thing her father is tasked to destroy.',
         published: 2020,
         title: 'Wolfwalkers',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 12, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 12, 0),
     },
     {
         description:
             "A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge in this sprawling, comedic crime caper. Their adventures unfurl in three stories that ingeniously trip back and forth in time.",
         published: 1994,
         title: 'Pulp Fiction',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 13, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 13, 0),
     },
     {
         description:
             'Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker.',
         published: 2008,
         title: 'The Dark Knight',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 14, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 14, 0),
     },
 
     {
@@ -129,304 +129,304 @@ db.movies.insertMany([
             "Aragorn is revealed as the heir to the ancient kings as he, Gandalf and the other members of the broken fellowship struggle to save Gondor from Sauron's forces. Meanwhile, Frodo and Sam take the ring closer to the heart of Mordor, the dark lord's realm.",
         published: 2003,
         title: 'The Lord of the Rings: The Return of the King',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 15, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 15, 0),
     },
     {
         description:
             'The lively Jack the Cricket and the sly Chicó are poor guys living in the hinterland who cheat a bunch of people in a small in Northeastern Brazil. When they die, they have to be judged by Christ, the Devil and the Virgin Mary before they are admitted to paradise.',
         published: 2000,
         title: "A Dog's Will",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 16, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 16, 0),
     },
     {
         description:
             "Class 1-A visits Nabu Island where they finally get to do some real hero work. The place is so peaceful that it's more like a vacation … until they're attacked by a villain with an unfathomable Quirk! His power is eerily familiar, and it looks like Shigaraki had a hand in the plan. But with All Might retired and citizens' lives on the line, there's no time for questions. Deku and his friends are the next generation of heroes, and they're the island's only hope.",
         published: 2019,
         title: 'My Hero Academia: Heroes Rising',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 17, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 17, 0),
     },
     {
         description:
             'In Fujisawa, Sakuta Azusagawa is in his second year of high school. Blissful days with his girlfriend and upperclassman, Mai Sakurajima, are interrupted by the appearance of his first crush, Shoko Makinohara.',
         published: 2019,
         title: 'Rascal Does Not Dream of a Dreaming Girl',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 18, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 18, 0),
     },
     {
         description:
             'Born free in the American West, Black Beauty is a horse rounded up and brought to Birtwick Stables, where she meets spirited teenager Jo Green. The two forge a bond that carries Beauty through the different chapters, challenges and adventures.',
         published: 2020,
         title: 'Black Beauty',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 19, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 19, 0),
     },
     {
         description:
             'A man with a low IQ has accomplished great things in his life and been present during significant historic events—in each case, far exceeding what anyone imagined he could do. But despite all he has achieved, his one true love eludes him.',
         published: 1994,
         title: 'Forrest Gump',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 20, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 20, 0),
     },
     {
         description:
             'While the Civil War rages between the Union and the Confederacy, three men – a quiet loner, a ruthless hit man and a Mexican bandit – comb the American Southwest in search of a strongbox containing $200,000 in stolen gold.',
         published: 1966,
         title: 'The Good, the Bad and the Ugly',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 21, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 21, 0),
     },
     {
         description:
             'A touching story of an Italian book seller of Jewish ancestry who lives in his own little fairy tale. His creative and happy life would come to an abrupt halt when his entire family is deported to a concentration camp during World War II. While locked up he tries to convince his son that the whole thing is just a game.',
         published: 1997,
         title: 'Life Is Beautiful',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 22, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 22, 0),
     },
     {
         description:
             "A filmmaker recalls his childhood, when he fell in love with the movies at his village's theater and formed a deep friendship with the theater's projectionist.",
         published: 1988,
         title: 'Cinema Paradiso',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 23, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 23, 0),
     },
     {
         description:
             'Presenting the tale of American founding father Alexander Hamilton, this filmed version of the original Broadway smash hit is the story of America then, told by America now.',
         published: 2020,
         title: 'Hamilton',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 24, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 24, 0),
     },
     {
         description:
             'When larcenous real estate clerk Marion Crane goes on the lam with a wad of cash and hopes of starting a new life, she ends up at the notorious Bates Motel, where manager Norman Bates cares for his housebound mother.',
         published: 1960,
         title: 'Psycho',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 25, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 25, 0),
     },
     {
         description:
             'A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground "fight clubs" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.',
         published: 1999,
         title: 'Fight Club',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 26, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 26, 0),
     },
     {
         description:
             'While serving time for insanity at a state mental hospital, implacable rabble-rouser, Randle Patrick McMurphy, inspires his fellow patients to rebel against the authoritarian rule of head nurse, Mildred Ratched.',
         published: 1975,
         title: "One Flew Over the Cuckoo's Nest",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 27, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 27, 0),
     },
     {
         description:
             'Young musician Zach Sobiech discovers his cancer has spread, leaving him just a few months to live. With limited time, he follows his dream and makes an album, unaware that it will soon be a viral music phenomenon.',
         published: 2020,
         title: 'Clouds',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 28, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 28, 0),
     },
     {
         description:
             'A 17 year old finds out that his girlfriend is dying, so he sets out to give her an entire life, in the last year she has left.',
         published: 2020,
         title: 'Life in a Year',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 29, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 29, 0),
     },
     {
         description:
             'Buscapé was raised in a very violent environment. Despite the feeling that all odds were against him, he finds out that life can be seen with other eyes...',
         published: 2002,
         title: 'City of God',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 30, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 30, 0),
     },
     {
         description:
             'A new adventure for Luì and Sofi (Me contro Te), once again against the evil Mr. S, this time at the cinema. Mr. S is plotting revenge and working on a plan to become the master of the world. They will be called to stop him, giving their little fans and all families fun and lots of surprises.',
         published: 2020,
         title: 'Me contro Te: Il film - La vendetta del Signor S',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 31, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 31, 0),
     },
     {
         description:
             "Tanjirō Kamado, joined with Inosuke Hashibira, a boy raised by boars who wears a boar's head, and Zenitsu Agatsuma, a scared boy who reveals his true power when he sleeps, boards the Infinity Train on a new mission with the Fire Hashira, Kyōjurō Rengoku, to defeat a demon who has been tormenting the people and killing the demon slayers who oppose it!",
         published: 2020,
         title: 'Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 32, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 32, 0),
     },
     {
         description:
             'When Sophie, a shy young woman, is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle.',
         published: 2004,
         title: "Howl's Moving Castle",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 33, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 33, 0),
     },
     {
         description:
             'The second of two theatrically released follow-ups to the Neon Genesis Evangelion series. Comprising of two alternate episodes which were first intended to take the place of episodes 25 and 26, this finale answers many of the questions surrounding the series, while also opening up some new possibilities.',
         published: 1997,
         title: 'Neon Genesis Evangelion: The End of Evangelion',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 34, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 34, 0),
     },
     {
         description:
             'A hack screenwriter writes a screenplay for a former silent film star who has faded into Hollywood obscurity.',
         published: 1950,
         title: 'Sunset Boulevard',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 35, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 35, 0),
     },
     {
         description:
             'Two years after bringing peace to the galaxy, Steven Universe sees his past come back to haunt him in the form of a deranged Gem who wants to destroy the Earth.',
         published: 2019,
         title: 'Steven Universe: The Movie',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 36, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 36, 0),
     },
     {
         description:
             "A family dog - with a near-human soul and a philosopher's mind - evaluates his life through the lessons learned by his human owner, a race-car driver.",
         published: 2019,
         title: 'The Art of Racing in the Rain',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 37, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 37, 0),
     },
     {
         description:
             "Determined to ensure Superman's ultimate sacrifice was not in vain, Bruce Wayne aligns forces with Diana Prince with plans to recruit a team of metahumans to protect the world from an approaching threat of catastrophic proportions.",
         published: 2021,
         title: "Zack Snyder's Justice League",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 38, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 38, 0),
     },
     {
         description:
             'Under the direction of a ruthless instructor, a talented young drummer begins to pursue perfection at any cost, even his humanity.',
         published: 2014,
         title: 'Whiplash',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 39, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 39, 0),
     },
     {
         description:
             'Young hobbit Frodo Baggins, after inheriting a mysterious ring from his uncle Bilbo, must leave his home in order to keep it from falling into the hands of its evil creator. Along the way, a fellowship is formed to protect the ringbearer and make sure that the ring arrives at its final destination: Mt. Doom, the only place where it can be destroyed.',
         published: 2001,
         title: 'The Lord of the Rings: The Fellowship of the Ring',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 40, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 40, 0),
     },
     {
         description:
             'A wheelchair-bound photographer spies on his neighbors from his apartment window and becomes convinced one of them has committed murder.',
         published: 1954,
         title: 'Rear Window',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 41, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 41, 0),
     },
     {
         description:
             "Seventeen-year-old Stella spends most of her time in the hospital as a cystic fibrosis patient. Her life is full of routines, boundaries and self-control — all of which get put to the test when she meets Will, an impossibly charming teen who has the same illness. There's an instant flirtation, though restrictions dictate that they must maintain a safe distance between them. As their connection intensifies, so does the temptation to throw the rules out the window and embrace that attraction.",
         published: 2019,
         title: 'Five Feet Apart',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 42, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 42, 0),
     },
     {
         description:
             'In this sound-era silent film, a tramp falls in love with a beautiful blind flower seller.',
         published: 1931,
         title: 'City Lights',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 43, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 43, 0),
     },
     {
         description:
             'Ashitaka, a prince of the disappearing Emishi people, is cursed by a demonized boar god and must journey to the west to find a cure. Along the way, he encounters San, a young human woman fighting to protect the forest, and Lady Eboshi, who is trying to destroy it. Ashitaka must find a way to bring balance to this conflict.',
         published: 1997,
         title: 'Princess Mononoke',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 44, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 44, 0),
     },
     {
         description:
             'The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.',
         published: 2014,
         title: 'Interstellar',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 45, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 45, 0),
     },
     {
         description:
             'Frodo and Sam are trekking to Mordor to destroy the One Ring of Power while Gimli, Legolas and Aragorn search for the orc-captured Merry and Pippin. All along, nefarious wizard Saruman awaits the Fellowship members at the Orthanc Tower in Isengard.',
         published: 2002,
         title: 'The Lord of the Rings: The Two Towers',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 46, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 46, 0),
     },
     {
         description:
             'The Tramp struggles to live in modern industrial society with the help of a young homeless woman.',
         published: 1936,
         title: 'Modern Times',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 47, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 47, 0),
     },
     {
         description:
             'Three partisans bound by a strong friendship return home after the war, but the clash with everyday reality puts a strain on their bond.',
         published: 1974,
         title: 'We All Loved Each Other So Much',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 48, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 48, 0),
     },
     {
         description:
             'Hutch Mansell, a suburban dad, overlooked husband, nothing neighbor — a "nobody." When two thieves break into his home one night, Hutch\'s unknown long-simmering rage is ignited and propels him on a brutal path that will uncover dark secrets he fought to leave behind.',
         published: 2021,
         title: 'Nobody',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 49, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 49, 0),
     },
     {
         description:
             "Clarice Starling is a top student at the FBI's training academy. Jack Crawford wants Clarice to interview Dr. Hannibal Lecter, a brilliant psychiatrist who is also a violent psychopath, serving life behind bars for various acts of murder and cannibalism. Crawford believes that Lecter may have insight into a case and that Starling, as an attractive young woman, may be just the bait to draw him out.",
         published: 1991,
         title: 'The Silence of the Lambs',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 50, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 50, 0),
     },
     {
         description:
             'At an elite, old-fashioned boarding school in New England, a passionate English teacher inspires his students to rebel against convention and seize the potential of every day, courting the disdain of the stern headmaster.',
         published: 1989,
         title: 'Dead Poets Society',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 51, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 51, 0),
     },
     {
         description:
             'During a school field trip, Ladybug and Cat Noir meet the American superheroes, whom they have to save from an akumatised super-villain. They discover that Miraculous exist in the United States too.',
         published: 2020,
         title: 'Miraculous World: New York, United HeroeZ',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 52, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 52, 0),
     },
 
     {
@@ -434,16 +434,16 @@ db.movies.insertMany([
             "In 2013, something terrible is awakening in London's National Gallery; in 1562, a murderous plot is afoot in Elizabethan England; and somewhere in space an ancient battle reaches its devastating conclusion. All of reality is at stake as the Doctor's own dangerous past comes back to haunt him.",
         published: 2013,
         title: 'Doctor Who: The Day of the Doctor',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 53, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 53, 0),
     },
     {
         description:
             'As the railroad builders advance unstoppably through the Arizona desert on their way to the sea, Jill arrives in the small town of Flagstone with the intention of starting a new life.',
         published: 1968,
         title: 'Once Upon a Time in the West',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 54, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 54, 0),
     },
 
     {
@@ -451,24 +451,24 @@ db.movies.insertMany([
             'A commanding officer defends three scapegoats on trial for a failed offensive that occurred within the French Army in 1916.',
         published: 1957,
         title: 'Paths of Glory',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 55, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 55, 0),
     },
     {
         description:
             '3000 years after the boy-god Nezha conquers the Dragon King then disappears in mythological times, he returns as an ordinary man to find his own path to becoming a true hero.',
         published: 2021,
         title: 'New Gods: Nezha Reborn',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 56, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 56, 0),
     },
     {
         description:
             'Dona Hermínia will have to rediscover and reinvent herself because her children are forming new families. This supermom will have to deal with a new life scenario: Marcelina is pregnant and Juliano is getting married.',
         published: 2019,
         title: 'My Mom is a Character 3',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 57, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 57, 0),
     },
 
     {
@@ -476,47 +476,47 @@ db.movies.insertMany([
             "Separated from his daughter, a father with an intellectual disability must prove his innocence when he is jailed for the death of a commander's child.",
         published: 2019,
         title: 'Miracle in Cell No. 7',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 58, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 58, 0),
     },
     {
         description:
             'At the height of the Vietnam war, Captain Benjamin Willard is sent on a dangerous mission that, officially, "does not exist, nor will it ever exist." His goal is to locate - and eliminate - a mysterious Green Beret Colonel named Walter Kurtz, who has been leading his personal army on illegal guerrilla missions into enemy territory.',
         published: 1979,
         title: 'Apocalypse Now',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 59, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 59, 0),
     },
     {
         description:
             "A working man's livelihood is threatened when someone steals his bicycle.",
         published: 1948,
         title: 'Bicycle Thieves',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 12, 60, 0),
+        updatedAt: new Date(2021, 9, 30, 12, 60, 0),
     },
     {
         description:
             'A waiter pretends to be an important businessman in order to reach the upper class through his entrepreneurial dreams.',
         published: 2021,
         title: 'El mesero',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 13, 0, 0),
+        updatedAt: new Date(2021, 9, 30, 13, 0, 0),
     },
     {
         description:
             "When Jesper distinguishes himself as the Postal Academy's worst student, he is sent to Smeerensburg, a small village located on an icy island above the Arctic Circle, where grumpy inhabitants barely exchange words, let alone letters. Jesper is about to give up and abandon his duty as a postman when he meets local teacher Alva and Klaus, a mysterious carpenter who lives alone in a cabin full of handmade toys.",
         published: 2019,
         title: 'Klaus',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 13, 1, 0),
+        updatedAt: new Date(2021, 9, 30, 13, 1, 0),
     },
     {
         description:
             "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
         published: 2019,
         title: 'Avengers: Endgame',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(2021, 9, 30, 13, 2, 0),
+        updatedAt: new Date(2021, 9, 30, 13, 2, 0),
     },
 ])
