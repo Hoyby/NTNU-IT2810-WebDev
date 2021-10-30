@@ -12,7 +12,7 @@ import Icon from '@material-tailwind/react/Icon'
 import Button from '@material-tailwind/react/Button'
 /* eslint-enable */
 
-export function Searchbar() {
+export function Search() {
     let timer: NodeJS.Timeout
 
     const [sortValue, setSortVaue] = useState(-1)
@@ -75,6 +75,7 @@ export function Searchbar() {
             </form>
             <Button
                 size="sm"
+                className="ml-auto my-5"
                 ripple="light"
                 color="pink"
                 onClick={() => {
@@ -84,7 +85,7 @@ export function Searchbar() {
                 <Icon name="sort" size="sm" /> Sort by date added
             </Button>
 
-            <div className="max-w-screen-xl w-full h-full flex justify-evenly flex-wrap mb-10">
+            <div className="max-w-screen-xl w-full h-full flex justify-between flex-wrap gap-8 mb-10">
                 {searchResult &&
                     searchResult.map((movie) => (
                         <MovieCard
@@ -98,4 +99,4 @@ export function Searchbar() {
     )
 }
 
-export default Searchbar
+export default Search

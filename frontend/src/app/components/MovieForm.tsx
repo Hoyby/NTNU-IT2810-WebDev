@@ -17,8 +17,6 @@ import Input from '@material-tailwind/react/Input'
 import Button from '@material-tailwind/react/Button'
 // @ts-ignore
 import Alert from '@material-tailwind/react/Alert'
-// @ts-ignore
-import H5 from '@material-tailwind/react/Heading5'
 /* eslint-enable */
 
 export default function MovieForm() {
