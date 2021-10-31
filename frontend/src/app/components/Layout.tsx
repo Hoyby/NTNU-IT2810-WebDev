@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { NavBar } from './Navbar'
+import NavBar from './Navbar'
 import { Footer } from './Footer'
 
 /**

@@ -55,6 +55,11 @@ export default function MovieForm() {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
+        if (!newMovie.title) {
+
+            return
+        }
+
         movieService
             .createMovie(newMovie.title, newMovie.description, newMovie.published)
             .then(() => {
