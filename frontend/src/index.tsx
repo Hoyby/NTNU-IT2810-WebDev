@@ -10,8 +10,6 @@ import { apolloClient } from './app/graphql'
 
 ReactDOM.render(
     <React.StrictMode>
-
-
         <Provider store={store}>
             <ApolloProvider client={apolloClient}>
                 <App />
