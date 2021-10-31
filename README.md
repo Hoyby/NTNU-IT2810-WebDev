@@ -23,6 +23,7 @@ Check out [backend](backend/) and [frontend](frontend/).
     |   └── ...
     |
     ├── frontend
+    │   ├── cypress                 # Cypress configuration and tests
     │   ├── public                  # Public directory
     │   ├── src                     # Source directory
     │   │   ├── app                 # App directory
@@ -34,6 +35,10 @@ Check out [backend](backend/) and [frontend](frontend/).
     │   │   │   └── store.ts        # Redux store config
     │   │   │
     │   │   ├── styles              # Style directory
+    │   │   ├── tests               # Test directory for Jest unit tests
+    |   |   |    ├── components     # Unit test for components
+    |   |   |    └── services       # Unit test for services
+    |   |   |
     │   │   ├── App.tsx             # Root component
     │   │   └── index.tsx           # Entry point for react
     |   |
@@ -103,4 +108,21 @@ We use [Apollo](https://www.apollographql.com/docs/apollo-server/) as our [Graph
 
 # Testing
 
-TODO: write
+Testing has been done mostly on the frontend, seeing as this was what was required from the problem description. The test folder in frontend is ment to mirror the normal folderstructure to make it easy to navigate and find.
+
+The tests comprise of:
+
+- **Unit tests, with [Jest](https://jestjs.io/docs/tutorial-react)**
+- **End to end tests, with [Cypress](https://www.cypress.io/)**
+
+## React - Jest
+
+With the react-jest framework we are able to test invidivudal components, such as if they are rendering correctly with **Redux** and **React-router**. We can also test functions within react components.
+
+## Cypress
+
+Cypress allows for E2E testing where we program how user input should behave and what we expect the outcome of multiple user interactions to result in.
+
+There is currently a _layout.spec.ts_ file where it tests for layout. And a _action.spec.ts_ to check different user actions on the client.
+
+> In order to use _TypeScript_ in Cypress we need to install webpack and setup a webpack config in the **Cypress** folder. However when we do this the **create-react-app** build fails to build since there are two webpack dependencies. In order to temporary solve this problem we can create and .env file with the key: `SKIP_PREFLIGHT_CHECK=true`
