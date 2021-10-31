@@ -10,6 +10,7 @@ import InputIcon from '@material-tailwind/react/InputIcon'
 import Icon from '@material-tailwind/react/Icon'
 // @ts-ignore
 import Button from '@material-tailwind/react/Button'
+import {useHistory} from "react-router-dom";
 /* eslint-enable */
 
 export function Search() {
@@ -20,16 +21,47 @@ export function Search() {
     const [searchResult, setSearchResult] =
         useState<SearchMovies['searchMovies']>()
 
-    const [searchInput, setSearchInput] = useState<string>('')
+    const [searchInput] = useState<string>('')
+
+    const LINKS_PER_PAGE = 6;
+    const history = useHistory();
+
+    const pageIndexParams = history.location.pathname.split(
+        '/'
+    );
+    const page = parseInt(
+        pageIndexParams[pageIndexParams.length - 1]
+    );
+
+    const getQueryVariables = (page: number) => {
+        page = 1
+        const skip = (page - 1) * LINKS_PER_PAGE;
+        const take = LINKS_PER_PAGE;
+        const orderField = 'published';
+        const orderValue = sortValue;
+        const filterField = 'published';
+        const filterCond = '$gte';
+        const filterValue = 1800;
+        return { take, skip, orderField, orderValue, filterField, filterCond, filterValue };
+    };
 
     const fetchSearchResults = async (query: string) => {
-        setSearchInput(query)
-        const queryResult = await MovieService.searchandSortMovie(
-            query,
-            sortValue,
-        ).catch((err: Error) => {
-            console.error(err)
-        })
+        const query_variables = getQueryVariables(page)
+        const final_query = {
+            searchQuery: query,
+            take: query_variables.take,
+            skip: query_variables.skip,
+            orderField: query_variables.orderField,
+            orderValue: query_variables.orderValue,
+            filterField: query_variables.filterField,
+            filterCond: query_variables.filterCond,
+            filterValue: query_variables.filterValue
+        }
+        const queryResult = await MovieService.searchMoviesPage(final_query).catch(
+            (err: Error) => {
+                console.error(err)
+            },
+        )
         if (queryResult) setSearchResult(queryResult)
     }
 
@@ -54,6 +86,18 @@ export function Search() {
             throw err
         })
     }, [sortValue])
+
+    useEffect(() => {
+        async function search() {
+            await fetchSearchResults('')
+        }
+        search().catch((err: Error) => {
+            console.error(err.message)
+            throw err
+        })
+    }, []);
+
+
 
     return (
         <>

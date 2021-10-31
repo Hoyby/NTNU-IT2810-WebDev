@@ -42,9 +42,12 @@ export const SEARCH_MOVIES_PAGE = gql`
     $take: Float!
     $skip: Float!
     $orderField: String!
-    $orderValue: String!
+    $orderValue: Float!
+    $filterField: String!
+    $filterCond: String!
+    $filterValue: Float!
   ) {
-    searchMoviesPage(input: {searchQuery: $searchQuery, take: $take, skip: $skip, orderField: $orderField, orderValue: $orderValue}) {
+    searchMoviesPage(input: {searchQuery: $searchQuery, take: $take, skip: $skip, orderField: $orderField, orderValue: $orderValue, filterField: $filterField, filterCond: $filterCond, filterValue: $filterValue}) {
       _id
       title
       description
