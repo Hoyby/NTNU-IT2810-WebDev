@@ -9,6 +9,11 @@ import {
     UpdateMovieInput,
 } from './input/movie.input'
 
+/**
+ * Mongoose services
+ * Fetching requested data from the database
+ */
+
 @Injectable()
 export class MovieService {
     constructor(@InjectModel(Movie.name) private movieModel: Model<Movie>) {}
@@ -56,7 +61,7 @@ export class MovieService {
     async searchandorder(input: SearchSortInput): Promise<any> {
         return await this.movieModel
             .find({ title: { $regex: input.searchword, $options: 'i' } })
-            .sort({ createdAt: input.sortfactor})
+            .sort({ createdAt: input.sortfactor })
             .exec()
     }
 }

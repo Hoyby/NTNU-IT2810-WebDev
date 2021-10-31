@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { SetStateAction, useEffect, useState } from 'react'
 import { Link, Redirect, useParams } from 'react-router-dom'
-import { MovieService } from '../services/movieService'
+import MovieService from '../services/movieService'
 import { FindMovie_findMovie } from '../services/movieService/__generated__/FindMovie'
 
 // material-tailwind is not officially supported by TS - hence the ignores
@@ -18,20 +18,15 @@ import Button from '@material-tailwind/react/Button'
 /* eslint-enable */
 
 export default function MovieDetail() {
-    /**
-     * Provides information about a spesific movie
-     */
-    const { id } = useParams<{ id: string }>()
-    const movieService = new MovieService()
+    const { id: movieId } = useParams<{ id: string }>()
     const [movie, setMovie] = useState<FindMovie_findMovie>()
-    const [showModal, setShowModal] = React.useState(true)
-    let queryResult: React.SetStateAction<
-        FindMovie_findMovie | undefined
-    > | null = null
+    const [showModal, setShowModal] = useState(true)
+    let queryResult: SetStateAction<FindMovie_findMovie | undefined> | null =
+        null
 
     useEffect(() => {
         async function fetchMovie() {
-            queryResult = await movieService.findMovie(id)
+            queryResult = await MovieService.findMovie(movieId)
             setMovie(queryResult)
         }
 

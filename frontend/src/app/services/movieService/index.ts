@@ -14,9 +14,12 @@ import { DeleteMovie } from './__generated__/DeleteMovie'
 import { FindMovie } from './__generated__/FindMovie'
 import { GetMovies } from './__generated__/GetMovies'
 import { SearchMovies } from './__generated__/SearchMovies'
-//import { SortMovies } from './__generated__/SortMovies'
 import { UpdateMovie } from './__generated__/UpdateMovie'
 import { SearchAndSortMovies } from './__generated__/SearchAndSortMovies'
+
+/**
+ * Provides API services
+ */
 
 export class MovieService {
     async getMovies(): Promise<GetMovies['getmovies']> {
@@ -38,8 +41,6 @@ export class MovieService {
 
     async findMovie(_id: string): Promise<FindMovie['findMovie']> {
         try {
-            console.warn('ID: ', _id)
-
             const response: ApolloQueryResult<FindMovie> =
                 await apolloClient.query({
                     query: GET_MOVIE_BY_ID,

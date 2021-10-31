@@ -80,8 +80,6 @@ Our database runs MongoDB, an easy to use, document-oriented database. We chose 
 
 > The Database is currently running on a server that requires an active VPN connection to Norwegian University of Science and Technology.
 
-> A dockerfile and a docker-compose running both the backend server and the database is included in the backend directory, however, running the application on the docker-compose requires a bit of configuring of ports and ip addresses.
-
 <br/><br/>
 
 # Backend

@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../hooks'
 import { Dispatch } from '@reduxjs/toolkit'
 import { SearchAndSortMovies } from '../services/movieService/__generated__/SearchAndSortMovies'
 import { setSearchPage } from '../slices/searchPageSlice'
+
 // material-tailwind is not officially supported by TS - hence the ignores
 /* eslint-disable */
 // @ts-ignore
@@ -30,8 +31,6 @@ export function Search() {
     // Current redux seach page state
     const searchResult = useAppSelector((state) => state.searchPage.searchPage)
 
-    let timer: NodeJS.Timeout
-
     const [sortValue, setSortValue] = useState(-1)
 
     const [searchInput, setSearchInput] = useState<string>('')
@@ -47,10 +46,13 @@ export function Search() {
         if (queryResult) setSearchResult(queryResult)
     }
 
+    let timer: NodeJS.Timeout
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault()
-        clearTimeout(timer)
+        clearTimeout(timer) // Reset input change timer
         timer = setTimeout(() => {
+            // Fetch results after 700ms
             fetchSearchResults(event.target.value).catch((err) => {
                 console.error(err)
                 throw err
@@ -62,6 +64,7 @@ export function Search() {
         event.preventDefault()
     }
 
+    // Fetch results on page load
     useEffect(() => {
         fetchSearchResults(searchInput).catch((err) => {
             console.error(err)

@@ -4,6 +4,10 @@ import { MongooseModule } from '@nestjs/mongoose'
 import { Movie, MovieSchema } from './movie.schema'
 import { MovieService } from './movie.service'
 
+/**
+ * NEST config module for movie API
+ */
+
 @Module({
     imports: [
         MongooseModule.forFeature([{ name: Movie.name, schema: MovieSchema }]),
