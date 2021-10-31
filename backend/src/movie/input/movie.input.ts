@@ -27,7 +27,16 @@ export class MoviesPageInput {
     readonly orderField: string
 
     @Field()
-    readonly orderValue: string
+    readonly orderValue: number
+
+    @Field()
+    readonly filterField: string
+
+    @Field()
+    readonly filterCond: string
+
+    @Field()
+    readonly filterValue: number
 }
 
 @InputType()

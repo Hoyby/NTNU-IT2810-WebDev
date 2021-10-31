@@ -56,10 +56,14 @@ export class MovieService {
 
     async searchPage(moviesPageInput: MoviesPageInput): Promise<Movie[]> {
         return await this.movieModel
-            .find({ title: { $regex: moviesPageInput.searchQuery, $options: 'i' } } )
+            .find({$or: [
+                        {title: { $regex: moviesPageInput.searchQuery, $options: 'i' }},
+                        {description: { $regex: moviesPageInput.searchQuery, $options: 'i' }}
+                    ]} )
+            .find({ [moviesPageInput.filterField]: {[moviesPageInput.filterCond]: moviesPageInput.filterValue }})
+            .sort({ [moviesPageInput.orderField]: moviesPageInput.orderValue })
             .limit(moviesPageInput.take)
             .skip(moviesPageInput.skip)
-            .sort({ [moviesPageInput.orderField]: moviesPageInput.orderValue })
             .exec()
     }
 
@@ -69,4 +73,5 @@ export class MovieService {
             .sort({ createdAt: input.sortfactor})
             .exec()
     }
+
 }

@@ -27,8 +27,11 @@ input MovieInput {
 }
 
 input MoviesPageInput {
+  filterCond: String!
+  filterField: String!
+  filterValue: Float!
   orderField: String!
-  orderValue: String!
+  orderValue: Float!
   searchQuery: String!
   skip: Float!
   take: Float!
