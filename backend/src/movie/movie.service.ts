@@ -4,6 +4,11 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Movie } from './movie.schema'
 import { FindMovieInput, MovieInput, MoviesPageInput, UpdateMovieInput } from './input/movie.input'
 
+/**
+ * Mongoose services
+ * Fetching requested data from the database
+ */
+
 @Injectable()
 export class MovieService {
     constructor(@InjectModel(Movie.name) private movieModel: Model<Movie>) {}
