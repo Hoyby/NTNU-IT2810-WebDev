@@ -160,25 +160,6 @@ export class MovieService {
             throw err
         }
     }
-    /*
-    async sortMovie(input: number): Promise<SortMovies['sortMovies']> {
-        try {
-            const response: ApolloQueryResult<SortMovies> =
-                await apolloClient.query({
-                    query: SORT_MOVIES,
-                    variables: { input },
-                })
-
-            if (!response || !response.data)
-                throw new Error('Cannot sort movie!')
-
-            return response.data.sortMovies
-        } catch (err) {
-            console.error(err)
-            throw err
-        }
-    }
-    */
 }
 
 export default new MovieService()

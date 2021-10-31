@@ -19,5 +19,18 @@ describe('JAMDb starter', () => {
         cy.contains('Discover').click()
 
         cy.location('pathname').should('eq', '/')
+
+        const embarrsingText = `Whops! That's embarrassing`
+        cy.contains('Profile').click()
+        cy.contains(embarrsingText)
+        cy.contains('Profile').click()
+
+        cy.contains('Settings').click()
+        cy.contains(embarrsingText)
+        cy.contains('Settings').click()
+    })
+
+    it('Search bar is not blocked', () => {
+        cy.get('input[name=searchbar]').type('Search for movie')
     })
 })

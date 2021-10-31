@@ -6,7 +6,7 @@ describe('Actions', () => {
     beforeEach(() => {
         cy.visit('http://localhost:3000')
         cy.get('button:contains(Add new movie)').as('addMovieButton')
-        cy.get('button:contains(Sort by date added').as('sortButton')
+        cy.get('button:contains(Sort by date added)').as('sortButton')
     })
 
     it('Open movie form, and close it', () => {
