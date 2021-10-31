@@ -31,13 +31,13 @@ export default function Search() {
     const movieService = new MovieService()
 
     const ELEMENTS_PER_PAGE = 6
-    const PAGE_OFFSET = 1
+    const PAGE_OFFSET = 1       // Index of initial page
 
     const initialFilters: {
-        filterField: string
-        filterCond: string
-        filterValue: number
-        sortValue: number
+        filterField: string     // field to filter by, i.e. 'published' or 'createdAt'
+        filterCond: string      // condition to filter by, i.e. '$gte' (>=) or '$lte' (<=)
+        filterValue: number     // value to filter by, (year)
+        sortValue: number       // weather to sort in ascending (1) or descending (-1) order
     } = {
         filterField: 'published',
         filterCond: '$lte',
@@ -46,8 +46,8 @@ export default function Search() {
     }
 
     const initialPageState: {
-        hasNextPage: boolean
-        page: number
+        hasNextPage: boolean    // weather or not there may be a next page
+        page: number            // current page number
     } = {
         hasNextPage: false,
         page: PAGE_OFFSET,
@@ -69,6 +69,9 @@ export default function Search() {
     }
 
     const getQueryVariables = (page: number) => {
+        /**
+         * Returns query object that can be sent to backend
+         */
         const skip = (page - 1) * ELEMENTS_PER_PAGE
         const take = ELEMENTS_PER_PAGE
         const orderField = 'published'
@@ -77,51 +80,38 @@ export default function Search() {
         const filterCond = filters.filterCond
         const filterValue = filters.filterValue
         return {
-            take,
-            skip,
-            orderField,
-            orderValue,
-            filterField,
-            filterCond,
-            filterValue,
+            searchQuery: searchInput,
+            take: take,
+            skip: skip,
+            orderField: orderField,
+            orderValue: orderValue,
+            filterField: filterField,
+            filterCond: filterCond,
+            filterValue: filterValue,
         }
     }
 
     const fetchSearchResults = async () => {
+        /**
+         * Sends query and sets searchResult state to response
+         */
         setPageState({
             ...pageState,
             page: PAGE_OFFSET,
         })
-        const query_variables = getQueryVariables(1)
-        const final_query = {
-            searchQuery: searchInput,
-            take: query_variables.take,
-            skip: query_variables.skip,
-            orderField: query_variables.orderField,
-            orderValue: query_variables.orderValue,
-            filterField: query_variables.filterField,
-            filterCond: query_variables.filterCond,
-            filterValue: query_variables.filterValue,
-        }
-        const queryResult = await movieService.searchMoviesPage(final_query).catch((err: Error) => {
+        const query = getQueryVariables(1)
+        const queryResult = await movieService.searchMoviesPage(query).catch((err: Error) => {
             console.error(err)
         })
         if (queryResult) setSearchResult(queryResult)
     }
 
     const fetchMore = async () => {
-        const query_variables = getQueryVariables(pageState.page)
-        const final_query = {
-            searchQuery: searchInput,
-            take: query_variables.take,
-            skip: query_variables.skip,
-            orderField: query_variables.orderField,
-            orderValue: query_variables.orderValue,
-            filterField: query_variables.filterField,
-            filterCond: query_variables.filterCond,
-            filterValue: query_variables.filterValue,
-        }
-        const queryResult = await movieService.searchMoviesPage(final_query).catch((err: Error) => {
+        /**
+         * Sends query and appends result to searchResult state
+         */
+        const query = getQueryVariables(pageState.page)
+        const queryResult = await movieService.searchMoviesPage(query).catch((err: Error) => {
             console.error(err)
         })
         if (queryResult) appendSearchResult(queryResult)
@@ -145,6 +135,7 @@ export default function Search() {
         }, 700)
     }
 
+    // searchResult state is cleared and fetched when user input changes
     useEffect(() => {
         setPageState({
             ...pageState,
@@ -166,6 +157,7 @@ export default function Search() {
         searchInput,
     ])
 
+    // When page is incremented, fetch more movies and append to searchResult state
     useEffect(() => {
         setPageState({
             ...pageState,
@@ -179,6 +171,7 @@ export default function Search() {
         }
     }, [pageState.page])
 
+    // Fetches movies on component initialization
     useEffect(() => {
         async function search() {
             await fetchSearchResults()
@@ -211,7 +204,7 @@ export default function Search() {
                     <Dropdown
                         color="red"
                         buttonText={
-                            filters.filterField == 'published' ? 'Date Published' : 'Date Added'
+                            filters.filterField == 'published' ? 'Year Published' : 'Year Added'
                         }
                         buttonType="outline"
                         size="sm"
@@ -228,7 +221,7 @@ export default function Search() {
                                 })
                             }
                         >
-                            Date Added
+                            Year Added
                         </DropdownLink>
                         <DropdownLink
                             href="#"
@@ -242,7 +235,7 @@ export default function Search() {
                                 })
                             }
                         >
-                            Date Published
+                            Year Published
                         </DropdownLink>
                     </Dropdown>
                 </div>
@@ -315,7 +308,7 @@ export default function Search() {
                         name={filters.sortValue === -1 ? 'arrow_upward' : 'arrow_downward'}
                         size="sm"
                     />{' '}
-                    Sort by date published
+                    Sort by year published
                 </Button>
             </div>
 
