@@ -17,8 +17,6 @@ import { SearchMoviesPage, SearchMoviesPageVariables } from './__generated__/Sea
 export default class MovieService {
     async findMovie(_id: string): Promise<FindMovie['findMovie']> {
         try {
-            console.warn('ID: ', _id)
-
             const response: ApolloQueryResult<FindMovie> = await apolloClient.query({
                 query: GET_MOVIE_BY_ID,
                 variables: { _id },
