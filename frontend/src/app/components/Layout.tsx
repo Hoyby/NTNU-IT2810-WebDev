@@ -4,9 +4,6 @@ import { Footer } from './Footer'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 export function Layout({ children }: { children: ReactNode }) {
-    // const [bg, setBg] = useState('bg-cinema');
-    // const BgContext = createContext(setBg)
-
     return (
         <div>
             <link
