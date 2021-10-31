@@ -10,6 +10,16 @@ import InputIcon from '@material-tailwind/react/InputIcon'
 import Icon from '@material-tailwind/react/Icon'
 // @ts-ignore
 import Button from '@material-tailwind/react/Button'
+// @ts-ignore
+import Input from "@material-tailwind/react/Input";
+// @ts-ignore
+import Dropdown from "@material-tailwind/react/Dropdown"
+// @ts-ignore
+import DropdownItem from "@material-tailwind/react/DropdownItem"
+// @ts-ignore
+import DropdownLink from "@material-tailwind/react/DropdownLink"
+// @ts-ignore
+import H6 from "@material-tailwind/react/Heading6"
 import {useHistory} from "react-router-dom";
 /* eslint-enable */
 
@@ -17,6 +27,12 @@ export function Search() {
     let timer: NodeJS.Timeout
 
     const [sortValue, setSortValue] = useState(-1)
+
+    const [filterField, setFilterField] = useState('published')
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [filterCond, setFilterCond] = useState('$lte')
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [filterValue, setFilterValue] = useState(2000)
 
     const [searchResult, setSearchResult] =
         useState<SearchMovies['searchMovies']>()
@@ -39,10 +55,7 @@ export function Search() {
         const take = LINKS_PER_PAGE;
         const orderField = 'published';
         const orderValue = sortValue;
-        const filterField = 'published';
-        const filterCond = '$gte';
-        const filterValue = 1800;
-        return { take, skip, orderField, orderValue, filterField, filterCond, filterValue };
+        return { take, skip, orderField, orderValue, filterField, filterCond, filterValue};
     };
 
     const fetchSearchResults = async (query: string) => {
@@ -85,7 +98,7 @@ export function Search() {
             console.error(err)
             throw err
         })
-    }, [sortValue])
+    }, [sortValue, filterField, filterCond, filterValue])
 
     useEffect(() => {
         async function search() {
@@ -116,17 +129,95 @@ export function Search() {
                     onChange={handleInputChange}
                 />
             </form>
+
+            <H6 color='white'>Filter</H6>
+            <div className='relative flex items-center justify-between'>
+                <div className='pr-5'>
+                    <Dropdown
+                        color="red"
+                        placement="bottom-start"
+                        buttonText={filterField=='published' ? 'Date published' : 'Date added'}
+                        buttonType="outline"
+                        size="regular"
+                        rounded={false}
+                        block={false}
+                        ripple="dark"
+                    >
+                        <DropdownLink
+                            href="#"
+                            color='red'
+                            ripple="light"
+                            onClick={() => setFilterField('createdAt')}
+                        >
+                            Date added
+                        </DropdownLink>
+                        <DropdownLink
+                            href="#"
+                            color='red'
+                            ripple="light"
+                            onClick={() => setFilterField('published')}
+                        >
+                            Date published
+                        </DropdownLink>
+                    </Dropdown>
+                </div>
+
+                <div className='pr-5'>
+            <Dropdown
+                color="yellow"
+                placement="bottom-start"
+                buttonText={filterCond=='$lte' ? '<' : '>'}
+                buttonType="outline"
+                size="regular"
+                rounded={false}
+                block={false}
+                ripple="dark"
+            >
+                <DropdownLink
+                    href="#"
+                    color='yellow'
+                    ripple="light"
+                    onClick={() => setFilterCond('$lte')}
+                >
+                    {'<'}
+                </DropdownLink>
+                <DropdownLink
+                    href="#"
+                    color='yellow'
+                    ripple="light"
+                    onClick={() => setFilterCond('$gte')}
+                >
+                    {'>'}
+                </DropdownLink>
+            </Dropdown>
+                    </div>
+
+                <div className='pr-10'>
+
+                    <Input
+                        type="text"
+                        color="yellow"
+                        size="regular"
+                        outline={true}
+                        placeholder={filterValue}
+                        onChange={(e: { target: { value: string } }) => setFilterValue(parseInt(e.target.value))}
+                    />
+                </div>
             <Button
                 size="sm"
                 className="ml-auto my-5"
                 ripple="light"
-                color="pink"
+                color="red"
                 onClick={() => {
                     setSortValue(-sortValue)
                 }}
             >
                 <Icon name="sort" size="sm" /> Sort by date added
             </Button>
+
+            </div>
+
+
 
             <div className="max-w-screen-xl w-full h-full flex justify-between flex-wrap gap-8 mb-10">
                 {searchResult &&
