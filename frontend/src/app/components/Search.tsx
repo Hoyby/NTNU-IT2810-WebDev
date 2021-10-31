@@ -4,6 +4,9 @@ import { MovieCard } from './MovieCard'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { Dispatch } from '@reduxjs/toolkit'
 import { setSearchPage } from '../slices/searchPageSlice'
+import { SearchMoviesPage_searchMoviesPage } from '../services/movieService/__generated__/SearchMoviesPage'
+import { SearchAndSortMovies } from '../services/movieService/__generated__/SearchandSortMovies'
+
 // material-tailwind is not officially supported by TS - hence the ignores
 /* eslint-disable */
 // @ts-ignore
@@ -20,12 +23,6 @@ import Dropdown from '@material-tailwind/react/Dropdown'
 import DropdownItem from '@material-tailwind/react/DropdownItem'
 // @ts-ignore
 import DropdownLink from '@material-tailwind/react/DropdownLink'
-// @ts-ignore
-import H6 from '@material-tailwind/react/Heading6'
-import { useHistory } from 'react-router-dom'
-import { SearchMoviesPage_searchMoviesPage } from '../services/movieService/__generated__/SearchMoviesPage'
-import { SearchAndSortMovies } from '../services/movieService/__generated__/SearchandSortMovies'
-
 /* eslint-enable */
 
 // Redux dispatch
@@ -186,7 +183,7 @@ export function Search() {
     }, [])
 
     return (
-        <>
+        <div className="mb-40">
             <form className="my-10" onSubmit={handleSubmit}>
                 <InputIcon
                     type="text"
@@ -205,21 +202,17 @@ export function Search() {
                 />
             </form>
             {/*onChange={handleInputChange}*/}
-            <H6 color="white">Filter</H6>
             <div className="relative flex items-center justify-between">
                 <div className="pr-5">
                     <Dropdown
                         color="red"
-                        placement="bottom-start"
                         buttonText={
                             filterField == 'published'
-                                ? 'Date published'
-                                : 'Date added'
+                                ? 'Date Published'
+                                : 'Date Added'
                         }
                         buttonType="outline"
-                        size="regular"
-                        rounded={false}
-                        block={false}
+                        size="sm"
                         ripple="dark"
                     >
                         <DropdownLink
@@ -233,10 +226,11 @@ export function Search() {
                         <DropdownLink
                             href="#"
                             color="red"
+                            size="sm"
                             ripple="light"
                             onClick={() => setFilterField('published')}
                         >
-                            Date published
+                            Date Published
                         </DropdownLink>
                     </Dropdown>
                 </div>
@@ -244,12 +238,9 @@ export function Search() {
                 <div className="pr-5">
                     <Dropdown
                         color="yellow"
-                        placement="bottom-start"
-                        buttonText={filterCond == '$lte' ? 'before' : 'after'}
+                        buttonText={filterCond == '$lte' ? 'Before' : 'After'}
                         buttonType="outline"
-                        size="regular"
-                        rounded={false}
-                        block={false}
+                        size="sm"
                         ripple="dark"
                     >
                         <DropdownLink
@@ -258,7 +249,7 @@ export function Search() {
                             ripple="light"
                             onClick={() => setFilterCond('$lte')}
                         >
-                            {'before'}
+                            Before
                         </DropdownLink>
                         <DropdownLink
                             href="#"
@@ -266,7 +257,7 @@ export function Search() {
                             ripple="light"
                             onClick={() => setFilterCond('$gte')}
                         >
-                            {'after'}
+                            After
                         </DropdownLink>
                     </Dropdown>
                 </div>
@@ -275,7 +266,7 @@ export function Search() {
                     <Input
                         type="text"
                         color="yellow"
-                        size="regular"
+                        size="sm"
                         outline={true}
                         placeholder={filterValue}
                         onChange={(e: { target: { value: string } }) =>
@@ -307,20 +298,20 @@ export function Search() {
                     ))}
             </div>
 
-            <div className="pb-10">
+            <div className="m-auto">
                 {!lastPage && (
                     <Button
                         size="sm"
-                        className="ml-auto my-5"
+                        className="mx-auto"
                         ripple="light"
                         color="red"
                         onClick={() => loadNextPage()}
                     >
-                        Load more
+                        Show more ...
                     </Button>
                 )}
             </div>
-        </>
+        </div>
     )
 }
 
