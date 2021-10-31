@@ -9,13 +9,9 @@ import { SearchMoviesPage } from '../services/movieService/__generated__/SearchM
 // material-tailwind is not officially supported by TS - hence the ignores
 /* eslint-disable */
 // @ts-ignore
-import InputIcon from '@material-tailwind/react/InputIcon'
-// @ts-ignore
 import Icon from '@material-tailwind/react/Icon'
 // @ts-ignore
 import Button from '@material-tailwind/react/Button'
-// @ts-ignore
-import Input from '@material-tailwind/react/Input'
 // @ts-ignore
 import Dropdown from '@material-tailwind/react/Dropdown'
 // @ts-ignore
@@ -331,9 +327,8 @@ export default function Search() {
             <div className="max-w-screen-xl w-full h-full flex justify-between flex-wrap gap-8 mb-10">
                 {searchResult &&
                     searchResult.map((movie) => (
-                        <div className="m-auto">
+                        <div className="m-auto" key={movie?._id}>
                             <MovieCard
-                                key={movie?._id}
                                 title={movie?.title}
                                 description={movie?.description}
                                 _id={movie?._id}

@@ -6,7 +6,6 @@ export default function Dashboard() {
     return (
         <div>
             <MovieForm />
-
             <Search />
         </div>
     )
