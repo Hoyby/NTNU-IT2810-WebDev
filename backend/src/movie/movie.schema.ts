@@ -1,6 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Document } from 'mongoose'
 
+/**
+ * Mongoose schema
+ */
+
 export type MovieDocument = Movie & Document
 
 @Schema()

@@ -3,6 +3,10 @@ import Navbar from './Navbar'
 import { Footer } from './Footer'
 import { BrowserRouter as Router } from 'react-router-dom'
 
+/**
+ * Layout wrapper
+ */
+
 export function Layout({ children }: { children: ReactNode }) {
     return (
         <div>

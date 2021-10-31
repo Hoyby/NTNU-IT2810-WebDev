@@ -1,12 +1,11 @@
 import React, { useRef, useState } from 'react'
+
 // material-tailwind is not officially supported by TS - hence the ignores
 /* eslint-disable */
 // @ts-ignore
 import NavbarContainer from '@material-tailwind/react/NavbarContainer'
 // @ts-ignore
 import NavbarWrapper from '@material-tailwind/react/NavbarWrapper'
-// @ts-ignore
-import NavbarBrand from '@material-tailwind/react/NavbarBrand'
 // @ts-ignore
 import NavbarToggler from '@material-tailwind/react/NavbarToggler'
 // @ts-ignore

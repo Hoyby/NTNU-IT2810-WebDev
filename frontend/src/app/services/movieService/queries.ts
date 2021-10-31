@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-named-as-default
 import gql from 'graphql-tag'
 
 export const GET_MOVIES = gql`
@@ -82,16 +81,15 @@ export const UPDATE_MOVIE = gql`
 `
 
 export const SEARCH_AND_SORT_MOVIE = gql`
-    query movie($searchword: String!, $sortfactor: Int!){
-        searchandSortMovie(input: {
-            searchword: $searchword
-            sortfactor: $sortfactor
-    }){
-        _id
-        title
-        description
+    query movie($searchword: String!, $sortfactor: Int!) {
+        searchandSortMovie(
+            input: { searchword: $searchword, sortfactor: $sortfactor }
+        ) {
+            _id
+            title
+            description
+        }
     }
-  }
 `
 
 /*

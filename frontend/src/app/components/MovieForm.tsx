@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import movieService from '../services/movieService'
 import { CreateMovieVariables } from '../services/movieService/__generated__/CreateMovie'
+
 // material-tailwind is not officially supported by TS - hence the ignores
 /* eslint-disable */
 // @ts-ignore
@@ -37,6 +38,7 @@ export default function MovieForm() {
         const data = event.target
 
         if (data.name === 'published') {
+            // Form returns string, query requires int for 'published'.
             const publishedInt = parseInt(data.value)
             setNewMovie((prevState) => ({
                 ...prevState,
@@ -52,7 +54,6 @@ export default function MovieForm() {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        console.warn(newMovie)
 
         if (!newMovie.title) {
 
@@ -96,9 +97,7 @@ export default function MovieForm() {
             {showCreateMovieForm ? (
                 <>
                     <div className=" justify-center items-center flex fixed inset-0 z-50">
-                        {/*content*/}
                         <Card className="mx-24 w-full max-w-screen-sm">
-                            {/*header*/}
                             <div className="flex items-start justify-between p-5 border-b border-solid border-gray-200 rounded-t">
                                 <h3 className="text-black text-3xl">
                                     Add new movie

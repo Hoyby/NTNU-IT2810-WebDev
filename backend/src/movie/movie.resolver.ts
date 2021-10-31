@@ -9,6 +9,11 @@ import {
     SearchSortInput,
 } from './input/movie.input'
 
+/**
+ * GraphQL resolvers
+ * Handeling generation of schema.gql and API requests.
+ */
+
 @Resolver(() => Movie)
 export class MovieResolver {
     constructor(private movieService: MovieService) {}
@@ -50,7 +55,7 @@ export class MovieResolver {
     }
 
     @Query(() => [MovieDto])
-    async searchandSortMovie(@Args('input') input: SearchSortInput){
+    async searchandSortMovie(@Args('input') input: SearchSortInput) {
         return this.movieService.searchandorder(input)
     }
 }
