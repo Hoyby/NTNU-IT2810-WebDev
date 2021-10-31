@@ -112,8 +112,8 @@ Testing has been done mostly on the frontend, seeing as this was what was requir
 
 The tests comprise of:
 
-- **Unit tests, with ![Jest](https://jestjs.io/docs/tutorial-react)**
-- **End to end tests, with ![Cypress](https://www.cypress.io/)**
+- **Unit tests, with [Jest](https://jestjs.io/docs/tutorial-react)**
+- **End to end tests, with [Cypress](https://www.cypress.io/)**
 
 ## React - Jest
 
@@ -125,11 +125,4 @@ Cypress allows for E2E testing where we program how user input should behave and
 
 There is currently a _layout.spec.ts_ file where it tests for layout. And a _action.spec.ts_ to check different user actions on the client.
 
-### Webpack
-
-In order to use _TypeScript_ in Cypress we need to install webpack and setup a webpack config in the **Cypress** folder. However when we do this the **create-react-app** build fails to build since there are two webpack dependencies. In order to temporary solve this problem we can create and .env file with the key:
-
-````
-SKIP_PREFLIGHT_CHECK=true
-```bash
-````
+> In order to use _TypeScript_ in Cypress we need to install webpack and setup a webpack config in the **Cypress** folder. However when we do this the **create-react-app** build fails to build since there are two webpack dependencies. In order to temporary solve this problem we can create and .env file with the key: `SKIP_PREFLIGHT_CHECK=true`
