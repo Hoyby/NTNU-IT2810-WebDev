@@ -31,13 +31,13 @@ export default function Search() {
     const movieService = new MovieService()
 
     const ELEMENTS_PER_PAGE = 6
-    const PAGE_OFFSET = 1       // Index of initial page
+    const PAGE_OFFSET = 1 // Index of initial page
 
     const initialFilters: {
-        filterField: string     // field to filter by, i.e. 'published' or 'createdAt'
-        filterCond: string      // condition to filter by, i.e. '$gte' (>=) or '$lte' (<=)
-        filterValue: number     // value to filter by, (year)
-        sortValue: number       // weather to sort in ascending (1) or descending (-1) order
+        filterField: string // field to filter by, i.e. 'published' or 'createdAt'
+        filterCond: string // condition to filter by, i.e. '$gte' (>=) or '$lte' (<=)
+        filterValue: number // value to filter by, (year)
+        sortValue: number // weather to sort in ascending (1) or descending (-1) order
     } = {
         filterField: 'published',
         filterCond: '$lte',
@@ -46,8 +46,8 @@ export default function Search() {
     }
 
     const initialPageState: {
-        hasNextPage: boolean    // weather or not there may be a next page
-        page: number            // current page number
+        hasNextPage: boolean // weather or not there may be a next page
+        page: number // current page number
     } = {
         hasNextPage: false,
         page: PAGE_OFFSET,
@@ -209,11 +209,11 @@ export default function Search() {
                     </label>
                 </div>
             </form>
-            <div className="relative sm:flex items-center">
-                <div className="pr-5">
+            <div className="relative flex flex-col md:flex-row gap-2 mb-4 items-center">
+                <div>
                     <Dropdown
                         color="red"
-                        className="whitespace-nowrap mb-4"
+                        className="whitespace-nowrap"
                         buttonText={
                             filters.filterField == 'published' ? 'Year Published' : 'Year Added'
                         }
@@ -251,12 +251,11 @@ export default function Search() {
                     </Dropdown>
                 </div>
 
-                <div className="pr-5">
+                <div>
                     <Dropdown
                         color="yellow"
                         buttonText={filters.filterCond == '$lte' ? 'Before' : 'After'}
                         buttonType="outline"
-                        className="mb-4"
                         size="sm"
                         ripple="dark"
                     >
@@ -289,7 +288,7 @@ export default function Search() {
                     </Dropdown>
                 </div>
 
-                <div className="pr-10">
+                <div>
                     <label htmlFor="yearFilter" />
                     <input
                         type="number"
@@ -299,7 +298,7 @@ export default function Search() {
                         color="yellow"
                         id="yearFilter"
                         name="yearFilter"
-                        className="w-70 h-full text-gray-200 appearance-none overflow-visible outline-none focus:outline-none focus:text-white mb-4 pl-3 pr-3 py-2.5 text-sm border-gray-300 bg-transparent border border-1 rounded-lg focus:border-2 focus:border-yellow-600"
+                        className="w-70 h-full text-gray-200 appearance-none overflow-visible outline-none focus:outline-none focus:text-white pl-3 pr-3 py-2.5 text-sm border-gray-300 bg-transparent border border-1 rounded-lg focus:border-2 focus:border-yellow-600"
                         placeholder={filters.filterValue.toString()}
                         onChange={(e: { target: { value: string } }) =>
                             setFilters({
@@ -311,7 +310,7 @@ export default function Search() {
                 </div>
                 <Button
                     size="sm"
-                    className="sm:ml-auto mb-4 whitespace-nowrap"
+                    className="md:ml-auto whitespace-nowrap"
                     ripple="light"
                     color="red"
                     onClick={() =>
@@ -332,12 +331,14 @@ export default function Search() {
             <div className="max-w-screen-xl w-full h-full flex justify-between flex-wrap gap-8 mb-10">
                 {searchResult &&
                     searchResult.map((movie) => (
-                        <MovieCard
-                            key={movie?._id}
-                            title={movie?.title}
-                            description={movie?.description}
-                            _id={movie?._id}
-                        />
+                        <div className="m-auto">
+                            <MovieCard
+                                key={movie?._id}
+                                title={movie?.title}
+                                description={movie?.description}
+                                _id={movie?._id}
+                            />
+                        </div>
                     ))}
             </div>
 
