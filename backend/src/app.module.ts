@@ -13,6 +13,7 @@ import { MovieModule } from './movie/movie.module'
             sortSchema: true,
             playground: true,
             debug: false,
+            introspection: true,
         }),
     ],
 })
