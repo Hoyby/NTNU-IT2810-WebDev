@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import gql from 'graphql-tag'
 
 export const GET_MOVIE_BY_ID = gql`

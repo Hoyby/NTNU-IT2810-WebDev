@@ -192,24 +192,35 @@ export default function Search() {
     return (
         <div className="mb-40">
             <form className="my-10" onSubmit={handleSubmit}>
-                <InputIcon
-                    type="text"
-                    name="searchbar"
-                    id="searchbar"
-                    className="p-3 mb-16"
-                    color="blueGray"
-                    size="lg"
-                    iconFamily="material-icons"
-                    iconName="search"
-                    outline={true}
-                    placeholder="Search Movies"
-                    onChange={handeSearchChange}
-                />
+                {/* Search Bar */}
+                <div className="w-full relative h-12">
+                    <span
+                        role="text"
+                        id="searchbar"
+                        className="material-icons p-0 text-gray-600 text-opacity-60 border-none absolute top-1/2 right-3 transform -translate-y-1/2 text-xl"
+                    >
+                        search
+                    </span>
+                    <input
+                        type="text"
+                        name="searchbar"
+                        id="searchbar"
+                        onChange={handeSearchChange}
+                        className="w-full h-full text-gray-500 outline-none focus:text-white pl-3 pr-9 pt-3.5 pb-2.5 mt-input-outline bg-transparent border border-1 border-gray-300 rounded-lg focus:border-2"
+                    />
+                    <label
+                        htmlFor="searchbar"
+                        className="text-white absolute left-0 -top-1.5 w-full h-full border-gray-300 pointer-events-none false flex false leading-10"
+                    >
+                        Search Movies
+                    </label>
+                </div>
             </form>
-            <div className="relative flex items-center justify-between">
+            <div className="relative sm:flex items-center">
                 <div className="pr-5">
                     <Dropdown
                         color="red"
+                        className="whitespace-nowrap mb-4"
                         buttonText={
                             filters.filterField == 'published' ? 'Date Published' : 'Date Added'
                         }
@@ -252,6 +263,7 @@ export default function Search() {
                         color="yellow"
                         buttonText={filters.filterCond == '$lte' ? 'Before' : 'After'}
                         buttonType="outline"
+                        className="mb-4"
                         size="sm"
                         ripple="dark"
                     >
@@ -285,12 +297,17 @@ export default function Search() {
                 </div>
 
                 <div className="pr-10">
-                    <Input
-                        type="text"
+                    <label htmlFor="yearFilter" />
+                    <input
+                        type="number"
+                        min="1800"
+                        max="2099"
+                        step="1"
                         color="yellow"
-                        size="sm"
-                        outline={true}
-                        placeholder={filters.filterValue}
+                        id="yearFilter"
+                        name="yearFilter"
+                        className="w-70 h-full text-gray-200 appearance-none overflow-visible outline-none focus:outline-none focus:text-white mb-4 pl-3 pr-3 py-2.5 text-sm border-gray-300 bg-transparent border border-1 rounded-lg focus:border-2 focus:border-yellow-600"
+                        placeholder={filters.filterValue.toString()}
                         onChange={(e: { target: { value: string } }) =>
                             setFilters({
                                 ...filters,
@@ -301,7 +318,7 @@ export default function Search() {
                 </div>
                 <Button
                     size="sm"
-                    className="ml-auto my-5"
+                    className="sm:ml-auto mb-4 whitespace-nowrap"
                     ripple="light"
                     color="red"
                     onClick={() =>
@@ -323,6 +340,7 @@ export default function Search() {
                 {searchResult &&
                     searchResult.map((movie) => (
                         <MovieCard
+                            key={movie?._id}
                             title={movie?.title}
                             description={movie?.description}
                             _id={movie?._id}

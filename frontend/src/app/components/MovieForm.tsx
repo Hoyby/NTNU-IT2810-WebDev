@@ -97,6 +97,7 @@ export default function MovieForm() {
                             <CardBody>
                                 <form onSubmit={handleSubmit}>
                                     <div className="mt-4 mb-8 px-4">
+                                        <label htmlFor="title" />
                                         <Input
                                             type="text"
                                             id="title"
@@ -108,6 +109,7 @@ export default function MovieForm() {
                                         />
                                     </div>
                                     <div className="mb-8 px-4">
+                                        <label htmlFor="description" />
                                         <Textarea
                                             id="description"
                                             name="description"
@@ -118,6 +120,7 @@ export default function MovieForm() {
                                         />
                                     </div>
                                     <div className="mb-8 px-4">
+                                        <label htmlFor="published" />
                                         <Input
                                             type="number"
                                             min="1800"
