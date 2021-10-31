@@ -4,8 +4,7 @@ import { MovieCard } from './MovieCard'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { Dispatch } from '@reduxjs/toolkit'
 import { setSearchPage } from '../slices/searchPageSlice'
-import { SearchMoviesPage_searchMoviesPage } from '../services/movieService/__generated__/SearchMoviesPage'
-import { SearchAndSortMovies } from '../services/movieService/__generated__/SearchandSortMovies'
+import { SearchMoviesPage } from '../services/movieService/__generated__/SearchMoviesPage'
 
 // material-tailwind is not officially supported by TS - hence the ignores
 /* eslint-disable */
@@ -25,15 +24,14 @@ import DropdownLink from '@material-tailwind/react/DropdownLink'
 
 // Redux dispatch
 const actionDispatch = (dispatch: Dispatch) => ({
-    setSearchResult: (page: SearchAndSortMovies['searchandSortMovie']) =>
-        dispatch(setSearchPage(page)),
+    setSearchResult: (page: SearchMoviesPage['searchMoviesPage']) => dispatch(setSearchPage(page)),
 })
 
 export default function Search() {
     const movieService = new MovieService()
 
-    const LINKS_PER_PAGE = 6
-    const INITIAL_PAGE = 1
+    const ELEMENTS_PER_PAGE = 6
+    const PAGE_OFFSET = 1
 
     const initialFilters: {
         filterField: string
@@ -47,35 +45,32 @@ export default function Search() {
         sortValue: -1,
     }
 
-    const [filters, setFilters] = useState(initialFilters)
+    const initialPageState: {
+        hasNextPage: boolean
+        page: number
+    } = {
+        hasNextPage: false,
+        page: PAGE_OFFSET,
+    }
 
-    const [lastPage, setLastPage] = useState(false)
+    const [filters, setFilters] = useState(initialFilters)
+    const [pageState, setPageState] = useState(initialPageState)
 
     // Set new redux seach page state
-    const { setSearchResult: setSearchResult } = actionDispatch(
-        useAppDispatch(),
-    )
+    const { setSearchResult: setSearchResult } = actionDispatch(useAppDispatch())
 
     // Current redux seach page state
     const searchResult = useAppSelector((state) => state.searchPage.searchPage)
 
     const [searchInput, setSearchInput] = useState<string>('')
 
-    const [page, setPage] = useState(INITIAL_PAGE)
-
-    const loadNextPage = () => {
-        setPage(page + 1)
-    }
-
-    const appendSearchResult = (
-        queryResult: SearchMoviesPage_searchMoviesPage[],
-    ) => {
+    const appendSearchResult = (queryResult: SearchMoviesPage['searchMoviesPage']) => {
         setSearchResult(searchResult?.concat(queryResult))
     }
 
     const getQueryVariables = (page: number) => {
-        const skip = (page - 1) * LINKS_PER_PAGE
-        const take = LINKS_PER_PAGE
+        const skip = (page - 1) * ELEMENTS_PER_PAGE
+        const take = ELEMENTS_PER_PAGE
         const orderField = 'published'
         const orderValue = filters.sortValue
         const filterField = filters.filterField
@@ -93,7 +88,10 @@ export default function Search() {
     }
 
     const fetchSearchResults = async () => {
-        setPage(INITIAL_PAGE)
+        setPageState({
+            ...pageState,
+            page: PAGE_OFFSET,
+        })
         const query_variables = getQueryVariables(1)
         const final_query = {
             searchQuery: searchInput,
@@ -105,16 +103,14 @@ export default function Search() {
             filterCond: query_variables.filterCond,
             filterValue: query_variables.filterValue,
         }
-        const queryResult = await movieService
-            .searchMoviesPage(final_query)
-            .catch((err: Error) => {
-                console.error(err)
-            })
+        const queryResult = await movieService.searchMoviesPage(final_query).catch((err: Error) => {
+            console.error(err)
+        })
         if (queryResult) setSearchResult(queryResult)
     }
 
-    const fetchAndAppendSearchResults = async () => {
-        const query_variables = getQueryVariables(page)
+    const fetchMore = async () => {
+        const query_variables = getQueryVariables(pageState.page)
         const final_query = {
             searchQuery: searchInput,
             take: query_variables.take,
@@ -125,22 +121,39 @@ export default function Search() {
             filterCond: query_variables.filterCond,
             filterValue: query_variables.filterValue,
         }
-        const queryResult = await movieService
-            .searchMoviesPage(final_query)
-            .catch((err: Error) => {
-                console.error(err)
-            })
+        const queryResult = await movieService.searchMoviesPage(final_query).catch((err: Error) => {
+            console.error(err)
+        })
         if (queryResult) appendSearchResult(queryResult)
-        if (queryResult?.length == 0) setLastPage(true)
+        if (queryResult?.length == 0)
+            setPageState({
+                ...pageState,
+                hasNextPage: true,
+            })
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
     }
 
+    let timer: NodeJS.Timeout
+
+    const handeSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            setSearchInput(event.target.value)
+        }, 700)
+    }
+
     useEffect(() => {
-        setPage(INITIAL_PAGE)
-        setLastPage(false)
+        setPageState({
+            ...pageState,
+            page: PAGE_OFFSET,
+        })
+        setPageState({
+            ...pageState,
+            hasNextPage: false,
+        })
         fetchSearchResults().catch((err) => {
             console.error(err)
             throw err
@@ -154,14 +167,17 @@ export default function Search() {
     ])
 
     useEffect(() => {
-        setLastPage(false)
-        if (page != INITIAL_PAGE) {
-            fetchAndAppendSearchResults().catch((err) => {
+        setPageState({
+            ...pageState,
+            hasNextPage: false,
+        })
+        if (pageState.page != PAGE_OFFSET) {
+            fetchMore().catch((err) => {
                 console.error(err)
                 throw err
             })
         }
-    }, [page])
+    }, [pageState.page])
 
     useEffect(() => {
         async function search() {
@@ -187,20 +203,15 @@ export default function Search() {
                     iconName="search"
                     outline={true}
                     placeholder="Search Movies"
-                    onChange={(e: { target: { value: string } }) =>
-                        setSearchInput(e.target.value)
-                    }
+                    onChange={handeSearchChange}
                 />
             </form>
-            {/*onChange={handleInputChange}*/}
             <div className="relative flex items-center justify-between">
                 <div className="pr-5">
                     <Dropdown
                         color="red"
                         buttonText={
-                            filters.filterField == 'published'
-                                ? 'Date Published'
-                                : 'Date Added'
+                            filters.filterField == 'published' ? 'Date Published' : 'Date Added'
                         }
                         buttonType="outline"
                         size="sm"
@@ -217,7 +228,7 @@ export default function Search() {
                                 })
                             }
                         >
-                            Date added
+                            Date Added
                         </DropdownLink>
                         <DropdownLink
                             href="#"
@@ -239,9 +250,7 @@ export default function Search() {
                 <div className="pr-5">
                     <Dropdown
                         color="yellow"
-                        buttonText={
-                            filters.filterCond == '$lte' ? 'Before' : 'After'
-                        }
+                        buttonText={filters.filterCond == '$lte' ? 'Before' : 'After'}
                         buttonType="outline"
                         size="sm"
                         ripple="dark"
@@ -303,11 +312,7 @@ export default function Search() {
                     }
                 >
                     <Icon
-                        name={
-                            filters.sortValue === -1
-                                ? 'arrow_upward'
-                                : 'arrow_downward'
-                        }
+                        name={filters.sortValue === -1 ? 'arrow_upward' : 'arrow_downward'}
                         size="sm"
                     />{' '}
                     Sort by date published
@@ -326,13 +331,18 @@ export default function Search() {
             </div>
 
             <div className="m-auto">
-                {!lastPage && (
+                {!pageState.hasNextPage && (
                     <Button
                         size="sm"
                         className="mx-auto"
                         ripple="light"
                         color="red"
-                        onClick={() => loadNextPage()}
+                        onClick={() =>
+                            setPageState({
+                                ...pageState,
+                                page: pageState.page + 1,
+                            })
+                        }
                     >
                         Show more ...
                     </Button>

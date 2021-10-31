@@ -27,9 +27,7 @@ export default function MovieDetail() {
     const { id } = useParams<{ id: string }>()
     const [movie, setMovie] = useState<FindMovie_findMovie>()
     const [showModal, setShowModal] = React.useState(true)
-    let queryResult: React.SetStateAction<
-        FindMovie_findMovie | undefined
-    > | null = null
+    let queryResult: React.SetStateAction<FindMovie_findMovie | undefined> | null = null
 
     useEffect(() => {
         async function fetchMovie() {
@@ -52,14 +50,8 @@ export default function MovieDetail() {
     }
 
     return (
-        <Modal
-            size="regular"
-            active={showModal}
-            toggler={() => setShowModal(false)}
-        >
-            <ModalHeader toggler={() => setShowModal(false)}>
-                {movie?.title}
-            </ModalHeader>
+        <Modal size="regular" active={showModal} toggler={() => setShowModal(false)}>
+            <ModalHeader toggler={() => setShowModal(false)}>{movie?.title}</ModalHeader>
 
             <ModalBody>
                 <p className="text-base leading-relaxed text-gray-600 font-light mb-10">

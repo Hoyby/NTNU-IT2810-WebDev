@@ -6,10 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 export function Layout({ children }: { children: ReactNode }) {
     return (
         <div>
-            <link
-                href="https://fonts.googleapis.com/icon?family=Material+Icons"
-                rel="stylesheet"
-            />
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
             <link
                 rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"

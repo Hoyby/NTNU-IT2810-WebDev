@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { SearchAndSortMovies } from '../services/movieService/__generated__/SearchandSortMovies'
-
+import { SearchMoviesPage } from '../services/movieService/__generated__/SearchMoviesPage'
 export interface ISearchResultState {
-    searchPage: SearchAndSortMovies['searchandSortMovie'] // Array of movies
+    searchPage: SearchMoviesPage['searchMoviesPage'] // Array of movies
 }
 
 const initialState: ISearchResultState = {
@@ -13,10 +12,7 @@ const SearchPageSlice = createSlice({
     name: 'searchPage',
     initialState,
     reducers: {
-        setSearchPage(
-            state,
-            action: PayloadAction<SearchAndSortMovies['searchandSortMovie']>,
-        ) {
+        setSearchPage(state, action: PayloadAction<SearchMoviesPage['searchMoviesPage']>) {
             if (action) state.searchPage = action.payload // Set new state with the value of action
         },
     },

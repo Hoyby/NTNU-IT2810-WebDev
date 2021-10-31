@@ -37,9 +37,7 @@ export function NavBar() {
     const notImplemented = (
         <PopoverContainer>
             <PopoverHeader>Whops! That's embarrassing</PopoverHeader>
-            <PopoverBody>
-                This functionality has not yet been implemented.
-            </PopoverBody>
+            <PopoverBody>This functionality has not yet been implemented.</PopoverBody>
         </PopoverContainer>
     )
 
