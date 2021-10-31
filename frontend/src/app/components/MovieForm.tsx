@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import movieService from '../services/movieService'
+import MovieService from '../services/movieService'
 import { CreateMovieVariables } from '../services/movieService/__generated__/CreateMovie'
+
 // material-tailwind is not officially supported by TS - hence the ignores
 /* eslint-disable */
 // @ts-ignore
@@ -20,6 +21,8 @@ import Alert from '@material-tailwind/react/Alert'
 /* eslint-enable */
 
 export default function MovieForm() {
+    const movieService = new MovieService()
+
     const [showCreateMovieForm, setshowCreateMovieForm] = useState(false)
     const [showAlert, setshowAlert] = useState(false)
 
@@ -30,13 +33,12 @@ export default function MovieForm() {
     })
 
     const handleInputChange = (
-        event:
-            | React.ChangeEvent<HTMLInputElement>
-            | React.ChangeEvent<HTMLTextAreaElement>,
+        event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>,
     ) => {
         const data = event.target
 
         if (data.name === 'published') {
+            // Form returns string, query requires int for 'published'.
             const publishedInt = parseInt(data.value)
             setNewMovie((prevState) => ({
                 ...prevState,
@@ -52,14 +54,9 @@ export default function MovieForm() {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        console.warn(newMovie)
 
         movieService
-            .createMovie(
-                newMovie.title,
-                newMovie.description,
-                newMovie.published,
-            )
+            .createMovie(newMovie.title, newMovie.description, newMovie.published)
             .then(() => {
                 setshowCreateMovieForm(false)
                 setshowAlert(true)
@@ -75,34 +72,23 @@ export default function MovieForm() {
             {showAlert ? (
                 <div className="fixed inset-0 z-50 w-1/2 m-auto">
                     <Alert color="green">
-                        <p className="w-full text-center">
-                            Movie successfully created
-                        </p>
+                        <p className="w-full text-center">Movie successfully created</p>
                     </Alert>
                 </div>
             ) : null}
 
-            <Button
-                className="my-10"
-                onClick={() => setshowCreateMovieForm(true)}
-            >
+            <Button className="my-10" onClick={() => setshowCreateMovieForm(true)}>
                 Add new movie
             </Button>
             {showCreateMovieForm ? (
                 <>
                     <div className=" justify-center items-center flex fixed inset-0 z-50">
-                        {/*content*/}
                         <Card className="mx-24 w-full max-w-screen-sm">
-                            {/*header*/}
                             <div className="flex items-start justify-between p-5 border-b border-solid border-gray-200 rounded-t">
-                                <h3 className="text-black text-3xl">
-                                    Add new movie
-                                </h3>
+                                <h3 className="text-black text-3xl">Add new movie</h3>
                                 <button
                                     className="p-1 ml-auto bg-transparent border-0 text-black float-right text-2xl outline-none focus:outline-none"
-                                    onClick={() =>
-                                        setshowCreateMovieForm(false)
-                                    }
+                                    onClick={() => setshowCreateMovieForm(false)}
                                 >
                                     &#10006;
                                 </button>
@@ -111,6 +97,7 @@ export default function MovieForm() {
                             <CardBody>
                                 <form onSubmit={handleSubmit}>
                                     <div className="mt-4 mb-8 px-4">
+                                        <label htmlFor="title" />
                                         <Input
                                             type="text"
                                             id="title"
@@ -122,6 +109,7 @@ export default function MovieForm() {
                                         />
                                     </div>
                                     <div className="mb-8 px-4">
+                                        <label htmlFor="description" />
                                         <Textarea
                                             id="description"
                                             name="description"
@@ -132,6 +120,7 @@ export default function MovieForm() {
                                         />
                                     </div>
                                     <div className="mb-8 px-4">
+                                        <label htmlFor="published" />
                                         <Input
                                             type="number"
                                             min="1800"
@@ -152,15 +141,11 @@ export default function MovieForm() {
                                             color="red"
                                             buttonType="outline"
                                             ripple="light"
-                                            onClick={() =>
-                                                setshowCreateMovieForm(false)
-                                            }
+                                            onClick={() => setshowCreateMovieForm(false)}
                                         >
                                             Cancel
                                         </Button>
-                                        <Button type="submit">
-                                            Create Movie
-                                        </Button>
+                                        <Button type="submit">Create Movie</Button>
                                     </CardFooter>
                                 </form>
                             </CardBody>

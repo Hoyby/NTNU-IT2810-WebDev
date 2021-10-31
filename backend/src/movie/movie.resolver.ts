@@ -2,21 +2,16 @@ import { Args, Mutation, Resolver, Query } from '@nestjs/graphql'
 import { MovieService } from './movie.service'
 import { Movie } from './movie.schema'
 import { MovieDto } from './dto/movie.dto'
-import {
-    FindMovieInput,
-    MovieInput,
-    UpdateMovieInput,
-    SearchSortInput,
-} from './input/movie.input'
+import { FindMovieInput, MovieInput, MoviesPageInput, UpdateMovieInput } from './input/movie.input'
+
+/**
+ * GraphQL resolvers
+ * Handeling generation of schema.gql and API requests.
+ */
 
 @Resolver(() => Movie)
 export class MovieResolver {
     constructor(private movieService: MovieService) {}
-
-    @Query(() => [MovieDto])
-    async getmovies() {
-        return this.movieService.findAll()
-    }
 
     @Mutation(() => MovieDto)
     async createMovie(@Args('input') input: MovieInput) {
@@ -40,17 +35,7 @@ export class MovieResolver {
     }
 
     @Query(() => [MovieDto])
-    async searchMovies(@Args('input') input: string) {
-        return this.movieService.search(input)
-    }
-
-    @Query(() => [MovieDto])
-    async sortMovies(@Args('input') input: number) {
-        return this.movieService.order(input)
-    }
-
-    @Query(() => [MovieDto])
-    async searchandSortMovie(@Args('input') input: SearchSortInput){
-        return this.movieService.searchandorder(input)
+    async searchMoviesPage(@Args('input') input: MoviesPageInput) {
+        return this.movieService.searchPage(input)
     }
 }

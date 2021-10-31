@@ -3,51 +3,28 @@ import { ApolloQueryResult } from '@apollo/client/core/types'
 import { apolloClient } from '../../graphql'
 import {
     CREATE_MOVIE,
-    GET_MOVIES,
     GET_MOVIE_BY_ID,
-    SEARCH_MOVIES,
     UPDATE_MOVIE,
-    SEARCH_AND_SORT_MOVIE,
+    SEARCH_MOVIES_PAGE,
+    DELETE_MOVIE,
 } from './queries'
 import { CreateMovie } from './__generated__/CreateMovie'
 import { DeleteMovie } from './__generated__/DeleteMovie'
 import { FindMovie } from './__generated__/FindMovie'
-import { GetMovies } from './__generated__/GetMovies'
-import { SearchMovies } from './__generated__/SearchMovies'
-//import { SortMovies } from './__generated__/SortMovies'
 import { UpdateMovie } from './__generated__/UpdateMovie'
-import { SearchAndSortMovies } from './__generated__/SearchAndSortMovies'
+import { SearchMoviesPage, SearchMoviesPageVariables } from './__generated__/SearchMoviesPage'
 
-export class MovieService {
-    async getMovies(): Promise<GetMovies['getmovies']> {
-        try {
-            const response: ApolloQueryResult<GetMovies> =
-                await apolloClient.query({
-                    query: GET_MOVIES,
-                })
-
-            if (!response || !response.data)
-                throw new Error('Cannot get movie list!')
-
-            return response.data.getmovies
-        } catch (err) {
-            console.error(err)
-            throw err
-        }
-    }
-
+export default class MovieService {
     async findMovie(_id: string): Promise<FindMovie['findMovie']> {
         try {
             console.warn('ID: ', _id)
 
-            const response: ApolloQueryResult<FindMovie> =
-                await apolloClient.query({
-                    query: GET_MOVIE_BY_ID,
-                    variables: { _id },
-                })
+            const response: ApolloQueryResult<FindMovie> = await apolloClient.query({
+                query: GET_MOVIE_BY_ID,
+                variables: { _id },
+            })
 
-            if (!response || !response.data)
-                throw new Error('Cannot get movie list!')
+            if (!response || !response.data) throw new Error('Cannot get movie list!')
 
             return response.data.findMovie
         } catch (err) {
@@ -62,14 +39,12 @@ export class MovieService {
         published: number,
     ): Promise<CreateMovie['createMovie']> {
         try {
-            const response: FetchResult<CreateMovie> =
-                await apolloClient.mutate({
-                    mutation: CREATE_MOVIE,
-                    variables: { title, description, published },
-                })
+            const response: FetchResult<CreateMovie> = await apolloClient.mutate({
+                mutation: CREATE_MOVIE,
+                variables: { title, description, published },
+            })
 
-            if (!response || !response.data)
-                throw new Error('Cannot get movie list!')
+            if (!response || !response.data) throw new Error('Cannot get movie list!')
 
             return response.data.createMovie
         } catch (err) {
@@ -85,14 +60,12 @@ export class MovieService {
         published: number,
     ): Promise<UpdateMovie['updateMovie']> {
         try {
-            const response: FetchResult<UpdateMovie> =
-                await apolloClient.mutate({
-                    mutation: UPDATE_MOVIE,
-                    variables: { _id, title, description, published },
-                })
+            const response: FetchResult<UpdateMovie> = await apolloClient.mutate({
+                mutation: UPDATE_MOVIE,
+                variables: { _id, title, description, published },
+            })
 
-            if (!response || !response.data)
-                throw new Error('Cannot get movie list!')
+            if (!response || !response.data) throw new Error('Cannot get movie list!')
 
             return response.data.updateMovie
         } catch (err) {
@@ -103,14 +76,12 @@ export class MovieService {
 
     async deleteMovie(_id: string): Promise<DeleteMovie['deleteMovie']> {
         try {
-            const response: FetchResult<DeleteMovie> =
-                await apolloClient.mutate({
-                    mutation: GET_MOVIES,
-                    variables: { _id },
-                })
+            const response: FetchResult<DeleteMovie> = await apolloClient.mutate({
+                mutation: DELETE_MOVIE,
+                variables: { _id },
+            })
 
-            if (!response || !response.data)
-                throw new Error('Cannot get movie list!')
+            if (!response || !response.data) throw new Error('Cannot get movie list!')
 
             return response.data.deleteMovie
         } catch (err) {
@@ -119,65 +90,21 @@ export class MovieService {
         }
     }
 
-    async searchMovie(
-        searchQuery: string,
-    ): Promise<SearchMovies['searchMovies']> {
+    async searchMoviesPage(
+        variables: SearchMoviesPageVariables,
+    ): Promise<SearchMoviesPage['searchMoviesPage']> {
         try {
-            const response: ApolloQueryResult<SearchMovies> =
-                await apolloClient.query({
-                    query: SEARCH_MOVIES,
-                    variables: { searchQuery },
-                })
+            const response: ApolloQueryResult<SearchMoviesPage> = await apolloClient.query({
+                query: SEARCH_MOVIES_PAGE,
+                variables: variables,
+            })
 
-            if (!response || !response.data)
-                throw new Error('Cannot get movie list!')
+            if (!response || !response.data) throw new Error('Cannot get movie page!')
 
-            return response.data.searchMovies
+            return response.data.searchMoviesPage
         } catch (err) {
             console.error(err)
             throw err
         }
     }
-
-    async searchandSortMovie(
-        searchword: string,
-        sortfactor: number,
-    ): Promise<SearchAndSortMovies['searchandSortMovie']> {
-        try {
-            const response: ApolloQueryResult<SearchAndSortMovies> =
-                await apolloClient.query({
-                    query: SEARCH_AND_SORT_MOVIE,
-                    variables: { searchword, sortfactor },
-                })
-
-            if (!response || !response.data)
-                throw new Error('Error in search or sorting!')
-
-            return response.data.searchandSortMovie
-        } catch (err) {
-            console.error(err)
-            throw err
-        }
-    }
-    /*
-    async sortMovie(input: number): Promise<SortMovies['sortMovies']> {
-        try {
-            const response: ApolloQueryResult<SortMovies> =
-                await apolloClient.query({
-                    query: SORT_MOVIES,
-                    variables: { input },
-                })
-
-            if (!response || !response.data)
-                throw new Error('Cannot sort movie!')
-
-            return response.data.sortMovies
-        } catch (err) {
-            console.error(err)
-            throw err
-        }
-    }
-    */
 }
-
-export default new MovieService()

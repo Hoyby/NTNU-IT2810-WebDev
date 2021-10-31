@@ -1,15 +1,12 @@
 import React from 'react'
 import { Layout } from './app/components/Layout'
 import Dashboard from './app/components/Dashboard'
-import "@material-tailwind/react/tailwind.css";
+import '@material-tailwind/react/tailwind.css'
 
 export default function App() {
     return (
         <Layout>
-            <link
-                href="https://fonts.googleapis.com/icon?family=Material+Icons"
-                rel="stylesheet"
-            />
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
             <link
                 rel="stylesheet"
