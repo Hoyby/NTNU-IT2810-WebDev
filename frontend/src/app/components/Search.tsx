@@ -109,7 +109,7 @@ export default function Search() {
 
     const fetchSearchResults = async () => {
         setPage(INITIAL_PAGE)
-        const query_variables = getQueryVariables(page)
+        const query_variables = getQueryVariables(1)
         const final_query = {
             searchQuery: searchInput,
             take: query_variables.take,
@@ -163,6 +163,7 @@ export default function Search() {
     }, [sortValue, filterField, filterCond, filterValue, searchInput])
 
     useEffect(() => {
+        setLastPage(false)
         if (page != INITIAL_PAGE) {
             fetchAndAppendSearchResults().catch((err) => {
                 console.error(err)
