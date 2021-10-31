@@ -31,16 +31,23 @@ const actionDispatch = (dispatch: Dispatch) => ({
 
 export default function Search() {
     const movieService = new MovieService()
-    // let timer: NodeJS.Timeout
 
     const LINKS_PER_PAGE = 6
     const INITIAL_PAGE = 1
 
-    const [filterField, setFilterField] = useState('published')
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [filterCond, setFilterCond] = useState('$lte')
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [filterValue, setFilterValue] = useState(2000)
+    const initialFilters: {
+        filterField: string
+        filterCond: string
+        filterValue: number
+        sortValue: number
+    } = {
+        filterField: 'published',
+        filterCond: '$lte',
+        filterValue: 2000,
+        sortValue: -1,
+    }
+
+    const [filters, setFilters] = useState(initialFilters)
 
     const [lastPage, setLastPage] = useState(false)
 
@@ -51,10 +58,6 @@ export default function Search() {
 
     // Current redux seach page state
     const searchResult = useAppSelector((state) => state.searchPage.searchPage)
-
-    // let timer: NodeJS.Timeout
-
-    const [sortValue, setSortValue] = useState(-1)
 
     const [searchInput, setSearchInput] = useState<string>('')
 
@@ -74,7 +77,10 @@ export default function Search() {
         const skip = (page - 1) * LINKS_PER_PAGE
         const take = LINKS_PER_PAGE
         const orderField = 'published'
-        const orderValue = sortValue
+        const orderValue = filters.sortValue
+        const filterField = filters.filterField
+        const filterCond = filters.filterCond
+        const filterValue = filters.filterValue
         return {
             take,
             skip,
@@ -85,27 +91,6 @@ export default function Search() {
             filterValue,
         }
     }
-
-    // const fetchSearchResults = async (query: string) => {
-    //     setPage(INITIAL_PAGE)
-    //     const query_variables = getQueryVariables(page)
-    //     const final_query = {
-    //         searchQuery: query,
-    //         take: query_variables.take,
-    //         skip: query_variables.skip,
-    //         orderField: query_variables.orderField,
-    //         orderValue: query_variables.orderValue,
-    //         filterField: query_variables.filterField,
-    //         filterCond: query_variables.filterCond,
-    //         filterValue: query_variables.filterValue
-    //     }
-    //     const queryResult = await MovieService.searchMoviesPage(final_query).catch(
-    //         (err: Error) => {
-    //             console.error(err)
-    //         },
-    //     )
-    //     if (queryResult) setSearchResult(queryResult)
-    // }
 
     const fetchSearchResults = async () => {
         setPage(INITIAL_PAGE)
@@ -160,7 +145,13 @@ export default function Search() {
             console.error(err)
             throw err
         })
-    }, [sortValue, filterField, filterCond, filterValue, searchInput])
+    }, [
+        filters.sortValue,
+        filters.filterField,
+        filters.filterCond,
+        filters.filterValue,
+        searchInput,
+    ])
 
     useEffect(() => {
         if (page != INITIAL_PAGE) {
@@ -206,7 +197,7 @@ export default function Search() {
                     <Dropdown
                         color="red"
                         buttonText={
-                            filterField == 'published'
+                            filters.filterField == 'published'
                                 ? 'Date Published'
                                 : 'Date Added'
                         }
@@ -218,7 +209,12 @@ export default function Search() {
                             href="#"
                             color="red"
                             ripple="light"
-                            onClick={() => setFilterField('createdAt')}
+                            onClick={() =>
+                                setFilters({
+                                    ...filters,
+                                    filterField: 'createdAt',
+                                })
+                            }
                         >
                             Date added
                         </DropdownLink>
@@ -227,7 +223,12 @@ export default function Search() {
                             color="red"
                             size="sm"
                             ripple="light"
-                            onClick={() => setFilterField('published')}
+                            onClick={() =>
+                                setFilters({
+                                    ...filters,
+                                    filterField: 'published',
+                                })
+                            }
                         >
                             Date Published
                         </DropdownLink>
@@ -237,7 +238,9 @@ export default function Search() {
                 <div className="pr-5">
                     <Dropdown
                         color="yellow"
-                        buttonText={filterCond == '$lte' ? 'Before' : 'After'}
+                        buttonText={
+                            filters.filterCond == '$lte' ? 'Before' : 'After'
+                        }
                         buttonType="outline"
                         size="sm"
                         ripple="dark"
@@ -246,7 +249,12 @@ export default function Search() {
                             href="#"
                             color="yellow"
                             ripple="light"
-                            onClick={() => setFilterCond('$lte')}
+                            onClick={() =>
+                                setFilters({
+                                    ...filters,
+                                    filterCond: '$lte',
+                                })
+                            }
                         >
                             Before
                         </DropdownLink>
@@ -254,7 +262,12 @@ export default function Search() {
                             href="#"
                             color="yellow"
                             ripple="light"
-                            onClick={() => setFilterCond('$gte')}
+                            onClick={() =>
+                                setFilters({
+                                    ...filters,
+                                    filterCond: '$gte',
+                                })
+                            }
                         >
                             After
                         </DropdownLink>
@@ -267,9 +280,12 @@ export default function Search() {
                         color="yellow"
                         size="sm"
                         outline={true}
-                        placeholder={filterValue}
+                        placeholder={filters.filterValue}
                         onChange={(e: { target: { value: string } }) =>
-                            setFilterValue(parseInt(e.target.value))
+                            setFilters({
+                                ...filters,
+                                filterValue: parseInt(e.target.value),
+                            })
                         }
                     />
                 </div>
@@ -278,11 +294,22 @@ export default function Search() {
                     className="ml-auto my-5"
                     ripple="light"
                     color="red"
-                    onClick={() => {
-                        setSortValue(-sortValue)
-                    }}
+                    onClick={() =>
+                        setFilters({
+                            ...filters,
+                            sortValue: -filters.sortValue,
+                        })
+                    }
                 >
-                    <Icon name="sort" size="sm" /> Sort by date published
+                    <Icon
+                        name={
+                            filters.sortValue === -1
+                                ? 'arrow_upward'
+                                : 'arrow_downward'
+                        }
+                        size="sm"
+                    />{' '}
+                    Sort by date published
                 </Button>
             </div>
 
