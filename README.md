@@ -1,6 +1,6 @@
 # JAMDb - Just Another Movie Database
 
-JAMDb - Just Another Movie Database is an application for storing movie information. The application supports multiple functionalities as searching, adding more movies, sorting and viewing more detailed information.
+JAMDb - Just Another Movie Database is an application for storing movie information. The application supports multiple functionalities such as searching, adding more movies, sorting and viewing more detailed information.
 
 The application consists of three parts - frontend, backend and a database.
 All three must be running for the application to work properly.
@@ -27,7 +27,7 @@ Check out [backend](backend/) and [frontend](frontend/).
     │   ├── src                     # Source directory
     │   │   ├── app                 # App directory
     │   │   │   ├── components      # Custom React Components
-    │   │   │   ├── grapql          # GraphQL config
+    │   │   │   ├── grapQL          # GraphQL config
     │   │   │   ├── services        # API service directory
     │   │   │   ├── slices          # Redux slices
     │   │   │   ├── hooks.ts        # React hooks
@@ -50,7 +50,7 @@ Our [frontend](frontend/) is made using [React](https://reactjs.org/) with TypeS
 
 ## GraphQL / Apollo
 
-Our API related code resides in our [movieService](frontend/src/app/services/movieService) folder. Here you'll find the queries, our APIservice class and some auto-generated files generated from the schemea downloaded from the server. Scripts for downloading and generating these files can be found in [package.json](frontend/package.json) as `schema:download` and `schema:generate-watch` respectively.
+Our API related code resides in our [movieService](frontend/src/app/services/movieService) folder. Here you'll find the queries, our APIservice class and some auto-generated files generated from the schema downloaded from the server. Scripts for downloading and generating these files can be found in [package.json](frontend/package.json) as `schema:download` and `schema:generate-watch` respectively.
 
 ## Tailwind
 
@@ -58,7 +58,7 @@ Our API related code resides in our [movieService](frontend/src/app/services/mov
 We chose to use Tailwind because:
 
 - It eliminates the complexity of traditional CSS styling and makes the code more maintainable.
-- It's much faster to write and makes consistentency in styling easier.
+- It's much faster to write and makes consistency in styling easier.
 
 In addition, we also chose to use [Material Tailwind](https://material-tailwind.com/documentation/quick-start), which is a component library for tailwind containing the most common components like buttons, and forms.
 
@@ -66,7 +66,7 @@ In addition, we also chose to use [Material Tailwind](https://material-tailwind.
 
 ## Redux
 
-[Redux](https://redux.js.org/) is a statemanagement library designed to make statemanagement centralized, more predictable and tracable, and easier to scale.
+[Redux](https://redux.js.org/) is a state management library designed to make state management centralized, more predictable and traceable, and easier to scale.
 
 [Redux Toolkit](https://redux-toolkit.js.org/) is a wrapper around the traditional redux implementation designed to make the initial setup process easier, decrease boilerplate code, and improve readability.
 
@@ -76,28 +76,28 @@ Our app stores the result of a search in state.
 
 # Database
 
-Our database runs MongoDB, a easy to use, document-oriented database. We chose MongoDB because it is well known, and the setup and usage with nest it's well documentated in the Nest docs.
+Our database runs MongoDB, an easy to use, document-oriented database. We chose MongoDB because it is well known, and the setup and usage with nest it's well documented in the Nest docs.
 
 > The Database is currently running on a server that requires an active VPN connection to Norwegian University of Science and Technology.
 
-> A dockerfile and a docker-compose running both the backend server and the database is included in the backend directory, however, running the application on the docker-compose requires a bit of configuring of ports and ip adresses.
+> A dockerfile and a docker-compose running both the backend server and the database is included in the backend directory, however, running the application on the docker-compose requires a bit of configuring of ports and ip addresses.
 
 <br/><br/>
 
 # Backend
 
-Our [Backend](backend/) is built using NestJS, a NodeJS framework build as a wrapper around ExpressJS. We chose nest because it fully embraces TypeScript and provides more structure than express. It also provides an easy to use cli for developing and maintaining code.
+Our [Backend](backend/) is built using NestJS, a NodeJS framework built as a wrapper around ExpressJS. We chose Nest because it fully embraces TypeScript and provides more structure than express. It also provides an easy to use cli for developing and maintaining code.
 
-- For interaction between our backend and the databse we use [MongooseJS](https://mongoosejs.com/).
+- For interaction between our backend and the database we use [MongooseJS](https://mongoosejs.com/).
 - Our API endpoint is made using [Apollo server](https://www.apollographql.com/docs/apollo-server/).
 
 ## MongooseJS (mongoDB)
 
 Interaction between our backend server and our database server is done using [MongooseJS](https://mongoosejs.com/), a Object Modeling Tool built on top of the native [MongoDB driver](https://www.npmjs.com/package/mongodb). NestJS provides mongoose as a module (@NestJS/mongoose), which simplifies the setup process and provides extra"quality of life" functionality like automatic generation of schemas based on decorators. This reduces boilerplate code, speeds up development and increases readability.
 
-## GrapgQL / Apollo
+## GraphQL / Apollo
 
-We use [Apollo](https://www.apollographql.com/docs/apollo-server/) as our [GraphQL](https://graphql.org/) server using built-in nest [module](https://docs.nestjs.com/graphql/quick-start). Our implemtation uses the 'code first approach' where we build our classes and add decorators that automaticly generates a grapgQL schema. This eliminates the proccess of manualy typing schemas, speeding up the development process.
+We use [Apollo](https://www.apollographql.com/docs/apollo-server/) as our [GraphQL](https://graphql.org/) server using built-in nest [module](https://docs.nestjs.com/graphql/quick-start). Our implementation uses the 'code first approach' where we build our classes and add decorators that automatically generates a graphQL schema. This eliminates the process of manually typing schemas, speeding up the development process.
 
 <br/><br/>
 
