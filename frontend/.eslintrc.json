@@ -38,11 +38,11 @@
                     "match": true
                 }
             },
-            // // {
-            // //     "selector": ["variableLike"],
-            // //     "format": ["camelCase"],
-            // //     "leadingUnderscore": "allow"
-            // // },
+            // {
+            //     "selector": ["variableLike"],
+            //     "format": ["camelCase"],
+            //     "leadingUnderscore": "allow"
+            // },
             // {
             //     "selector": "variable",
             //     "format": ["camelCase", "UPPER_CASE"]
