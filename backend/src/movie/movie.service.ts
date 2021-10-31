@@ -31,6 +31,10 @@ export class MovieService {
     }
 
     async searchPage(moviesPageInput: MoviesPageInput): Promise<Movie[]> {
+        let convertedFilterValue
+        if (moviesPageInput.filterField == 'createdAt') {
+            convertedFilterValue = new Date(moviesPageInput.filterValue, 1, 1)
+        }
         return await this.movieModel
             .find({
                 $or: [
@@ -50,7 +54,7 @@ export class MovieService {
             })
             .find({
                 [moviesPageInput.filterField]: {
-                    [moviesPageInput.filterCond]: moviesPageInput.filterValue,
+                    [moviesPageInput.filterCond]: convertedFilterValue || moviesPageInput.filterValue,
                 },
             })
             .sort({ [moviesPageInput.orderField]: moviesPageInput.orderValue })
