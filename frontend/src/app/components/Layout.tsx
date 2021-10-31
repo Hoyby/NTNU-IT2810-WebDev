@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react'
 import { NavBar } from './Navbar'
 import { Footer } from './Footer'
-import { BrowserRouter as Router } from 'react-router-dom'
 
 /**
  * Layout wrapper
@@ -17,15 +16,14 @@ export function Layout({ children }: { children: ReactNode }) {
                 integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
                 crossOrigin="anonymous"
             />
-            <Router>
-                <div className="min-h-screen relative">
-                    <NavBar />
-                    <div className="flex flex-col max-w-screen-xl my-0 mx-auto px-10">
-                        <div className="flex-grow">{children}</div>
-                    </div>
-                    <Footer />
+
+            <div className="min-h-screen relative">
+                <NavBar />
+                <div className="flex flex-col max-w-screen-xl my-0 mx-auto px-10">
+                    <div className="flex-grow">{children}</div>
                 </div>
-            </Router>
+                <Footer />
+            </div>
         </div>
     )
 }

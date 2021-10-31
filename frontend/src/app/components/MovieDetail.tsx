@@ -29,21 +29,16 @@ export default function MovieDetail() {
     const [showModal, setShowModal] = useState(true)
     let queryResult: SetStateAction<FindMovie_findMovie | undefined> | null = null
 
-    useEffect(() => {
-        async function fetchMovie() {
-            queryResult = await movieService.findMovie(movieId)
-            setMovie(queryResult)
-        }
+    async function fetchMovie() {
+        queryResult = await movieService.findMovie(movieId)
+        setMovie(queryResult)
+    }
 
+    useEffect(() => {
         fetchMovie().catch((err: Error) => {
             console.error(err.message)
-            throw err
         })
     }, [])
-
-    useEffect(() => {
-        setShowModal(true)
-    }, [movie, setMovie])
 
     if (!showModal) {
         return <Redirect to="/" />
@@ -51,7 +46,9 @@ export default function MovieDetail() {
 
     return (
         <Modal size="regular" active={showModal} toggler={() => setShowModal(false)}>
-            <ModalHeader toggler={() => setShowModal(false)}>{movie?.title}</ModalHeader>
+            <ModalHeader toggler={() => setShowModal(false)}>
+                {movie?.title || 'Could not get name'}
+            </ModalHeader>
 
             <ModalBody>
                 <p className="text-base leading-relaxed text-gray-600 font-light mb-10">
@@ -67,7 +64,7 @@ export default function MovieDetail() {
                     <Button
                         color="red"
                         buttonType="link"
-                        toggler={() => setShowModal(false)}
+                        onClick={() => setShowModal(false)}
                         ripple="dark"
                     >
                         Close
