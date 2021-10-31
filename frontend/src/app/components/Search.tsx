@@ -39,6 +39,8 @@ export function Search() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [filterValue, setFilterValue] = useState(2000)
 
+    const [lastPage, setLastPage] = useState(false)
+
     const [searchResult, setSearchResult] =
         useState<SearchMovies['searchMovies']>([])
 
@@ -123,38 +125,8 @@ export function Search() {
             },
         )
         if (queryResult) appendSearchResult(queryResult)
+        if (queryResult?.length == 0) setLastPage(true)
     }
-
-    // const fetchAndAppendSearchResults = async (query: string) => {
-    //     const query_variables = getQueryVariables(page)
-    //     const final_query = {
-    //         searchQuery: query,
-    //         take: query_variables.take,
-    //         skip: query_variables.skip,
-    //         orderField: query_variables.orderField,
-    //         orderValue: query_variables.orderValue,
-    //         filterField: query_variables.filterField,
-    //         filterCond: query_variables.filterCond,
-    //         filterValue: query_variables.filterValue
-    //     }
-    //     const queryResult = await MovieService.searchMoviesPage(final_query).catch(
-    //         (err: Error) => {
-    //             console.error(err)
-    //         },
-    //     )
-    //     if (queryResult) appendSearchResult(queryResult)
-    // }
-
-    // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     event.preventDefault()
-    //     clearTimeout(timer)
-    //     timer = setTimeout(() => {
-    //         fetchSearchResults(event.target.value).catch((err) => {
-    //             console.error(err)
-    //             throw err
-    //         })
-    //     }, 700)
-    // }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -162,6 +134,7 @@ export function Search() {
 
     useEffect(() => {
         setPage(INITIAL_PAGE)
+        setLastPage(false)
         fetchSearchResults().catch((err) => {
             console.error(err)
             throw err
@@ -243,7 +216,7 @@ export function Search() {
                     <Dropdown
                         color="yellow"
                         placement="bottom-start"
-                        buttonText={filterCond=='$lte' ? '<' : '>'}
+                        buttonText={filterCond=='$lte' ? 'before' : 'after'}
                         buttonType="outline"
                         size="regular"
                         rounded={false}
@@ -256,7 +229,7 @@ export function Search() {
                             ripple="light"
                             onClick={() => setFilterCond('$lte')}
                         >
-                            {'<'}
+                            {'before'}
                         </DropdownLink>
                         <DropdownLink
                             href="#"
@@ -264,7 +237,7 @@ export function Search() {
                             ripple="light"
                             onClick={() => setFilterCond('$gte')}
                         >
-                            {'>'}
+                            {'after'}
                         </DropdownLink>
                     </Dropdown>
                 </div>
@@ -305,14 +278,17 @@ export function Search() {
             </div>
 
             <div className='pb-10'>
-                <Button
-                    size="sm"
-                    className="ml-auto my-5"
-                    ripple="light"
-                    color="red"
-                    onClick={() => loadNextPage()}>
-                    Load more
-                </Button>
+                {
+                    !lastPage &&
+                    <Button
+                        size="sm"
+                        className="ml-auto my-5"
+                        ripple="light"
+                        color="red"
+                        onClick={() => loadNextPage()}>
+                        Load more
+                    </Button>
+                }
             </div>
         </>
     )
