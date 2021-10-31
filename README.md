@@ -97,6 +97,8 @@ Interaction between our backend server and our database server is done using [Mo
 
 We use [Apollo](https://www.apollographql.com/docs/apollo-server/) as our [GraphQL](https://graphql.org/) server using built-in nest [module](https://docs.nestjs.com/graphql/quick-start). Our implementation uses the 'code first approach' where we build our classes and add decorators that automatically generates a graphQL schema. This eliminates the process of manually typing schemas, speeding up the development process.
 
+> API documentation can be found on http://localhost:4000/graphql
+
 <br/><br/>
 
 # Testing

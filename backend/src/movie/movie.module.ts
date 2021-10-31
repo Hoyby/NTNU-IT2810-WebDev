@@ -9,9 +9,7 @@ import { MovieService } from './movie.service'
  */
 
 @Module({
-    imports: [
-        MongooseModule.forFeature([{ name: Movie.name, schema: MovieSchema }]),
-    ],
+    imports: [MongooseModule.forFeature([{ name: Movie.name, schema: MovieSchema }])],
     providers: [MovieResolver, MovieService],
 })
 export class MovieModule {}

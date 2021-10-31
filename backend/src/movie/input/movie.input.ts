@@ -13,6 +13,33 @@ export class MovieInput {
 }
 
 @InputType()
+export class MoviesPageInput {
+    @Field()
+    readonly searchQuery: string
+
+    @Field()
+    readonly take: number
+
+    @Field()
+    readonly skip: number
+
+    @Field()
+    readonly orderField: string
+
+    @Field()
+    readonly orderValue: number
+
+    @Field()
+    readonly filterField: string
+
+    @Field()
+    readonly filterCond: string
+
+    @Field()
+    readonly filterValue: number
+}
+
+@InputType()
 export class UpdateMovieInput {
     @Field()
     readonly _id: string
@@ -31,13 +58,4 @@ export class UpdateMovieInput {
 export class FindMovieInput {
     @Field()
     readonly _id: string
-}
-
-@InputType()
-export class SearchSortInput{
-    @Field()
-    readonly searchword: string
-    
-    @Field((type) => Int, { nullable: false })
-    readonly sortfactor: number
 }
