@@ -1,5 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import searchPageReducer from './slices/searchPageSlice'
+
+/**
+ * Redux store
+ */
+
 export const store = configureStore({
     reducer: {
         searchPage: searchPageReducer,

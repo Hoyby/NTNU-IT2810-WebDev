@@ -4,6 +4,11 @@ import { Movie } from './movie.schema'
 import { MovieDto } from './dto/movie.dto'
 import { FindMovieInput, MovieInput, MoviesPageInput, UpdateMovieInput } from './input/movie.input'
 
+/**
+ * GraphQL resolvers
+ * Handeling generation of schema.gql and API requests.
+ */
+
 @Resolver(() => Movie)
 export class MovieResolver {
     constructor(private movieService: MovieService) {}

@@ -16,13 +16,13 @@ import CardFooter from '@material-tailwind/react/CardFooter'
 import H6 from '@material-tailwind/react/Heading6'
 /* eslint-enable */
 
-interface IMovie {
+interface IMovieCard {
     _id: string
     title: string
     description: string
 }
 
-export function MovieCard({ title, description, _id }: IMovie) {
+export function MovieCard({ title, description, _id }: IMovieCard) {
     const shortDesc = () => {
         /**
          * Returns a short version of the description
