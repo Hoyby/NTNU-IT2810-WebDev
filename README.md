@@ -23,6 +23,7 @@ Check out [backend](backend/) and [frontend](frontend/).
     |   └── ...
     |
     ├── frontend
+    │   ├── cypress                 # Cypress configuration and tests
     │   ├── public                  # Public directory
     │   ├── src                     # Source directory
     │   │   ├── app                 # App directory
@@ -34,6 +35,10 @@ Check out [backend](backend/) and [frontend](frontend/).
     │   │   │   └── store.ts        # Redux store config
     │   │   │
     │   │   ├── styles              # Style directory
+    │   │   ├── tests               # Test directory for Jest unit tests
+    |   |   |    ├── components     # Unit test for components
+    |   |   |    └── services       # Unit test for services
+    |   |   |
     │   │   ├── App.tsx             # Root component
     │   │   └── index.tsx           # Entry point for react
     |   |
@@ -107,8 +112,8 @@ Testing has been done mostly on the frontend, seeing as this was what was requir
 
 The tests comprise of:
 
-- **Unit tests (with Jest)**
-- **End to end tests (with Cypress)**
+- **Unit tests, with ![Jest](https://jestjs.io/docs/tutorial-react)**
+- **End to end tests, with ![Cypress](https://www.cypress.io/)**
 
 ## React - Jest
 
