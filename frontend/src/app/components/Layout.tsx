@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { NavBar } from './Navbar'
+import Navbar from './Navbar'
 import { Footer } from './Footer'
 import { BrowserRouter as Router } from 'react-router-dom'
 
@@ -21,7 +21,7 @@ export function Layout({ children }: { children: ReactNode }) {
             />
             <Router>
                 <div className="min-h-screen relative">
-                    <NavBar />
+                    <Navbar />
                     <div className="flex flex-col max-w-screen-xl my-0 mx-auto px-10">
                         <div className="flex-grow">{children}</div>
                     </div>

@@ -29,7 +29,7 @@ import PopoverHeader from '@material-tailwind/react/PopoverHeader'
 import PopoverBody from '@material-tailwind/react/PopoverBody'
 /* eslint-enable */
 
-export function NavBar() {
+export default function NavBar() {
     const [openMenu, setOpenMenu] = useState(false)
     const profileRef = useRef()
     const settingsRef = useRef()
@@ -61,14 +61,11 @@ export function NavBar() {
                             color="white"
                             onClick={() => setOpenMenu(!openMenu)}
                             ripple="light"
+                            id="navToggle"
                         />
                     </NavbarWrapper>
                     <NavbarCollapse open={openMenu}>
                         <Nav>
-                            <NavItem active="light" ripple="light">
-                                <Icon name="language" size="xl" />
-                                Discover
-                            </NavItem>
                             <Button
                                 ref={profileRef}
                                 color=""
