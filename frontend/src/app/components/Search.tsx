@@ -20,8 +20,6 @@ import Input from '@material-tailwind/react/Input'
 // @ts-ignore
 import Dropdown from '@material-tailwind/react/Dropdown'
 // @ts-ignore
-import DropdownItem from '@material-tailwind/react/DropdownItem'
-// @ts-ignore
 import DropdownLink from '@material-tailwind/react/DropdownLink'
 /* eslint-enable */
 
@@ -31,7 +29,8 @@ const actionDispatch = (dispatch: Dispatch) => ({
         dispatch(setSearchPage(page)),
 })
 
-export function Search() {
+export default function Search() {
+    const movieService = new MovieService()
     // let timer: NodeJS.Timeout
 
     const LINKS_PER_PAGE = 6
@@ -121,11 +120,11 @@ export function Search() {
             filterCond: query_variables.filterCond,
             filterValue: query_variables.filterValue,
         }
-        const queryResult = await MovieService.searchMoviesPage(
-            final_query,
-        ).catch((err: Error) => {
-            console.error(err)
-        })
+        const queryResult = await movieService
+            .searchMoviesPage(final_query)
+            .catch((err: Error) => {
+                console.error(err)
+            })
         if (queryResult) setSearchResult(queryResult)
     }
 
@@ -141,11 +140,11 @@ export function Search() {
             filterCond: query_variables.filterCond,
             filterValue: query_variables.filterValue,
         }
-        const queryResult = await MovieService.searchMoviesPage(
-            final_query,
-        ).catch((err: Error) => {
-            console.error(err)
-        })
+        const queryResult = await movieService
+            .searchMoviesPage(final_query)
+            .catch((err: Error) => {
+                console.error(err)
+            })
         if (queryResult) appendSearchResult(queryResult)
         if (queryResult?.length == 0) setLastPage(true)
     }
@@ -314,5 +313,3 @@ export function Search() {
         </div>
     )
 }
-
-export default Search

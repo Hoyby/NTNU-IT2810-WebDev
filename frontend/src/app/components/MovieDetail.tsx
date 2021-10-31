@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Redirect, useParams } from 'react-router-dom'
-import { MovieService } from '../services/movieService'
+import MovieService from '../services/movieService'
 import { FindMovie_findMovie } from '../services/movieService/__generated__/FindMovie'
 
 // material-tailwind is not officially supported by TS - hence the ignores
@@ -17,12 +17,14 @@ import ModalFooter from '@material-tailwind/react/ModalFooter'
 import Button from '@material-tailwind/react/Button'
 /* eslint-enable */
 
+/**
+ * Provides information about a spesific movie
+ */
+
 export default function MovieDetail() {
-    /**
-     * Provides information about a spesific movie
-     */
-    const { id } = useParams<{ id: string }>()
     const movieService = new MovieService()
+
+    const { id } = useParams<{ id: string }>()
     const [movie, setMovie] = useState<FindMovie_findMovie>()
     const [showModal, setShowModal] = React.useState(true)
     let queryResult: React.SetStateAction<

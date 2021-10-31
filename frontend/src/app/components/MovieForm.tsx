@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import movieService from '../services/movieService'
+import MovieService from '../services/movieService'
 import { CreateMovieVariables } from '../services/movieService/__generated__/CreateMovie'
 // material-tailwind is not officially supported by TS - hence the ignores
 /* eslint-disable */
@@ -20,6 +20,8 @@ import Alert from '@material-tailwind/react/Alert'
 /* eslint-enable */
 
 export default function MovieForm() {
+    const movieService = new MovieService()
+
     const [showCreateMovieForm, setshowCreateMovieForm] = useState(false)
     const [showAlert, setshowAlert] = useState(false)
 

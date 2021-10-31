@@ -24,7 +24,7 @@ import {
 } from './__generated__/SearchMoviesPage'
 import { SearchAndSortMovies } from './__generated__/SearchandSortMovies'
 
-export class MovieService {
+export default class MovieService {
     async getMovies(): Promise<GetMovies['getmovies']> {
         try {
             const response: ApolloQueryResult<GetMovies> =
@@ -225,5 +225,3 @@ export class MovieService {
         }
     }
 }
-
-export default new MovieService()
