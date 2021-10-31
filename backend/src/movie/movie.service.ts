@@ -59,7 +59,8 @@ export class MovieService {
             })
             .find({
                 [moviesPageInput.filterField]: {
-                    [moviesPageInput.filterCond]: convertedFilterValue || moviesPageInput.filterValue,
+                    [moviesPageInput.filterCond]:
+                        convertedFilterValue || moviesPageInput.filterValue,
                 },
             })
             .sort({ [moviesPageInput.orderField]: moviesPageInput.orderValue })
