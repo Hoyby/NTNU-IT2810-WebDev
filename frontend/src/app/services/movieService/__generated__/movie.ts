@@ -8,17 +8,17 @@
 // ====================================================
 
 export interface movie_searchandSortMovie {
-    __typename: 'MovieDto'
-    _id: string
-    title: string
-    description: string
+  __typename: "MovieDto";
+  _id: string;
+  title: string;
+  description: string;
 }
 
-export interface SearchAndSortMovies {
-    searchandSortMovie: movie_searchandSortMovie[]
+export interface movie {
+  searchandSortMovie: movie_searchandSortMovie[];
 }
 
 export interface movieVariables {
-    searchword: string
-    sortfactor: number
+  searchword: string;
+  sortfactor: number;
 }

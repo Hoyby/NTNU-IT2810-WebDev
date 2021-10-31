@@ -3,7 +3,6 @@ import MovieService from '../services/movieService'
 import { MovieCard } from './MovieCard'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { Dispatch } from '@reduxjs/toolkit'
-import { SearchAndSortMovies } from '../services/movieService/__generated__/SearchAndSortMovies'
 import { setSearchPage } from '../slices/searchPageSlice'
 // material-tailwind is not officially supported by TS - hence the ignores
 /* eslint-disable */
@@ -25,6 +24,7 @@ import DropdownLink from '@material-tailwind/react/DropdownLink'
 import H6 from '@material-tailwind/react/Heading6'
 import { useHistory } from 'react-router-dom'
 import { SearchMoviesPage_searchMoviesPage } from '../services/movieService/__generated__/SearchMoviesPage'
+import { SearchAndSortMovies } from '../services/movieService/__generated__/SearchandSortMovies'
 
 /* eslint-enable */
 
@@ -56,7 +56,7 @@ export function Search() {
     // Current redux seach page state
     const searchResult = useAppSelector((state) => state.searchPage.searchPage)
 
-    let timer: NodeJS.Timeout
+    // let timer: NodeJS.Timeout
 
     const [sortValue, setSortValue] = useState(-1)
 

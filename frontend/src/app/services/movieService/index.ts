@@ -7,7 +7,9 @@ import {
     GET_MOVIE_BY_ID,
     SEARCH_MOVIES,
     SORT_MOVIES,
-    UPDATE_MOVIE, SEARCH_MOVIES_PAGE, SEARCH_AND_SORT_MOVIE,
+    UPDATE_MOVIE,
+    SEARCH_MOVIES_PAGE,
+    SEARCH_AND_SORT_MOVIE,
 } from './queries'
 import { CreateMovie } from './__generated__/CreateMovie'
 import { DeleteMovie } from './__generated__/DeleteMovie'
@@ -16,7 +18,10 @@ import { GetMovies } from './__generated__/GetMovies'
 import { SearchMovies } from './__generated__/SearchMovies'
 import { SortMovies } from './__generated__/SortMovies'
 import { UpdateMovie } from './__generated__/UpdateMovie'
-import {SearchMoviesPage, SearchMoviesPageVariables} from "./__generated__/SearchMoviesPage";
+import {
+    SearchMoviesPage,
+    SearchMoviesPageVariables,
+} from './__generated__/SearchMoviesPage'
 import { SearchAndSortMovies } from './__generated__/SearchandSortMovies'
 
 export class MovieService {
@@ -36,7 +41,6 @@ export class MovieService {
             throw err
         }
     }
-
 
     // async getMoviesPage (
     //     variables: GetMoviesPageVariables
@@ -78,8 +82,6 @@ export class MovieService {
             throw err
         }
     }
-
-
 
     async createMovie(
         title: string,
@@ -164,12 +166,10 @@ export class MovieService {
         }
     }
 
-    async searchMoviesPage (
-        variables: SearchMoviesPageVariables
+    async searchMoviesPage(
+        variables: SearchMoviesPageVariables,
     ): Promise<SearchMoviesPage['searchMoviesPage']> {
-
         try {
-
             const response: ApolloQueryResult<SearchMoviesPage> =
                 await apolloClient.query({
                     query: SEARCH_MOVIES_PAGE,
@@ -224,8 +224,6 @@ export class MovieService {
             throw err
         }
     }
-
-
 }
 
 export default new MovieService()

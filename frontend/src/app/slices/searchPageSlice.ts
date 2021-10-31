@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { SearchAndSortMovies } from '../services/movieService/__generated__/SearchAndSortMovies'
+import { SearchAndSortMovies } from '../services/movieService/__generated__/SearchandSortMovies'
 
 export interface ISearchResultState {
     searchPage: SearchAndSortMovies['searchandSortMovie'] // Array of movies
