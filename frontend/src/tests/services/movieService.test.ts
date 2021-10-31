@@ -1,4 +1,4 @@
-import { MovieService } from '../../app/services/movieService'
+import MovieService from '../../app/services/movieService'
 
 describe('Movie services', () => {
     const movieService = new MovieService()
@@ -19,19 +19,13 @@ describe('Movie services', () => {
     })
 
     it('Create movie and update movie', async () => {
-        const response = await movieService.createMovie(
-            title,
-            description,
-            published,
-        )
+        const response = await movieService.createMovie(title, description, published)
         expect(response).toMatchSnapshot()
 
         const movieResult = await movieService.searchMovie(response.title)
         const movie = movieResult[0]
         expect(response).toBeInstanceOf(movie)
 
-        expect(
-            movieService.updateMovie(movie._id, title, description, published),
-        ).toMatchSnapshot()
+        expect(movieService.updateMovie(movie._id, title, description, published)).toMatchSnapshot()
     })
 })

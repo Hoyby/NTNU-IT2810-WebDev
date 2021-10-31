@@ -6,7 +6,7 @@ describe('Actions', () => {
     beforeEach(() => {
         cy.visit('http://localhost:3000')
         cy.get('button:contains(Add new movie)').as('addMovieButton')
-        cy.get('button:contains(Sort by date added)').as('sortButton')
+        cy.get('button:contains(Sort by year published)').as('sortButton')
     })
 
     it('Open movie form, and close it', () => {
@@ -28,9 +28,7 @@ describe('Actions', () => {
 
     it('Sort by date added', () => {
         const divNames: string[] = []
-        cy.get('div').each((element) =>
-            divNames.push(element.find('h6').text()),
-        )
+        cy.get('div').each((element) => divNames.push(element.find('h6').text()))
         //cy.wrap(strings).should('equal', strings.sort())
 
         cy.get('@sortButton').click()
