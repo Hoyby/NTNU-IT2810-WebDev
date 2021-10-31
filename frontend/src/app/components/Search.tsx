@@ -21,10 +21,15 @@ import DropdownLink from "@material-tailwind/react/DropdownLink"
 // @ts-ignore
 import H6 from "@material-tailwind/react/Heading6"
 import {useHistory} from "react-router-dom";
+import { SearchMoviesPage_searchMoviesPage } from '../services/movieService/__generated__/SearchMoviesPage'
+
 /* eslint-enable */
 
 export function Search() {
-    let timer: NodeJS.Timeout
+    // let timer: NodeJS.Timeout
+
+    const LINKS_PER_PAGE = 6;
+    const INITIAL_PAGE = 1;
 
     const [sortValue, setSortValue] = useState(-1)
 
@@ -35,22 +40,22 @@ export function Search() {
     const [filterValue, setFilterValue] = useState(2000)
 
     const [searchResult, setSearchResult] =
-        useState<SearchMovies['searchMovies']>()
+        useState<SearchMovies['searchMovies']>([])
 
-    const [searchInput] = useState<string>('')
+    const [searchInput, setSearchInput] = useState<string>('')
 
-    const LINKS_PER_PAGE = 6;
-    const history = useHistory();
+    const [page, setPage] = useState(INITIAL_PAGE)
 
-    const pageIndexParams = history.location.pathname.split(
-        '/'
-    );
-    const page = parseInt(
-        pageIndexParams[pageIndexParams.length - 1]
-    );
+    const loadNextPage = () => {
+        setPage(page + 1)
+    }
+
+    const appendSearchResult = (queryResult: SearchMoviesPage_searchMoviesPage[]) => {
+        setSearchResult(searchResult?.concat(queryResult))
+    }
+
 
     const getQueryVariables = (page: number) => {
-        page = 1
         const skip = (page - 1) * LINKS_PER_PAGE;
         const take = LINKS_PER_PAGE;
         const orderField = 'published';
@@ -58,10 +63,32 @@ export function Search() {
         return { take, skip, orderField, orderValue, filterField, filterCond, filterValue};
     };
 
-    const fetchSearchResults = async (query: string) => {
+    // const fetchSearchResults = async (query: string) => {
+    //     setPage(INITIAL_PAGE)
+    //     const query_variables = getQueryVariables(page)
+    //     const final_query = {
+    //         searchQuery: query,
+    //         take: query_variables.take,
+    //         skip: query_variables.skip,
+    //         orderField: query_variables.orderField,
+    //         orderValue: query_variables.orderValue,
+    //         filterField: query_variables.filterField,
+    //         filterCond: query_variables.filterCond,
+    //         filterValue: query_variables.filterValue
+    //     }
+    //     const queryResult = await MovieService.searchMoviesPage(final_query).catch(
+    //         (err: Error) => {
+    //             console.error(err)
+    //         },
+    //     )
+    //     if (queryResult) setSearchResult(queryResult)
+    // }
+
+    const fetchSearchResults = async () => {
+        setPage(INITIAL_PAGE)
         const query_variables = getQueryVariables(page)
         const final_query = {
-            searchQuery: query,
+            searchQuery: searchInput,
             take: query_variables.take,
             skip: query_variables.skip,
             orderField: query_variables.orderField,
@@ -78,39 +105,87 @@ export function Search() {
         if (queryResult) setSearchResult(queryResult)
     }
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault()
-        clearTimeout(timer)
-        timer = setTimeout(() => {
-            fetchSearchResults(event.target.value).catch((err) => {
+    const fetchAndAppendSearchResults = async () => {
+        const query_variables = getQueryVariables(page)
+        const final_query = {
+            searchQuery: searchInput,
+            take: query_variables.take,
+            skip: query_variables.skip,
+            orderField: query_variables.orderField,
+            orderValue: query_variables.orderValue,
+            filterField: query_variables.filterField,
+            filterCond: query_variables.filterCond,
+            filterValue: query_variables.filterValue
+        }
+        const queryResult = await MovieService.searchMoviesPage(final_query).catch(
+            (err: Error) => {
                 console.error(err)
-                throw err
-            })
-        }, 700)
+            },
+        )
+        if (queryResult) appendSearchResult(queryResult)
     }
+
+    // const fetchAndAppendSearchResults = async (query: string) => {
+    //     const query_variables = getQueryVariables(page)
+    //     const final_query = {
+    //         searchQuery: query,
+    //         take: query_variables.take,
+    //         skip: query_variables.skip,
+    //         orderField: query_variables.orderField,
+    //         orderValue: query_variables.orderValue,
+    //         filterField: query_variables.filterField,
+    //         filterCond: query_variables.filterCond,
+    //         filterValue: query_variables.filterValue
+    //     }
+    //     const queryResult = await MovieService.searchMoviesPage(final_query).catch(
+    //         (err: Error) => {
+    //             console.error(err)
+    //         },
+    //     )
+    //     if (queryResult) appendSearchResult(queryResult)
+    // }
+
+    // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     event.preventDefault()
+    //     clearTimeout(timer)
+    //     timer = setTimeout(() => {
+    //         fetchSearchResults(event.target.value).catch((err) => {
+    //             console.error(err)
+    //             throw err
+    //         })
+    //     }, 700)
+    // }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
     }
 
     useEffect(() => {
-        fetchSearchResults(searchInput).catch((err) => {
+        setPage(INITIAL_PAGE)
+        fetchSearchResults().catch((err) => {
             console.error(err)
             throw err
         })
-    }, [sortValue, filterField, filterCond, filterValue])
+    }, [sortValue, filterField, filterCond, filterValue, searchInput])
+
+    useEffect(() => {
+        if (page != INITIAL_PAGE) {
+            fetchAndAppendSearchResults().catch((err) => {
+                console.error(err)
+                throw err
+            })
+        }
+    }, [page])
 
     useEffect(() => {
         async function search() {
-            await fetchSearchResults('')
+            await fetchSearchResults()
         }
         search().catch((err: Error) => {
             console.error(err.message)
             throw err
         })
     }, []);
-
-
 
     return (
         <>
@@ -126,10 +201,12 @@ export function Search() {
                     iconName="search"
                     outline={true}
                     placeholder="Search Movies"
-                    onChange={handleInputChange}
+                    onChange={(e: { target: { value: string } }) => setSearchInput(e.target.value)}
                 />
             </form>
-
+            {
+                /*onChange={handleInputChange}*/
+            }
             <H6 color='white'>Filter</H6>
             <div className='relative flex items-center justify-between'>
                 <div className='pr-5'>
@@ -163,34 +240,34 @@ export function Search() {
                 </div>
 
                 <div className='pr-5'>
-            <Dropdown
-                color="yellow"
-                placement="bottom-start"
-                buttonText={filterCond=='$lte' ? '<' : '>'}
-                buttonType="outline"
-                size="regular"
-                rounded={false}
-                block={false}
-                ripple="dark"
-            >
-                <DropdownLink
-                    href="#"
-                    color='yellow'
-                    ripple="light"
-                    onClick={() => setFilterCond('$lte')}
-                >
-                    {'<'}
-                </DropdownLink>
-                <DropdownLink
-                    href="#"
-                    color='yellow'
-                    ripple="light"
-                    onClick={() => setFilterCond('$gte')}
-                >
-                    {'>'}
-                </DropdownLink>
-            </Dropdown>
-                    </div>
+                    <Dropdown
+                        color="yellow"
+                        placement="bottom-start"
+                        buttonText={filterCond=='$lte' ? '<' : '>'}
+                        buttonType="outline"
+                        size="regular"
+                        rounded={false}
+                        block={false}
+                        ripple="dark"
+                    >
+                        <DropdownLink
+                            href="#"
+                            color='yellow'
+                            ripple="light"
+                            onClick={() => setFilterCond('$lte')}
+                        >
+                            {'<'}
+                        </DropdownLink>
+                        <DropdownLink
+                            href="#"
+                            color='yellow'
+                            ripple="light"
+                            onClick={() => setFilterCond('$gte')}
+                        >
+                            {'>'}
+                        </DropdownLink>
+                    </Dropdown>
+                </div>
 
                 <div className='pr-10'>
 
@@ -203,21 +280,18 @@ export function Search() {
                         onChange={(e: { target: { value: string } }) => setFilterValue(parseInt(e.target.value))}
                     />
                 </div>
-            <Button
-                size="sm"
-                className="ml-auto my-5"
-                ripple="light"
-                color="red"
-                onClick={() => {
-                    setSortValue(-sortValue)
-                }}
-            >
-                <Icon name="sort" size="sm" /> Sort by date added
-            </Button>
-
+                <Button
+                    size="sm"
+                    className="ml-auto my-5"
+                    ripple="light"
+                    color="red"
+                    onClick={() => {
+                        setSortValue(-sortValue)
+                    }}
+                >
+                    <Icon name="sort" size="sm" /> Sort by date published
+                </Button>
             </div>
-
-
 
             <div className="max-w-screen-xl w-full h-full flex justify-between flex-wrap gap-8 mb-10">
                 {searchResult &&
@@ -228,6 +302,17 @@ export function Search() {
                             _id={movie?._id}
                         />
                     ))}
+            </div>
+
+            <div className='pb-10'>
+                <Button
+                    size="sm"
+                    className="ml-auto my-5"
+                    ripple="light"
+                    color="red"
+                    onClick={() => loadNextPage()}>
+                    Load more
+                </Button>
             </div>
         </>
     )
