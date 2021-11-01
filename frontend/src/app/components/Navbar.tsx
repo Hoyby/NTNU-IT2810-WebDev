@@ -54,24 +54,20 @@ export default function NavBar() {
                                 Just Another Movie Database
                             </p>
                         </div>
-                        <NavbarToggler
-                            color="white"
-                            onClick={() => setOpenMenu(!openMenu)}
-                            ripple="light"
+                        <button
                             id="navToggle"
-                        />
+                            className="cursor-pointer text-xl leading-none py-1 px-1.5 rounded-full border border-solid border-transparent bg-transparent block lg:hidden outline-none focus:outline-none hover:bg-white hover:bg-opacity-20 transition-all duration-300"
+                            type="button"
+                            onClick={() => setOpenMenu(!openMenu)}
+                        >
+                            <span className="block relative w-6 h-px rounded-sm bg-white"></span>
+                            <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+                            <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+                        </button>
                     </NavbarWrapper>
                     <NavbarCollapse open={openMenu}>
-                        <Nav>
-                            <Button
-                                ref={profileRef}
-                                color=""
-                                className="px-5 py-4 flex gap-1 text-xs uppercase font-medium leading text-white rounded-lg justify-start"
-                                ripple="light"
-                            />
-                        </Nav>
                         <NavbarCollapse open={openMenu}>
-                            <Nav>
+                            <div className="flex ml-auto flex-col md:flex-row items-center justify-center">
                                 <NavItem active="light" ripple="light">
                                     <Icon name="language" size="xl" />
                                     Discover
@@ -100,7 +96,7 @@ export default function NavBar() {
                                 <Popover placement="bottom" ref={settingsRef}>
                                     {notImplemented}
                                 </Popover>
-                            </Nav>
+                            </div>
                         </NavbarCollapse>
                     </NavbarCollapse>
                 </NavbarContainer>

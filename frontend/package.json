@@ -1,5 +1,6 @@
 {
     "name": "it2810-proj-3-frontend",
+    "homepage": "./",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
