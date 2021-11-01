@@ -66,38 +66,41 @@ export default function NavBar() {
                         </button>
                     </NavbarWrapper>
                     <NavbarCollapse open={openMenu}>
-                        <NavbarCollapse open={openMenu}>
-                            <div className="flex ml-auto flex-col md:flex-row items-center justify-center">
-                                <NavItem active="light" ripple="light">
-                                    <Icon name="language" size="xl" />
-                                    Discover
-                                </NavItem>
-                                <Button
-                                    ref={profileRef}
-                                    color=""
-                                    className="px-5 py-4 flex gap-1 text-xs uppercase font-medium leading text-white rounded-lg justify-start"
-                                    ripple="light"
-                                >
-                                    <Icon name="account_circle" size="xl" />
-                                    Profile
-                                </Button>
-                                <Button
-                                    ref={settingsRef}
-                                    color=""
-                                    className="px-5 py-4 flex gap-1 text-xs uppercase font-medium leading text-white rounded-lg justify-start"
-                                    ripple="light"
-                                >
-                                    <Icon name="settings" size="xl" />
-                                    Settings
-                                </Button>
-                                <Popover placement="bottom" ref={profileRef}>
-                                    {notImplemented}
-                                </Popover>
-                                <Popover placement="bottom" ref={settingsRef}>
-                                    {notImplemented}
-                                </Popover>
-                            </div>
-                        </NavbarCollapse>
+                        <div className="flex ml-auto flex-col md:flex-row items-center md:justify-center">
+                            <Button
+                                ref={settingsRef}
+                                color=""
+                                className="px-5 py-4 flex gap-1 text-xs uppercase font-medium leading text-white rounded-lg justify-start bg-gray-700"
+                                ripple="light"
+                            >
+                                <Icon name="language" size="xl" />
+                                Discover
+                            </Button>
+                            <Button
+                                ref={profileRef}
+                                color=""
+                                className="px-5 py-4 flex gap-1 text-xs uppercase font-medium leading text-white rounded-lg justify-start"
+                                ripple="light"
+                            >
+                                <Icon name="account_circle" size="xl" />
+                                Profile
+                            </Button>
+                            <Button
+                                ref={settingsRef}
+                                color=""
+                                className="px-5 py-4 flex gap-1 text-xs uppercase font-medium leading text-white rounded-lg justify-start"
+                                ripple="light"
+                            >
+                                <Icon name="settings" size="xl" />
+                                Settings
+                            </Button>
+                            <Popover placement="bottom" ref={profileRef}>
+                                {notImplemented}
+                            </Popover>
+                            <Popover placement="bottom" ref={settingsRef}>
+                                {notImplemented}
+                            </Popover>
+                        </div>
                     </NavbarCollapse>
                 </NavbarContainer>
             </nav>
