@@ -46,7 +46,7 @@ export default function NavBar() {
                 className="flex justify-start items-start shadow-lg md:flex-shrink py-1"
                 data-testid="nav"
             >
-                <NavbarContainer>
+                <div className='container max-w-7xl px-4 mx-auto flex flex-wrap lg:flex-nowrap items-center justify-between undefined'>
                     <NavbarWrapper>
                         <div className="text-sm font-bold leading-relaxed inline-block mr-4 whitespace-no-wrap text-white">
                             <h1 className="text-red-600 text-2xl">JAMDb</h1>
@@ -66,7 +66,7 @@ export default function NavBar() {
                         </button>
                     </NavbarWrapper>
                     <NavbarCollapse open={openMenu}>
-                        <div className="flex ml-auto flex-col md:flex-row items-center md:justify-center">
+                        <div className="flex ml-auto flex-col lg:flex-row items-center md:justify-center">
                             <Button
                                 ref={settingsRef}
                                 color=""
@@ -102,7 +102,7 @@ export default function NavBar() {
                             </Popover>
                         </div>
                     </NavbarCollapse>
-                </NavbarContainer>
+                </div>
             </nav>
         </>
     )
