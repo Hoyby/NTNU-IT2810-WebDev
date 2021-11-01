@@ -5,7 +5,7 @@ JAMDb - Just Another Movie Database is an application for storing movie informat
 The application consists of three parts - frontend, backend and a database.
 All three must be running for the application to work properly.
 
-TODO: insert image
+![image](JAMDb.jpg)
 
 ## Running the application:
 
