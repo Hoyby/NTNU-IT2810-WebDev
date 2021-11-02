@@ -1,0 +1,334 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`APILoader test Test closed issues 1`] = `
+Array [
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://secure.gravatar.com/avatar/e5e39c38cd6b4b353a152b804f90566b?s=80&d=identicon",
+            "id": 3197,
+            "name": "Stefan Djordje Tomic",
+          },
+        },
+      ],
+      "description": "Use Reat Context API, for example to interact with toggleButton",
+      "id": 54568,
+      "state": "closed",
+      "title": "Use React Context API",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/2350/avatar.png",
+            "id": 2350,
+            "name": "Marius Arhaug",
+          },
+        },
+      ],
+      "description": "right now info box is fugyl, fix it",
+      "id": 54552,
+      "state": "closed",
+      "title": "Refactor info box",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/1138/avatar.png",
+            "id": 1138,
+            "name": "Patrick Øivind Helvik Legendre",
+          },
+        },
+      ],
+      "description": null,
+      "id": 54461,
+      "state": "closed",
+      "title": "FEAT: Button Last 5 days",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": undefined,
+      "description": null,
+      "id": 54221,
+      "state": "closed",
+      "title": "Fix footer",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/2350/avatar.png",
+            "id": 2350,
+            "name": "Marius Arhaug",
+          },
+        },
+      ],
+      "description": null,
+      "id": 54220,
+      "state": "closed",
+      "title": "Fix infobox",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/2350/avatar.png",
+            "id": 2350,
+            "name": "Marius Arhaug",
+          },
+        },
+      ],
+      "description": "Make API loader a single structure, make parent component, react class components with state and make individual components functional components without much extra features.",
+      "id": 54134,
+      "state": "closed",
+      "title": "CHANGE: refactor code base strucutre",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://secure.gravatar.com/avatar/e5e39c38cd6b4b353a152b804f90566b?s=80&d=identicon",
+            "id": 3197,
+            "name": "Stefan Djordje Tomic",
+          },
+        },
+      ],
+      "description": null,
+      "id": 54126,
+      "state": "closed",
+      "title": "FEAT: WebStorage",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/2350/avatar.png",
+            "id": 2350,
+            "name": "Marius Arhaug",
+          },
+        },
+      ],
+      "description": null,
+      "id": 54125,
+      "state": "closed",
+      "title": "Write comments for documentation",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://secure.gravatar.com/avatar/e5e39c38cd6b4b353a152b804f90566b?s=80&d=identicon",
+            "id": 3197,
+            "name": "Stefan Djordje Tomic",
+          },
+        },
+      ],
+      "description": "Testing website on 3 different devices computer, mobile, monitor. Document the testing afterwards.",
+      "id": 54124,
+      "state": "closed",
+      "title": "TEST: frontend and responsive design",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://secure.gravatar.com/avatar/e5e39c38cd6b4b353a152b804f90566b?s=80&d=identicon",
+            "id": 3197,
+            "name": "Stefan Djordje Tomic",
+          },
+        },
+      ],
+      "description": null,
+      "id": 54123,
+      "state": "closed",
+      "title": "TEST: create a test for component behaviour",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": undefined,
+      "description": "APIManager is run and rerenders the DOM 4 times on each refresh?
+Could this be due to to the way useEffect is used with the API functions and useState?",
+      "id": 54034,
+      "state": "closed",
+      "title": "API requesting multiple times",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://secure.gravatar.com/avatar/da38006dcacf8156bce26d14186fe363?s=80&d=identicon",
+            "id": 3157,
+            "name": "Ole Alexander Høyby",
+          },
+        },
+      ],
+      "description": null,
+      "id": 54026,
+      "state": "closed",
+      "title": "CHANGE: Revise documentation",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://secure.gravatar.com/avatar/e5e39c38cd6b4b353a152b804f90566b?s=80&d=identicon",
+            "id": 3197,
+            "name": "Stefan Djordje Tomic",
+          },
+        },
+      ],
+      "description": null,
+      "id": 53800,
+      "state": "closed",
+      "title": "FEAT: Create last 5 issues",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://secure.gravatar.com/avatar/da38006dcacf8156bce26d14186fe363?s=80&d=identicon",
+            "id": 3157,
+            "name": "Ole Alexander Høyby",
+          },
+        },
+      ],
+      "description": null,
+      "id": 53799,
+      "state": "closed",
+      "title": "FEAT: Create filter for main graph commits",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://secure.gravatar.com/avatar/e5e39c38cd6b4b353a152b804f90566b?s=80&d=identicon",
+            "id": 3197,
+            "name": "Stefan Djordje Tomic",
+          },
+        },
+      ],
+      "description": "",
+      "id": 53734,
+      "state": "closed",
+      "title": "FEAT: Save axios requests in sessionstorage",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/2350/avatar.png",
+            "id": 2350,
+            "name": "Marius Arhaug",
+          },
+        },
+      ],
+      "description": null,
+      "id": 53731,
+      "state": "closed",
+      "title": "FEAT: % issues resolved",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/1138/avatar.png",
+            "id": 1138,
+            "name": "Patrick Øivind Helvik Legendre",
+          },
+        },
+      ],
+      "description": null,
+      "id": 53696,
+      "state": "closed",
+      "title": "FEAT: create infobox",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://secure.gravatar.com/avatar/e5e39c38cd6b4b353a152b804f90566b?s=80&d=identicon",
+            "id": 3197,
+            "name": "Stefan Djordje Tomic",
+          },
+        },
+      ],
+      "description": "* [x] Write snapshot-tests
+* [ ] Write API tests using Axios",
+      "id": 52904,
+      "state": "closed",
+      "title": "FEAT: Expand testing",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/2350/avatar.png",
+            "id": 2350,
+            "name": "Marius Arhaug",
+          },
+        },
+      ],
+      "description": "at it2810-XX.idi.ntnu.no
+
+Forelesning 3 om dette prosjektet sier vi skal sette opp websever?",
+      "id": 52783,
+      "state": "closed",
+      "title": "FEAT: Set up webserver",
+    },
+  },
+  Issue {
+    "props": Object {
+      "assignees": Array [
+        User {
+          "props": Object {
+            "avatarUrl": "https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/1138/avatar.png",
+            "id": 1138,
+            "name": "Patrick Øivind Helvik Legendre",
+          },
+        },
+      ],
+      "description": null,
+      "id": 52485,
+      "state": "closed",
+      "title": "FEAT: create charts",
+    },
+  },
+]
+`;
