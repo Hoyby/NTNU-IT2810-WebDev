@@ -1,0 +1,9 @@
+[submodule "JAMDb-native"]
+	path = JAMDb-native
+	url = https://github.com/Hoyby/JAMDb-native.git
+[submodule "GitGraph"]
+	path = GitGraph
+	url = https://github.com/Hoyby/GitGraph.git
+[submodule "JAMDb"]
+	path = JAMDb
+	url = https://github.com/Hoyby/JAMDb.git
